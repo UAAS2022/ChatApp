@@ -1,14 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  View,
+  Text,
+  Button,
+  FlatList,
+  Alert
+} from 'react-native';
+import { SC000_V00_BaseComponent } from './src/screens/SC000_BaseComponent/SC000_V00_BaseComponent'
+import { SC000_Style } from "./src/screens/SC000_BaseComponent/SC000_Style"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <SC000_V00_BaseComponent />
+    </SafeAreaView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
