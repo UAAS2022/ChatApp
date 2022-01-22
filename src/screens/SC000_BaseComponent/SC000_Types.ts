@@ -1,23 +1,11 @@
 export type SC000_A_ScreenController = {
     type: string,
-    payload: SC000_T_ScreenController,
+    payload: SC000_ScreenController,
 }
 
-export type SC000_T_BaseComponentContext = {
-    screenControllerObj: SC000_T_ScreenController,
-    dispatch_screenControllerObj: React.Dispatch<SC000_A_ScreenController>
-    // test01Obj: SC000_T_test01,
-    // test02Obj: SC000_T_test02,
-    // testParam01: string,
-    // testParam02: string,
-    // testParam03: number,
-}
 
-export type SC000_T_ScreenController = {
-    screenId: string,
-    layoutPattern: number,
-    infoObj: any,
-}
+
+
 
 export type SC000_T_test01 = {
     testParam01: string,
@@ -35,9 +23,35 @@ export type SC000_T_test02 = {
     testParam02: string,
 }
 
-export type SC000_T_ScreenChangeBtnInfo = {
+
+
+// 画面ごとのcontextを定義する
+// ==============================================================
+// S999_Contextで、ほぼ固定
+export type S000_Context = {
+    screenControllerInfo: SC000_ScreenController,
+}
+// --------------------------------------------------------------
+// 画面ごとのコンテキスト内の情報をここに定義していく
+// スクリーンコントローラ
+export type SC000_ScreenController = {
+    screenId: string,
+    layoutPattern: number,
+    infoObj: any,
+}
+// メニューボタン
+export type SC000_ScreenChangeBtnInfo = {
     buttonId: string | undefined,
     buttonName: string,
     nextScreenId: string,
-    action: SC000_A_ScreenController
+    // action: SC000_A_ScreenController
 }
+// ==============================================================
+
+// Actionの型定義。
+// --------------------------------------------------------------
+export type SC000_Action = {
+    type: string,
+    payload: Object,
+}
+// --------------------------------------------------------------
