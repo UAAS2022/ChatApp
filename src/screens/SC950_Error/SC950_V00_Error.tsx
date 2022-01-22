@@ -12,9 +12,6 @@ import {
     FlatList,
     Alert
 } from 'react-native';
-import { SC000_S_BaseComponentProvider } from './SC950_Store'
-import { SC000_S_BaseComponentContext } from "./SC950_Store"
-import { SC000_Style } from "./SC950_Style"
 
 //エラー発生時の共通処理
 export const sc950_V00_commonErr = (error: Error) => {

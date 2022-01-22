@@ -12,13 +12,14 @@ import {
     FlatList,
     Alert
 } from 'react-native';
-import { UPDATE_COUNTER } from './SC010_Action'
-import { S010_S_Context } from './SC010_Store'
+import { UPDATE_COUNTER } from './SC110_Action'
+import { SC110_S_Context } from './SC110_Store'
+import { S010_Context } from "./SC110_Types"
 
-export const SC010_V01_Counter = (props: object) => {
+export const SC110_V01_Counter = (props: object) => {
     console.log("V0010_Home:----------------------")
     // useContextを用いてstate, dispatchを取得する
-    const { state, dispatch } = useContext(S010_S_Context)
+    const { state, dispatch } = useContext(SC110_S_Context)
 
     // イベントハンドラ関数を定義する
     // [add]ボタンタップ時のイベントハンドラ関数
