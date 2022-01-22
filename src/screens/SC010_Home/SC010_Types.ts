@@ -1,30 +1,33 @@
 
-export type SC010_T_HomeContext = {
-    counterObj: SC010_T_Counter,
-    dispatch_counterObj: React.Dispatch<SC010_A_Counter>
+// 画面ごとのcontextを定義する
+// ==============================================================
+// S999_Contextで、ほぼ固定
+export type S010_Context = {
+    counterInfo: SC010_Counter,
+    userInfo: SC010_USER
 }
-
-export type SC010_T_Counter = {
+// --------------------------------------------------------------
+// 画面ごとのコンテキスト内の情報をここに定義していく
+// カウンタ情報
+export type SC010_Counter = {
     count: number,
 }
-
-export type SC010_T_test01 = {
-    testParam01: string,
-    testParam02: string,
-    testParam03: string,
-    testParam04: string,
-    testParam05: string,
-    testParam06: number,
-    testParam07: number,
+// ユーザ情報
+export type SC010_USER = {
+    userId: string,
+    userName: string,
 }
+// ==============================================================
 
 
-export type SC010_T_test02 = {
-    testParam01: string,
-    testParam02: string,
+// ActionとPayloadの型定義。二個イチ。
+// --------------------------------------------------------------
+export type SC010_A_UPDATE_COUNTER = {
+    type: string,
+    payload: SC010_P_UPDATE_COUNTER,
 }
-
-export type SC010_A_Counter = {
-    type: string
-    payload: number
+export type SC010_P_UPDATE_COUNTER = {
+    counterInfo: SC010_Counter,
 }
+// --------------------------------------------------------------
+

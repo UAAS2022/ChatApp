@@ -1,41 +1,37 @@
 import { createContext, useState, useReducer } from "react";
-import type { SC010_T_HomeContext } from "./SC010_Types"
-import { reducer_counterObj } from "./SC010_Reducer"
+import type { S010_Context, SC010_P_UPDATE_COUNTER } from "./SC010_Types"
+import { reducer } from "./SC010_Reducer"
 
-export const SC010_S_HomeContext = createContext({} as SC010_T_HomeContext);
+// SC999_Store.tsxではコンテキスト（グローバルステートのこと。複数コンポーネントで利用可能な変数だと思えばOK）を定義する。
+// ここでは以下の3つを用意する。
+// 　1.コンテキスト（S999_S_Context）
+// 　2.コンテキストの初期値(DefaultState)
+// 　3.プロバイダ(SC010_S_Provider)
 
-// export const actionCreater_SC010 = (actionId: string, param: Object): SC010_A_Counter => {
-//     console.log("SC010_S_HomeProvider.actionCreater_SC010", actionId)
-//     switch (actionId) {
-//         case "0":
-//             return { type: "SC010_ADD", payload: 1 }
-//         case "1":
-//             return { type: "SC010_REMOVE", payload: 1 }
-//         default:
-//             return { type: "SC010_ADD", payload: 1 }
-//     }
-// }
+// 1.コンテキスト（S999_S_Context）
+export const S010_S_Context = createContext<any>({} as SC010_P_UPDATE_COUNTER);
 
-//コンテキストの初期値を定義
-const defaultState: SC010_T_HomeContext = {
-    counterObj: { count: 0 },
-    dispatch_counterObj: () => { }
+// 2.コンテキストの初期値(DefaultState)
+// コンテキストに値を追加する場合、ここに初期値も追加する必要がある。
+const DefaultState: S010_Context = {
+    counterInfo: { count: 0 },
+    userInfo: { userId: "", userName: "" },
 }
 
-export const SC010_S_HomeProvider = (props: any) => {
-    // childrenを受け取る
+// 3.プロバイダ(SC010_S_Provider)
+//　詳しい説明はげぇじ本P183を参照
+export const SC010_S_Provider = (props: any) => {
+    // JSXでchildrenを使うため、propsからchildrenを取得する
     const { children } = props;
-    // const [count, dispatch] = useReducer(reducer,'初期値')
 
-    const [state, dispatch_counterObj] = useReducer(reducer_counterObj, defaultState)
-    state.dispatch_counterObj = dispatch_counterObj
+    // useReducerを使ってstateとdispatchを取得する
+    const [state, dispatch] = useReducer(reducer, DefaultState)
 
-    // contextの中にproviderがあるのでそれでchildrenを囲む
-    // valueの中にグローバルに扱う実際の値を設定
+    // valueの中に{state, dispatch}を設定し、childrenコンポーネントで使えるようにする
     return (
-        <SC010_S_HomeContext.Provider value={state}>
+        <S010_S_Context.Provider value={{ state, dispatch }}>
             {children}
-        </SC010_S_HomeContext.Provider>
+        </S010_S_Context.Provider>
     );
 };
 
