@@ -2,7 +2,7 @@ import type { SC000_Action } from "../SC000_BaseComponent/SC000_Types"
 import type {
     S010_Context,
 } from "./SC110_Types"
-import { SC110_ACTIONTYPE } from "./SC110_Const"
+import { ActionType } from "./SC110_ActionType"
 
 // SC999_Reducer.tsには、基本的に「reducerメソッド」のみを定義する。
 // reducerメソッドの中にアクションごとの処理を記載する。
@@ -16,11 +16,11 @@ export const reducer = (state: S010_Context, action: SC000_Action) => {
     // ActionTypeごとに処理を分岐する
     switch (type) {
         // UPDATE_COUNTERの場合
-        case SC110_ACTIONTYPE.UPDATE_COUNTER:
+        case ActionType.UPDATE_COUNTER:
             newState = { ...state, ...payload }
             break
         // UPDATE_USERの場合
-        case SC110_ACTIONTYPE.UPDATE_USER:
+        case ActionType.UPDATE_USER:
             newState = { ...state, ...payload }
             break
     }

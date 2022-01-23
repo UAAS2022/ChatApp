@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import type { SC000_ScreenController, SC000_A_ScreenController } from "./SC000_Types"
-import { SC000_ACTIONTYPE } from "./SC000_Const"
+import { ActionType } from "./SC000_ActionType"
 
 // export const GO_TO_SC010: SC000_A_ScreenController = {
 //     type: 'GO_TO_SC010',  // ActionType
@@ -20,7 +20,7 @@ import { SC000_ACTIONTYPE } from "./SC000_Const"
 
 export const CHANGE_SCREEN = (payload: SC000_ScreenController) => {
     return {
-        type: SC000_ACTIONTYPE.CHANGE_SCREEN,
+        type: ActionType.CHANGE_SCREEN,
         payload
     }
 }

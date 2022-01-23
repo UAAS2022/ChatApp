@@ -15,7 +15,6 @@ import {
 import { CHANGE_SCREEN } from './SC000_Action'
 import { SC000_S_Context } from "./SC000_Store"
 import { SC000_Style } from "./SC000_Style"
-import { SC000_SCREENID } from "./SC000_Const"
 // import { getLayoutPattern } from "./SC000_V01_MainScreen"
 
 export const CC0020_MenuBtn = (props: any) => {
@@ -51,16 +50,16 @@ export const CC0020_MenuBtn = (props: any) => {
 export const getLayoutPattern = (screenId: string): number => {
     let layoutPattern = 1
     switch (screenId) {
-        case SC000_SCREENID.SC110:
+        case "SC110":
             layoutPattern = 1
             break;
-        case SC000_SCREENID.SC210:
+        case "SC210":
             layoutPattern = 1
             break;
-        case SC000_SCREENID.SC310:
+        case "SC310":
             layoutPattern = 1
             break;
-        case SC000_SCREENID.SC410:
+        case "SC410":
             layoutPattern = 1
             break;
     }

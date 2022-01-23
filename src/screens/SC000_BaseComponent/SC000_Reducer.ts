@@ -3,32 +3,32 @@ import type {
     SC000_Action,
     SC000_A_ScreenController,
 } from "./SC000_Types"
-import { ActionType } from "./SC000_ActionType"
+import { SC000_ACTIONTYPE } from "./SC000_Const"
 
-export const reducer_screenControllerObj = (state: S000_Context, action: SC000_A_ScreenController) => {
-    const newState = { ...state }
-    switch (action.type) {
-        case "GO_TO_SC010":
-            newState.screenControllerInfo.screenId = action.payload.screenId
-            newState.screenControllerInfo.layoutPattern = action.payload.layoutPattern
-            console.log(new Date().toLocaleString(), "SC000.reducer.GO_TO_SC010:", state, action)
-            break
-        case "GO_TO_SC020":
-            newState.screenControllerInfo.screenId = action.payload.screenId
-            newState.screenControllerInfo.layoutPattern = action.payload.layoutPattern
-            console.log(new Date().toLocaleString(), "SC000.reducer.GO_TO_SC020:", state, action)
-            break
-        case "GO_TO_SC021":
-            newState.screenControllerInfo.screenId = action.payload.screenId
-            newState.screenControllerInfo.layoutPattern = action.payload.layoutPattern
-            console.log(new Date().toLocaleString(), "SC000.reducer.GO_TO_SC021:", state, action)
-            break
-        default:
-            console.log(new Date().toLocaleString(), "SC000.reducer.default:", state, action)
-            break
-    }
-    return newState
-}
+// export const reducer_screenControllerObj = (state: S000_Context, action: SC000_A_ScreenController) => {
+//     const newState = { ...state }
+//     switch (action.type) {
+//         case "GO_TO_SC010":
+//             newState.screenControllerInfo.screenId = action.payload.screenId
+//             newState.screenControllerInfo.layoutPattern = action.payload.layoutPattern
+//             console.log(new Date().toLocaleString(), "SC000.reducer.GO_TO_SC010:", state, action)
+//             break
+//         case "GO_TO_SC020":
+//             newState.screenControllerInfo.screenId = action.payload.screenId
+//             newState.screenControllerInfo.layoutPattern = action.payload.layoutPattern
+//             console.log(new Date().toLocaleString(), "SC000.reducer.GO_TO_SC020:", state, action)
+//             break
+//         case "GO_TO_SC021":
+//             newState.screenControllerInfo.screenId = action.payload.screenId
+//             newState.screenControllerInfo.layoutPattern = action.payload.layoutPattern
+//             console.log(new Date().toLocaleString(), "SC000.reducer.GO_TO_SC021:", state, action)
+//             break
+//         default:
+//             console.log(new Date().toLocaleString(), "SC000.reducer.default:", state, action)
+//             break
+//     }
+//     return newState
+// }
 
 // SC999_Reducer.tsには、基本的に「reducerメソッド」のみを定義する。
 // reducerメソッドの中にアクションごとの処理を記載する。
@@ -42,7 +42,7 @@ export const reducer = (state: S000_Context, action: SC000_Action) => {
     // ActionTypeごとに処理を分岐する
     switch (type) {
         // CHANGE_SCREENの場合
-        case ActionType.CHANGE_SCREEN:
+        case SC000_ACTIONTYPE.CHANGE_SCREEN:
             newState = { ...state, ...payload }
             break
     }

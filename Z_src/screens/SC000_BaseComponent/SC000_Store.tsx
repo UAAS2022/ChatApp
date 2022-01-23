@@ -3,7 +3,7 @@ import type { S000_Context } from "./SC000_Types"
 import type { SC000_ScreenController } from "./SC000_Types"
 import type { SC000_T_test01 } from "./SC000_Types"
 import type { SC000_T_test02 } from "./SC000_Types"
-import { reducer, } from "./SC000_Reducer"
+import { reducer, reducer_screenControllerObj, } from "./SC000_Reducer"
 
 // //コンテキストの初期値を定義
 // const DefaultState: S000_Context = {
