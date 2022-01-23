@@ -20,7 +20,7 @@ import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
 
 // 各画面のメインコンポーネント（V00系）をプロバイダーで囲む
 
-export const SC110_V00_Home = () => {
+export const SC110_Home = () => {
     console.log("V0010_Home:----------------------")
     return (
         <>
