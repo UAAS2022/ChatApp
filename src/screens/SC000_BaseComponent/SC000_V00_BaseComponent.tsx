@@ -29,14 +29,11 @@ export const SC000_V00_BaseComponent = () => {
             </>
         );
     } catch (error) {
+        console.log("Error:V0000_BaseComponent:")
         if (error instanceof Error) {
             sc950_V00_commonErr(error)
         }
         // throw(error)
-        return (
-            <View>
-                <SC950_V00_Error />
-            </View>
-        )
+        return (<SC950_V00_Error />)
     }
 }

@@ -14,6 +14,9 @@ const DefaultState: S000_Context = {
         layoutPattern: 1,
         infoObj: {}
     },
+    errorInfo: {
+        errorKbn: 0
+    }
 }
 
 // 3.プロバイダ(SC010_S_Provider)

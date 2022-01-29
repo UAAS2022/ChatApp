@@ -10,3 +10,10 @@ export const CHANGE_SCREEN = (payload: SC000_ScreenController) => {
         payload
     }
 }
+
+export const ERROR = (payload: SC000_ScreenController) => {
+    return {
+        type: SC000_ACTIONTYPE.ERROR,
+        payload
+    }
+}
