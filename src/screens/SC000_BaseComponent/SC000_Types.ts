@@ -4,6 +4,7 @@
 // S999_Contextで、ほぼ固定
 export type S000_Context = {
     screenControllerInfo: SC000_ScreenController,
+    errorInfo: SC000_ErrorInfo,
 }
 // --------------------------------------------------------------
 // 画面ごとのコンテキスト内の情報をここに定義していく
@@ -19,6 +20,10 @@ export type SC000_ScreenChangeBtnInfo = {
     buttonName: string,
     nextScreenId: string,
     // action: SC000_A_ScreenController
+}
+// スクリーンコントローラ
+export type SC000_ErrorInfo = {
+    errorKbn: number,
 }
 // ==============================================================
 
