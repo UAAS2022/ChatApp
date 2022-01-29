@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Modal, Center, NativeBaseProvider } from "native-base"
+import { Button, Stack, Modal, Divider, Center, NativeBaseProvider } from "native-base"
 import {
     Button as SimpleBtn,
     StyleSheet,
@@ -24,12 +24,11 @@ export const SC998_V00_Nabe = () => {
         <SafeAreaView>
             <CC0010_ScreenTitle >なべ画面</CC0010_ScreenTitle>
             <Text>むらたはじめ</Text>
+
             <Text>う</Text>
             <SC998_V01_cmp1/>
             <SC998_V02_cmp2/>
             <SC998_V03_cmp3/>
-            
-
         </SafeAreaView>
     )
 }
