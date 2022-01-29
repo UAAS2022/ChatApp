@@ -75,13 +75,36 @@ export const SC998_Style = StyleSheet.create({
     },
     v00_nabebts: {
         height: '10%',             //縦幅
-        width: '50%',              //横幅
+        width: '20%',              //横幅
         marginTop: 80,               //余白(上)
-        marginBottom: 80,            //余白(下)
-        marginLeft: 80,              //余白(左)
-        marginRight: 80,             //余白(右)
+        marginBottom: 30,            //余白(下)
+        marginLeft: 300,              //余白(左)
+        marginRight: 0,             //余白(右)
         backgroundColor: '#999',    //背景色
     },
+    v00_muratapozi: {
+        height: '10%',             //縦幅
+        width: '50%',              //横幅
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: '0%',              //余白(左)
+        marginRight:'50%',             //余白(右)
+        backgroundColor: '#888',    //背景色
+    },
+    v00_muratapozi2: {
+        height: '100%',             //縦幅
+        width: '30%',              //横幅
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: '1.5%',              //余白(左)
+        marginRight:'1.5%',             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
+    v00_btnpozi2: {
+        height: '10%',             //縦幅
+        width: '100%',              //横幅
+        flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
 
+    },
 
 });
