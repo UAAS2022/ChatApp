@@ -23,13 +23,14 @@ export const SC000_V04_MenuBar = (props: object) => {
     const menuBtn2: SC000_ScreenChangeBtnInfo = { buttonId: "TalkList", buttonName: "Talk", nextScreenId: SC000_SCREENID.SC210 }
     const menuBtn3: SC000_ScreenChangeBtnInfo = { buttonId: "Boad", buttonName: "Boad", nextScreenId: SC000_SCREENID.SC310 }
     const menuBtn4: SC000_ScreenChangeBtnInfo = { buttonId: "Manage", buttonName: "Manage", nextScreenId: SC000_SCREENID.SC410, }
+    const menuBtn998: SC000_ScreenChangeBtnInfo = { buttonId: "Nabe", buttonName: "Nabe", nextScreenId: SC000_SCREENID.SC998, }
     const menuBtn999: SC000_ScreenChangeBtnInfo = { buttonId: "Test", buttonName: "Test", nextScreenId: SC000_SCREENID.SC999, }
     return (
         <>
             <View style={SC000_Style.v04_MenuBar}>
                 <CC0020_MenuBtn btnInfo={menuBtn1} />
                 <CC0020_MenuBtn btnInfo={menuBtn2} />
-                <CC0020_MenuBtn btnInfo={menuBtn3} />
+                <CC0020_MenuBtn btnInfo={menuBtn998} />
                 <CC0020_MenuBtn btnInfo={menuBtn4} />
                 <CC0020_MenuBtn btnInfo={menuBtn999} />
             </View>

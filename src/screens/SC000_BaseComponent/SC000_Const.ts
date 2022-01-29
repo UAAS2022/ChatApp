@@ -12,5 +12,6 @@ export const SC000_SCREENID = {
     SC320: "SC320",
     SC410: "SC420",
     SC950: "SC950",
+    SC998: "SC998",
     SC999: "SC999",
 }

@@ -20,6 +20,7 @@ import { SC110_V00_Home } from '../SC110_Home/SC110_V00_Home'
 import { SC210_V00_TalkList } from '../SC210_TalkList/SC210_V00_TalkList'
 import { SC310_V00_Board } from '../SC310_Board/SC310_V00_Board'
 import { SC410_V00_Manage } from '../SC410_Manage/SC410_V00_Manage'
+import { SC998_V00_Nabe } from '../SC998_Nabe/SC998_V00_Nabe'
 import { SC999_V00_Test } from '../SC999_Test/SC999_V00_Test'
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
@@ -38,6 +39,8 @@ export const SC000_V01_MainScreenCmp = () => {
                 return <SC310_V00_Board />
             case SC000_SCREENID.SC410:
                 return <SC410_V00_Manage />
+            case SC000_SCREENID.SC998:
+                return <SC998_V00_Nabe />
             case SC000_SCREENID.SC999:
                 return <SC999_V00_Test />
             default:
