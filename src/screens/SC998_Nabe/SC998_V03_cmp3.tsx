@@ -17,7 +17,7 @@ import { SC998_Style } from './SC998_Style'
 import { SC998_S_Context } from './SC998_Store';
 import { UPDATE_MURATA } from './SC998_Action';
 
-export const SC998_V03_cmp3 = () => {
+export const SC998_V03_Cmp3 = () => {
     const { state, dispatch } = useContext(SC998_S_Context)
     const jim = ()=> {
     // 取得したstateの値を更新する（+1）

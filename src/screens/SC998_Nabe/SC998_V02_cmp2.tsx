@@ -19,7 +19,7 @@ const log = () =>{
     console.log("あ")
 }
 
-export const SC998_V02_cmp2 = () => {
+export const SC998_V02_Cmp2 = () => {
     return (
         <>
             <Text>こ</Text>
