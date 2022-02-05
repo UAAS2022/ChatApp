@@ -14,7 +14,7 @@ import {
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { SC998_S_Context } from './SC998_Store';
 
-export const SC998_V01_cmp1 = () => {
+export const SC998_V01_Cmp1 = () => {
     const { state, dispatch } = useContext(SC998_S_Context)
 
     return (
