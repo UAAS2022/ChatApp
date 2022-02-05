@@ -1,5 +1,5 @@
 import type {
-    S000_Context,
+    SC000_Context,
     SC000_Action,
 } from "./SC000_Types"
 import { SC000_ACTIONTYPE } from "./SC000_Const"
@@ -8,7 +8,7 @@ import { SC000_ACTIONTYPE } from "./SC000_Const"
 // reducerメソッドの中にアクションごとの処理を記載する。
 
 // Actionから渡された更新情報を使って、新しいstate情報を作るためのメソッド
-export const reducer = (state: S000_Context, action: SC000_Action) => {
+export const reducer = (state: SC000_Context, action: SC000_Action) => {
     // 更新後state情報を宣言する（初期値として更新前state情報を設定する）
     let newState = { ...state }
     // actionオブジェクトからtypeとpayloadを取得する

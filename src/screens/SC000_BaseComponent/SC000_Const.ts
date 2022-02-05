@@ -15,3 +15,11 @@ export const SC000_SCREENID = {
     SC998: "SC998",
     SC999: "SC999",
 }
+
+export const SC000_Img = {
+    murata: "../../static/img/murata_unko.jpeg",
+    god: "../../static/img/god_god.jpeg",
+
+}
+
+export const murata_unko = "../../static/img/murata_unko.jpeg"

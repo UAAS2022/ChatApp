@@ -1,14 +1,14 @@
 import { createContext, useState, useReducer, useContext } from "react";
-import type { S000_Context } from "./SC000_Types"
+import type { SC000_Provider, SC000_Context } from "./SC000_Types"
 import type { SC000_ScreenController } from "./SC000_Types"
 import { reducer, } from "./SC000_Reducer"
 
 // 1.コンテキスト（S999_S_Context）
-export const SC000_S_Context = createContext<any>({} as S000_Context);
+export const SC000_S_Context = createContext<SC000_Provider>({} as SC000_Provider);
 
 // 2.コンテキストの初期値(DefaultState)
 // コンテキストに値を追加する場合、ここに初期値も追加する必要がある。
-const DefaultState: S000_Context = {
+const DefaultState: SC000_Context = {
     screenControllerInfo: {
         screenId: "SC010",
         layoutPattern: 1,
