@@ -1,8 +1,15 @@
 
+// 画面ごとのProviderを定義する
+// ==============================================================
+export type SC000_Provider = {
+    state: SC000_Context,
+    dispatch: React.Dispatch<SC000_Action>
+}
+
 // 画面ごとのcontextを定義する
 // ==============================================================
 // S999_Contextで、ほぼ固定
-export type S000_Context = {
+export type SC000_Context = {
     screenControllerInfo: SC000_ScreenController,
     errorInfo: SC000_ErrorInfo,
 }
