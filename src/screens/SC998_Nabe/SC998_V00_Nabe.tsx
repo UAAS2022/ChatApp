@@ -17,6 +17,7 @@ import { SC998_V01_Cmp1 } from './SC998_V01_Cmp1 '
 import { SC998_V02_Cmp2 } from './SC998_V02_Cmp2'
 import { SC998_V03_Cmp3 } from './SC998_V03_Cmp3'
 import { SC998_S_Provider } from './SC998_Store'
+import { SC998_V04_Miracle } from './SC998_V04_Miracle';
 
 
 export const SC998_V00_Nabe = () => {
@@ -27,9 +28,10 @@ export const SC998_V00_Nabe = () => {
             <Text>むらたはじめ</Text>
 
             <SC998_S_Provider>
-                <SC998_V01_Cmp1 />
+                {/* <SC998_V01_Cmp1 />
                 <SC998_V02_Cmp2 />
-                <SC998_V03_Cmp3 />
+                <SC998_V03_Cmp3 /> */}
+                <SC998_V04_Miracle/>
             </SC998_S_Provider>
         </SafeAreaView>
     )

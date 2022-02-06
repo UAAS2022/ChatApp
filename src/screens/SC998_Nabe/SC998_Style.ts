@@ -100,6 +100,36 @@ export const SC998_Style = StyleSheet.create({
         marginRight:'1.5%',             //余白(右)
         backgroundColor: '#fff',    //背景色
     },
+    v00_muratapozi3: {
+        height: '15%',             //縦幅
+        width: '32%',              //横幅
+        justifyContent: 'center',
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: '1%',              //余白(左)
+        marginRight:'67%',             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
+    v00_muratapozi4: {
+        height: '15%',             //縦幅
+        width: '32%',              //横幅
+        justifyContent: 'center',
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: '33%',              //余白(左)
+        marginRight:'35%',             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
+    v00_muratapozi5: {
+        height: '15%',             //縦幅
+        width: '32%',              //横幅
+        justifyContent: 'center',
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: '67%',              //余白(左)
+        marginRight:'1%',             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
     v00_btnpozi2: {
         height: '10%',             //縦幅
         width: '100%',              //横幅
