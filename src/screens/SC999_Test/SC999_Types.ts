@@ -21,6 +21,19 @@ export type SC999_ScreenController = {
     layoutPattern: number,
     infoObj: any,
 }
+
+// ユーザ情報
+//ユーザ情報
+export type T999_UserInfo = {
+    userId: string,
+    userName: string,
+    comment: string,
+    genderCd: string,
+    age: number,
+    areaCd: string,
+    hashtag: string,
+}
+
 // Actionの型定義。
 // --------------------------------------------------------------
 export type SC999_Action = {

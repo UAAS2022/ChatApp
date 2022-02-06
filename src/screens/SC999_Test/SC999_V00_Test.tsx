@@ -12,44 +12,35 @@ import {
     Dimensions
 } from 'react-native';
 import { CHANGE_SCREEN } from './SC999_Action'
-import { SC999_V01_Test_MainScreen, SC999_V01_Test_MenuBar } from "./SC999_V01_Test_MainScreen"
+import { SC999_V01_Test_MainScreen, SC999_V01_Test_MenuBar1, SC999_V01_Test_MenuBar2 } from "./SC999_V01_Test_MainScreen"
 import { SC999_S_Provider, SC999_S_Context } from './SC999_Store'
 import { SC999_Style } from "./SC999_Style"
 import { SC999_COMPONENT_ID } from "./SC999_Const"
 
 export const SC999_V00_Test = () => {
-    const { state, dispatch } = useContext(SC999_S_Context)
-    // [reset]ボタンタップ時のイベントハンドラ関数
-    const onClickSwitchV00 = () => {
-        const newState = { ...state }
-        // 取得したstateの値を更新する
-        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V00
-        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
-    }
-    const onClickSwitchV01 = () => {
-        const newState = { ...state }
-        // 取得したstateの値を更新する
-        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V01
-        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
-    }
-    const onClickSwitchV02 = () => {
-        const newState = { ...state }
-        // 取得したstateの値を更新する
-        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V02
-        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
-    }
-    const onClickSwitchV03 = () => {
-        const newState = { ...state }
-        // 取得したstateの値を更新する
-        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V03
-        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
-    }
     return (
         <>
             <SC999_S_Provider>
-                <SC999_V01_Test_MainScreen />
-                <SC999_V01_Test_MenuBar />
+                <View style={SC999_Style.testMainScreen}>
+                    <SC999_V01_Test_MainScreen />
+                </View>
+                <View>
+                    <SC999_V01_Test_MenuBar1 />
+                    <SC999_V01_Test_MenuBar2 />
+                </View>
             </SC999_S_Provider>
         </>
     )
+}
+
+export const check_Required = (obj: any): boolean => {
+    let errFlg = true
+    if (obj == null) {
+        errFlg = false
+    } else if (obj == undefined) {
+        errFlg = false
+    } else if (obj == NaN) {
+        errFlg = false
+    }
+    return errFlg
 }
