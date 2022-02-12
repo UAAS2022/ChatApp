@@ -134,7 +134,6 @@ export const SC110_V01_UserList = () => {
                     {/* map処理1：行のループ */}
                     {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: SC000_UserInfo[], index) => {
                         return (
-
                             <View style={SC110_Style.userInfoArea} key={index}>
                                 {/* <Heading size="md">row</Heading> */}
 
