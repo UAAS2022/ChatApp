@@ -1,12 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
 import {
+    Button,
+    Stack,
+    Icon,
+    Modal,
+    Center,
+    NativeBaseProvider,
+    Heading,
+    Flex,
+    Divider,
+} from "native-base"
+import {
     StyleSheet,
     TextInput,
     SafeAreaView,
     KeyboardAvoidingView,
     View,
     Text,
-    Button,
+    // Button,
     FlatList,
     Alert
 } from 'react-native';
@@ -37,8 +48,8 @@ export const CC0020_MenuBtn = (props: any) => {
     }
     return (
         <>
-            <View style={SC000_Style.v03_MenuBtn}>
-                <Button title={buttonName} onPress={onClickSwitch} />
+            <View style={SC000_Style.v03_MenuBtnView}>
+                <Button style={SC000_Style.v03_MenuBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onClickSwitch}>{buttonName}</Button>
             </View>
         </>
     )

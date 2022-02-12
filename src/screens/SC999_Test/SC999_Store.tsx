@@ -16,6 +16,14 @@ const DefaultState: SC999_Context = {
         layoutPattern: 1,
         infoObj: {}
     },
+    userInfoList: [],
+    userInfoList_ScreenDisp: [[]],
+    sC999_V14_Info: {
+        talkList: []
+    },
+    sC999_V19_Info: {
+        chatMessageInfoList: []
+    },
 }
 
 // 3.プロバイダ(SC010_S_Provider)

@@ -19,7 +19,17 @@ export const reducer = (state: SC999_Context, action: SC999_Action) => {
         case SC999_ACTIONTYPE.CHANGE_SCREEN:
             newState = { ...state, ...payload }
             break
+        case SC999_ACTIONTYPE.UPDATE_V08:
+            newState = { ...state, ...payload }
+            break
+        case SC999_ACTIONTYPE.UPDATE_V14:
+            newState = { ...state, ...payload }
+            break
+        case SC999_ACTIONTYPE.UPDATE_V19:
+            newState = { ...state, ...payload }
+            break
     }
+
     console.log("SC010_Reducer,reducer.action:", action,)
     console.log("SC010_Reducer,reducer.state:", state,)
     console.log("SC010_Reducer,reducer.newState:", newState)

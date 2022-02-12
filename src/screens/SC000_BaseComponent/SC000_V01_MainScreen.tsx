@@ -2,13 +2,24 @@
 
 import React, { useContext } from 'react';
 import {
+    Button,
+    Stack,
+    Icon,
+    Modal,
+    Center,
+    NativeBaseProvider,
+    Heading,
+    Flex,
+    Divider,
+} from "native-base"
+import {
     StyleSheet,
     TextInput,
     SafeAreaView,
     KeyboardAvoidingView,
     View,
     Text,
-    Button,
+    // Button,
     FlatList,
     Alert
 } from 'react-native';
@@ -67,18 +78,19 @@ export const SC000_V01_MainScreen = () => {
             case 1:
                 return (
                     <>
-                        <View style={SC000_Style.v01_MainScreen}>
-                            <Text>case 1</Text>
-                            <SC000_V01_MainScreenCmp />
+                        <SafeAreaView>
+                            <View style={SC000_Style.v01_MainScreen}>
+                                <SC000_V01_MainScreenCmp />
+                            </View>
+                            <Divider />
                             <SC000_V04_MenuBar />
-                        </View>
+                        </SafeAreaView>
                     </>
                 )
             case 2:
                 return (
                     <>
                         <View style={SC000_Style.v01_MainScreen}>
-                            <Text>case 2</Text>
                             <SC000_V01_MainScreenCmp />
                         </View>
                     </>
@@ -86,11 +98,14 @@ export const SC000_V01_MainScreen = () => {
             default:
                 return (
                     <>
-                        <View style={SC000_Style.v01_MainScreen}>
+                        <SafeAreaView>
                             <Text>case def</Text>
-                            <SC000_V01_MainScreenCmp />
+                            <View style={SC000_Style.v01_MainScreen}>
+                                <SC000_V01_MainScreenCmp />
+                            </View>
+                            <Divider />
                             <SC000_V04_MenuBar />
-                        </View>
+                        </SafeAreaView>
                     </>
                 )
         }

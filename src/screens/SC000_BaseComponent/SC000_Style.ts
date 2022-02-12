@@ -38,10 +38,10 @@ export const SC000_Style = StyleSheet.create({
         marginBottom: 0,            //余白(下)
         marginLeft: 0,              //余白(左)
         marginRight: 0,             //余白(右)
-        backgroundColor: '#999',    //背景色
+        backgroundColor: '#fff',    //背景色
     },
     v01_MainScreen: {
-        height: '100%',             //縦幅
+        height: '93%',             //縦幅
         width: '100%',              //横幅
         marginTop: 0,               //余白(上)
         marginBottom: 0,            //余白(下)
@@ -49,9 +49,9 @@ export const SC000_Style = StyleSheet.create({
         marginRight: 0,             //余白(右)
         backgroundColor: '#fff',    //背景色
     },
-    v03_MenuBtn: {
+    v03_MenuBtnView: {
         height: '100%',              //縦幅
-        width: '25%',              //横幅
+        width: '20%',              //横幅
         alignItems: 'center',       //配置（上下）
         justifyContent: 'center',   //配置（左右）
         marginLeft: "0.1%",         //余白(左)
@@ -59,20 +59,30 @@ export const SC000_Style = StyleSheet.create({
         // marginTop: "1%",
         // marginBottom: "1%",
         fontSize: 9,                //フォントサイズ
-        backgroundColor: '#eee',    //背景色
+        backgroundColor: '#fff',    //背景色
+    },
+    v03_MenuBtn: {
+        height: '100%',              //縦幅
+        width: '80%',              //横幅
+        alignItems: 'center',       //配置（上下）
+        justifyContent: 'center',   //配置（左右）
+        marginLeft: "0.1%",         //余白(左)
+        marginRight: "0.1%",        //余白(右)
+        // marginTop: "1%",
+        // marginBottom: "1%",
+        fontSize: 9,                //フォントサイズ
+        backgroundColor: '#fff',    //背景色
     },
     v04_MenuBar: {
-        height: '6%',               //縦幅
+        height: '7%',               //縦幅
         width: '100%',              //横幅
         alignItems: 'flex-end',     //配置（上下）
         justifyContent: 'center',   //配置（左右）
-        marginTop: 'auto',          //余白(上)
+        marginTop: '1%',          //余白(上)
         marginBottom: 0,            //余白(下)
         marginLeft: 'auto',         //余白(左)
         marginRight: 'auto',        //余白(右)
         flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
-        backgroundColor: '#888',    //背景色
+        backgroundColor: '#fff',    //背景色
     },
-
-
 });

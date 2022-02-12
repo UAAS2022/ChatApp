@@ -23,6 +23,14 @@ import { SC999_V05_RegistUser } from "./SC999_V05_RegistUser"
 import { SC999_V09_SelectUser_List } from "./SC999_V09_SelectUser_List"
 import { SC999_V07_DeleteUser } from "./SC999_V07_DeleteUser"
 import { SC999_V06_UpdateUser } from "./SC999_V06_UpdateUser"
+import { SC999_V08_SelectUser } from "./SC999_V08_SelectUser"
+import { SC999_V10_RegistTalk } from "./SC999_V10_RegistTalk"
+import { SC999_V11_UpdateTalk } from "./SC999_V11_UpdateTalk"
+import { SC999_V12_DeleteTalk } from "./SC999_V12_DeleteTalk"
+import { SC999_V13_SelectTalk } from "./SC999_V13_SelectTalk"
+import { SC999_V14_SelectTalk_List } from "./SC999_V14_SelectTalk_List"
+import { SC999_V15_RegistChatMessage } from "./SC999_V15_RegistChatMessage"
+import { SC999_V19_SelectChatMessageList_List } from "./SC999_V19_SelectChatMessageList_List"
 
 // スクリーンコンポーネント
 export const SC999_V01_Test_MainScreen = () => {
@@ -43,8 +51,24 @@ export const SC999_V01_Test_MainScreen = () => {
             return <SC999_V06_UpdateUser />
         case SC999_COMPONENT_ID.SC999_V07:
             return <SC999_V07_DeleteUser />
+        case SC999_COMPONENT_ID.SC999_V08:
+            return <SC999_V08_SelectUser />
         case SC999_COMPONENT_ID.SC999_V09:
             return <SC999_V09_SelectUser_List />
+        case SC999_COMPONENT_ID.SC999_V10:
+            return <SC999_V10_RegistTalk />
+        case SC999_COMPONENT_ID.SC999_V11:
+            return <SC999_V11_UpdateTalk />
+        case SC999_COMPONENT_ID.SC999_V12:
+            return <SC999_V12_DeleteTalk />
+        case SC999_COMPONENT_ID.SC999_V13:
+            return <SC999_V13_SelectTalk />
+        case SC999_COMPONENT_ID.SC999_V14:
+            return <SC999_V14_SelectTalk_List />
+        case SC999_COMPONENT_ID.SC999_V15:
+            return <SC999_V15_RegistChatMessage />
+        case SC999_COMPONENT_ID.SC999_V19:
+            return <SC999_V19_SelectChatMessageList_List />
         default:
             return <SC999_V02_Default />
     }
@@ -163,3 +187,118 @@ export const SC999_V01_Test_MenuBar2 = () => {
         </>
     )
 }
+
+// メニューコンポーネント（本当は別ファイル）
+export const SC999_V01_Test_MenuBar3 = () => {
+    const { state, dispatch } = useContext(SC999_S_Context)
+    const { componentId } = state.screenControllerInfo
+    const onClickSwitchV10 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V10
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV11 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V11
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV12 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V12
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV13 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V13
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV14 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V14
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    return (
+        <>
+            <View style={SC999_Style.menuBtnBar}>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV10}>
+                    V10_登録
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV11}>
+                    V11_更新
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV12}>
+                    V12_削除
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV13}>
+                    V13_検索
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV14}>
+                    V14_一覧
+                </Button>
+            </View>
+        </>
+    )
+}
+
+// メニューコンポーネント（本当は別ファイル）
+export const SC999_V01_Test_MenuBar4 = () => {
+    const { state, dispatch } = useContext(SC999_S_Context)
+    const { componentId } = state.screenControllerInfo
+    const onClickSwitchV15 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V15
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV16 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V16
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV17 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V17
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV18 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V18
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV19 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V19
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    return (
+        <>
+            <View style={SC999_Style.menuBtnBar}>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV15}>
+                    V15_登録
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV16}>
+                    V16_更新
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV17}>
+                    V17_削除
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV18}>
+                    V18_検索
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV19}>
+                    V19_一覧
+                </Button>
+            </View>
+        </>
+    )
+}
+

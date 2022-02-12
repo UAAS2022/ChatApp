@@ -24,12 +24,13 @@ import {
     NativeScrollEvent,
     NativeSyntheticEvent
 } from 'react-native';
-import { SC999_S_Context } from "./SC999_Store"
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { SC999_Style } from "./SC999_Style"
-import { db_Firebase, FIREBASE_COLLECTIONS, getMessageDocRef, selectUser_List } from '../../lib/firebase/Firebase';
-import type { T999_V04_FB_SampleMessage, T999_M050_USER } from '../../lib/firebase/Types';
 import type { T999_UserInfo } from './SC999_Types'
+import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
+import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 
+// 1行に何ボックス表示するかの設定値
 const MAXROW = 4
 
 export const SC999_V09_SelectUser_List = () => {
@@ -48,10 +49,11 @@ export const SC999_V09_SelectUser_List = () => {
     const getUserList = async () => {
         // console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const dbObj_newuserInfoList = await selectUser_List()
+        const resultObj = await s150_SelectUserList_New()
+        const dbObj_newuserInfoList = resultObj.userList
 
         // データをuserInfoListステートに合わせる
-        const new_UserInfoList = dbObj_newuserInfoList.map((dbObj_userInfo: T999_M050_USER) => {
+        const new_UserInfoList = dbObj_newuserInfoList.map((dbObj_userInfo) => {
             const userInfo = {} as T999_UserInfo
             userInfo.userId = dbObj_userInfo.UserId
             userInfo.userName = dbObj_userInfo.UserName
@@ -61,7 +63,7 @@ export const SC999_V09_SelectUser_List = () => {
             userInfo.genderCd = dbObj_userInfo.GenderCd
             userInfo.age = dbObj_userInfo.Age
             userInfo.areaCd = dbObj_userInfo.AreaCd
-            userInfo.hashtag = dbObj_userInfo.Hashtag
+            userInfo.hashtag = dbObj_userInfo.Hashtags
             return userInfo
         })
         // console.log(new_UserInfoList);
@@ -144,6 +146,7 @@ export const SC999_V09_SelectUser_List = () => {
     return (
         <>
             <Text>SC999_V09_ユーザ一覧</Text>
+            <Text>※ ローカルステートに値を入れいているため、遷移すると状態がクリアされる。再描画で最新情報を取得するため少し遅い。</Text>
             <Text>{"\n"}</Text>
             <Button size="sm" style={SC999_Style.regularBtn} onPress={() => { getUserList(); }}>一覧更新</Button>
             <Divider />
@@ -168,11 +171,11 @@ export const SC999_V09_SelectUser_List = () => {
                     {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: T999_UserInfo[]) => {
                         return (
                             <>
-                                {/* map処理2：列のループ */}
                                 {/* <Heading size="md">row</Heading> */}
                                 <Flex direction="row" mb="2.5" mt="1.5" _text={{
                                     color: "coolGray.800"
                                 }}>
+                                    {/* map処理2：列のループ */}
                                     {userInfoList_ScreenDisp_ROW.map((userInfo: T999_UserInfo) => {
                                         return (
                                             <Center style={SC999_Style.userInfoBox} size="20" bg="primary.100">{userInfo.userName}</Center>

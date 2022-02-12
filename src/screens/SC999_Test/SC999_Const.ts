@@ -1,6 +1,9 @@
 // Actionを追加する場合、ここに必ずActionTypeも追加する（こうしたほうがやりやすい）。
 export const SC999_ACTIONTYPE = {
     CHANGE_SCREEN: "CHANGE_SCREEN",
+    UPDATE_V08: "UPDATE_V08",
+    UPDATE_V14: "UPDATE_V14",
+    UPDATE_V19: "UPDATE_V19",
     ERROR: "ERROR",
 }
 export const SC999_COMPONENT_ID = {

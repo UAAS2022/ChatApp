@@ -13,21 +13,18 @@ import {
     Dimensions,
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-// import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, doc, addDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-import { db_Firebase, FIREBASE_COLLECTIONS, getMessageDocRef } from '../../lib/firebase/Firebase';
 import { SC999_Style } from "./SC999_Style"
-import type { T999_V04_FB_SampleMessage, T999_M050_USER } from '../../lib/firebase/Types';
 import type { T999_UserInfo } from './SC999_Types'
-import { check_Required } from './SC999_V00_Test'
+import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
+import { s130_DeleteUser } from "../../service/S130_DeleteUser"
+
 
 
 // 業務エラーチェッククラス
 const check = (userInfo: T999_UserInfo): boolean => {
     let errFlg = true
     console.log("checkuserInfo", userInfo)
-    if (!check_Required(userInfo.userId)) {
+    if (!c010_UaasUtil_isNotBlank(userInfo.userId)) {
         Alert.alert('エラー', 'ユーザIDを入力してください。')
         errFlg = false
     }
@@ -54,8 +51,12 @@ export const SC999_V07_DeleteUser = () => {
     const deleteUser = async (userInfo: T999_UserInfo) => {
         console.log("userInfo", userInfo)
         if (check(userInfo)) {
-            // await setDoc(doc(db_Firebase, "T999_V04_FB_SampleMessage","userID"), newMessage); →Idを指定する場合はこっち
-            await deleteDoc(doc(db_Firebase, FIREBASE_COLLECTIONS.T999_M050_USER, userInfo.userId));
+            // サービスパラメータの取得
+            const userId = userInfo.userId
+
+            // サービスを実行する
+            await s130_DeleteUser(userId);
+
             // 初期化
             setUserInfo({} as T999_UserInfo);
             // 削除完了

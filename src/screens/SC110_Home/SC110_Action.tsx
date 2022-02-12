@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import type { SC000_Action } from "../SC000_BaseComponent/SC000_Types"
-import type { SC110_Counter, SC110_USER } from "./SC110_Types"
+import type { SC110_Counter, SC110_UserInfo } from "./SC110_Types"
 import { SC110_ACTIONTYPE } from "./SC110_Const"
 
 // SC110_Action.tsxでは、更新パターン(type)と更新後の内容(payload)を2個イチで入れるための箱を定義するイメージ。
@@ -18,9 +18,9 @@ export const UPDATE_COUNTER = (payload: SC110_Counter): SC000_Action => {
 }
 
 // USERオブジェクトの値を更新するためのAction
-export const UPDATE_USER = (payload: SC110_USER): SC000_Action => {
+export const UPDATE_USERLIST = (payload: { userInfoList_ScreenDisp: SC110_UserInfo[][] }): SC000_Action => {
     return {
-        type: SC110_ACTIONTYPE.UPDATE_USER,
+        type: SC110_ACTIONTYPE.UPDATE_USERLIST,
         payload,
     }
 }
