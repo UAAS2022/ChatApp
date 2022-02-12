@@ -13,26 +13,27 @@ import {
     Dimensions,
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-// import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, doc, addDoc, setDoc, Timestamp } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-import { db_Firebase, FIREBASE_COLLECTIONS, getMessageDocRef } from '../../lib/firebase/Firebase';
 import { SC999_Style } from "./SC999_Style"
-import type { T999_V04_FB_SampleMessage, T999_M050_USER } from '../../lib/firebase/Types';
 import type { T999_UserInfo } from './SC999_Types'
-import { check_Required } from './SC999_V00_Test'
+import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
+import { c020_CheckUnique_M050 } from '../../common/C020_FirebaseUtil';
+import { s110_CreateUser } from "../../service/S110_CreateUser"
+
 
 
 // 業務エラーチェッククラス
-const check = (userInfo: T999_UserInfo): boolean => {
+const check = async (userInfo: T999_UserInfo) => {
     let errFlg = true
     console.log("checkuserInfo", userInfo)
-    if (!check_Required(userInfo.userId)) {
+    if (!c010_UaasUtil_isNotBlank(userInfo.userId)) {
         Alert.alert('エラー', 'ユーザIDを入力してください。')
         errFlg = false
     }
-    else if (!check_Required(userInfo.userName)) {
+    else if (!c010_UaasUtil_isNotBlank(userInfo.userName)) {
         Alert.alert('エラー', 'ユーザ名を入力してください。')
+        errFlg = false
+    } else if (! await c020_CheckUnique_M050([userInfo.userId])) {
+        Alert.alert('エラー', 'このIDは使えません。')
         errFlg = false
     }
     return errFlg
@@ -69,27 +70,38 @@ export const SC999_V05_RegistUser = () => {
     // --------------------------------------------------------------
     const registUser = async (userInfo: T999_UserInfo) => {
         console.log("userInfo", userInfo)
-        if (check(userInfo)) {
-            const newUserInfo = {
-                UserId: userInfo.userId,
-                UserName: userInfo.userName,
-                Comment: userInfo.comment,
-                LatestLoginDatatime: Timestamp.now(),
-                ProfileImagePath: "../../../",
-                GenderCd: "0",
-                Age: 0,
-                AreaCd: "0",
-                Hashtag: "#XXX",
-            } as T999_M050_USER;
-            await setDoc(doc(db_Firebase, FIREBASE_COLLECTIONS.T999_M050_USER, newUserInfo.UserId), newUserInfo);        //→Idを指定する場合はこっち
-            // await addDoc(collection(db_Firebase, FIREBASE_COLLECTIONS.T999_M050_USER), newUserInfo);    //→Idを指定しない場合はこっち
-            // 初期化
-            setUserInfo({} as T999_UserInfo);
-            // 登録完了
-            Alert.alert("",
-                "登録しました。",
-                [{ text: 'OK', onPress: () => { } }]
-            )
+        if (await check(userInfo)) {
+            // サービスパラメータの取得
+            const userId = userInfo.userId
+            const userName = userInfo.userName
+            const comment = c010_UaasUtil_isNotBlank(userInfo.comment) ? userInfo.comment : ""  // 三項演算子を使って、undef,null制御
+            const profileImagePath = "../../../"
+            const genderCd = "0"
+            const age = 0
+            const areaCd = "0"
+            const hashtags = ""
+
+            // サービスを実行する
+            const resultObj = await s110_CreateUser(userId, userName, comment, profileImagePath, genderCd, age, areaCd, hashtags, userId)
+
+            // 処理エラー
+            if (resultObj.errFlg == "1") {
+                //ダイアログ
+                Alert.alert("エラー",
+                    "処理に失敗しました。",
+                    [{ text: 'OK', onPress: () => { } }]
+                )
+            }
+            // 処理成功
+            else {
+                // 初期化
+                setUserInfo({} as T999_UserInfo);
+                //ダイアログ
+                Alert.alert("",
+                    "登録しました。",
+                    [{ text: 'OK', onPress: () => { } }]
+                )
+            }
         }
     };
     // --------------------------------------------------------------

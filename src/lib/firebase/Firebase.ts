@@ -6,6 +6,7 @@ import { getFirestore, collection, doc, setDoc, getDocs, orderBy, limit, query }
 import { getStorage } from 'firebase/storage';
 import { T999_M050_USER } from './Types'
 
+// firebaseへの接続情報
 const firebaseConfig = {
     apiKey: 'AIzaSyCEwOdcgltaDYsUw8EtpqYesBLasQpQoBM',
     authDomain: "uaas-chatproject-pre.firebaseapp.com",

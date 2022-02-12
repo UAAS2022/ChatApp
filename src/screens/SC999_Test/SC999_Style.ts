@@ -15,7 +15,7 @@ export const SC999_Style = StyleSheet.create({
         fontSize: 9,                //フォントサイズ
     },
     menuBtnBar: {
-        height: '15%',               //縦幅
+        height: '10%',               //縦幅
         width: '100%',              //横幅
         alignItems: 'flex-end',     //配置（上下）
         justifyContent: 'center',   //配置（左右）
@@ -27,7 +27,7 @@ export const SC999_Style = StyleSheet.create({
         backgroundColor: '#fff',    //背景色
     },
     testMainScreen: {
-        height: '75%',               //縦幅
+        height: '65%',               //縦幅
         width: '100%',              //横幅
     },
     regularBtn: {
@@ -50,6 +50,32 @@ export const SC999_Style = StyleSheet.create({
         marginBottom: '1%',            //余白(下)
         marginLeft: '1%',         //余白(左)
         marginRight: '1%',        //余白(右)
+        // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
+        // backgroundColor: '#999',    //背景色
+    },
+
+    talkInfoBox: {
+        // height: '70%',               //縦幅
+        width: '94%',              //横幅
+        // alignItems: 'flex-start',     //配置（上下）
+        // justifyContent: 'center',   //配置（左右）
+        marginTop: '1%',          //余白(上)
+        marginBottom: '1%',            //余白(下)
+        marginLeft: '3%',         //余白(左)
+        marginRight: '3%',        //余白(右)
+        // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
+        // backgroundColor: '#999',    //背景色
+    },
+
+    chatMessageInfoBox: {
+        // height: '70%',               //縦幅
+        width: '94%',              //横幅
+        // alignItems: 'flex-start',     //配置（上下）
+        // justifyContent: 'center',   //配置（左右）
+        marginTop: '1%',          //余白(上)
+        marginBottom: '1%',            //余白(下)
+        marginLeft: '3%',         //余白(左)
+        marginRight: '3%',        //余白(右)
         // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
         // backgroundColor: '#999',    //背景色
     },
