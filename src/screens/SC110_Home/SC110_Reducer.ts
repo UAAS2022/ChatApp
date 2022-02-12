@@ -2,7 +2,8 @@ import type { SC000_Action } from "../SC000_BaseComponent/SC000_Types"
 import type {
     SC110_Context,
 } from "./SC110_Types"
-import { SC110_ACTIONTYPE } from "./SC110_Const"
+// import { SC110_ACTIONTYPE } from "./SC110_Const"
+import { SC110_ACTIONTYPE } from "./SC110_Action"
 
 // SC999_Reducer.tsには、基本的に「reducerメソッド」のみを定義する。
 // reducerメソッドの中にアクションごとの処理を記載する。

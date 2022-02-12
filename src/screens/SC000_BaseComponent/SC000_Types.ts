@@ -5,6 +5,15 @@ export type SC000_Provider = {
     state: SC000_Context,
     dispatch: React.Dispatch<SC000_Action>
 }
+// ==============================================================
+
+// Actionの型定義。
+// ==============================================================
+export type SC000_Action = {
+    type: string,
+    payload: Object,
+}
+// ==============================================================
 
 // 画面ごとのcontextを定義する
 // ==============================================================
@@ -12,6 +21,7 @@ export type SC000_Provider = {
 export type SC000_Context = {
     screenControllerInfo: SC000_ScreenController,
     errorInfo: SC000_ErrorInfo,
+    baseContext_SC110: SC110_BaseContext
 }
 // --------------------------------------------------------------
 // 画面ごとのコンテキスト内の情報をここに定義していく
@@ -32,12 +42,32 @@ export type SC000_ScreenChangeBtnInfo = {
 export type SC000_ErrorInfo = {
     errorKbn: number,
 }
-// ==============================================================
-
-// Actionの型定義。
-// --------------------------------------------------------------
-export type SC000_Action = {
-    type: string,
-    payload: Object,
+// SC110---------------------------------------------------------
+// コンテキスト情報
+export type SC110_BaseContext = {
+    userInfoList_ScreenDisp: SC000_UserInfo[][],
 }
 // --------------------------------------------------------------
+
+// SC999---------------------------------------------------------
+// コンテキスト情報
+
+// --------------------------------------------------------------
+// ==============================================================
+
+// その他、画面間共通の型定義=========================================
+// ユーザ情報
+export type SC000_UserInfo = {
+    userId: string,
+    userName: string,
+    comment: string,
+    latestLoginDatatime: Date,
+    profileImagePath: string,
+    genderCd: string,
+    age: number,
+    areaCd: string,
+    hashtag: string,
+}
+
+// ==============================================================
+

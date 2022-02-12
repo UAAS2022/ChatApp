@@ -28,12 +28,12 @@ export const SC110_Style = StyleSheet.create({
         // backgroundColor: '#888',    //背景色
     },
     userInfoBox: {
-        // height: '10%',               //縦幅
-        width: '48%',              //横幅
+        // height: '3%',               //縦幅
+        width: '23%',              //横幅
         // alignItems: 'flex-start',     //配置（上下）
         // justifyContent: 'center',   //配置（左右）
-        // marginTop: '0%',          //余白(上)
-        // marginBottom: '0%',            //余白(下)
+        marginTop: '1%',          //余白(上)
+        marginBottom: '1%',            //余白(下)
         marginLeft: '1%',         //余白(左)
         marginRight: '1%',        //余白(右)
         // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)

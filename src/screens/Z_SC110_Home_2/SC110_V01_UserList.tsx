@@ -25,26 +25,24 @@ import {
     NativeSyntheticEvent
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { CONST_SC110 } from "../../common/C000_Const"
-import { SC110_UPDATE_USERLIST } from '../SC000_BaseComponent/SC000_Action'
-import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
-import { SC000_UserInfo } from "../SC000_BaseComponent/SC000_Types"
 import { SC110_Style } from "./SC110_Style"
-// import type { SC110_Context, SC110_UserInfo } from './SC110_Types'
-// import { UPDATE_USERLIST } from './SC110_Action'
-// import { SC110_S_Context } from "./SC110_Store"
+import type { SC110_Context, SC110_UserInfo } from './SC110_Types'
+import { UPDATE_USERLIST } from './SC110_Action'
+import { SC110_S_Context } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 
 
+const MAXROW = 4
+
 export const SC110_V01_UserList = () => {
 
     // コンテキストからステートとdispatchを取得
-    const { state, dispatch } = useContext(SC000_S_Context);
+    const { state, dispatch } = useContext(SC110_S_Context);
 
     // 表示用と保持用のリストをそれぞれ取得
-    // const userInfoList = state.baseContext_SC110.userInfoList_ScreenDisp
-    const userInfoList_ScreenDisp = state.baseContext_SC110.userInfoList_ScreenDisp
+    const userInfoList = state.userInfoList
+    const userInfoList_ScreenDisp = state.userInfoList_ScreenDisp
 
     const getUserList = async () => {
         console.log("getUserList開始！=========================================================");
@@ -54,7 +52,7 @@ export const SC110_V01_UserList = () => {
 
         // データをuserInfoListステートに合わせる
         const new_UserInfoList = dbObj_newuserInfoList.map((dbObj_userInfo) => {
-            const userInfo = {} as SC000_UserInfo
+            const userInfo = {} as SC110_UserInfo
             userInfo.userId = dbObj_userInfo.UserId
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
@@ -70,13 +68,13 @@ export const SC110_V01_UserList = () => {
         // console.log("getUserList終了！=========================================================");
 
         // 画面に表示する用
-        let new_UserInfoList_ScreenDisp: SC000_UserInfo[][] = []
-        let tmpList: SC000_UserInfo[] = []
+        let new_UserInfoList_ScreenDisp: SC110_UserInfo[][] = []
+        let tmpList: SC110_UserInfo[] = []
         for (let userInfo of new_UserInfoList) {
             // 一時配列にオブジェクトを格納する
             tmpList.push(userInfo)
             // 配列長判定
-            if (tmpList.length >= CONST_SC110.MAXROW) {
+            if (tmpList.length >= MAXROW) {
                 // 配列長が最大の場合
 
                 // 行配列を格納して
@@ -92,11 +90,12 @@ export const SC110_V01_UserList = () => {
         }
         // ステートの更新
         const newState = {
-            baseContext_SC110: {
-                userInfoList_ScreenDisp: new_UserInfoList_ScreenDisp,
-            }
+            userInfoList_ScreenDisp: new_UserInfoList_ScreenDisp,
         }
-        dispatch(SC110_UPDATE_USERLIST(newState))
+        dispatch(UPDATE_USERLIST(newState))
+        console.log("userInfoList！----------------------------------------------------------------");
+        console.log(userInfoList);
+        console.log("userInfoList！----------------------------------------------------------------");
 
         console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
         console.log(userInfoList_ScreenDisp);
@@ -132,20 +131,18 @@ export const SC110_V01_UserList = () => {
                     color: "coolGray.800"
                 }}>
                     {/* map処理1：行のループ */}
-                    {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: SC000_UserInfo[]) => {
+                    {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: SC110_UserInfo[]) => {
                         return (
                             <>
                                 <View style={SC110_Style.userInfoArea}>
                                     {/* <Heading size="md">row</Heading> */}
-
                                     <Flex direction="row" mb="2.5" mt="1.5" _text={{
                                         color: "coolGray.800"
                                     }}>
-
                                         {/* map処理2：列のループ (デフォルトは4だが、1以上の好きな値をCONST.tsで設定可能)*/}
-                                        {userInfoList_ScreenDisp_ROW.map((userInfo: SC000_UserInfo) => {
+                                        {userInfoList_ScreenDisp_ROW.map((userInfo: SC110_UserInfo) => {
                                             return (
-                                                <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100">{userInfo.userName}</Center>
+                                                <Center style={SC110_Style.userInfoBox} size="20" bg="primary.100">{userInfo.userName}</Center>
                                             )
                                         })}
                                     </Flex>
