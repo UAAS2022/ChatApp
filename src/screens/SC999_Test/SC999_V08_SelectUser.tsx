@@ -147,25 +147,28 @@ export const SC999_V08_SelectUser = () => {
                 <Flex direction="column" mb="2.5" mt="1.5" _text={{
                     color: "coolGray.800"
                 }}>
+
                     {/* map処理1：行のループ */}
                     {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: T999_UserInfo[]) => {
                         return (
                             <>
-                                {/* <Heading size="md">row</Heading> */}
-                                <Flex direction="row" mb="2.5" mt="1.5" _text={{
-                                    color: "coolGray.800"
-                                }}>
-                                    {/* map処理2：列のループ */}
-                                    {userInfoList_ScreenDisp_ROW.map((userInfo: T999_UserInfo) => {
-                                        return (
-                                            <Center style={SC999_Style.userInfoBox} size="20" bg="primary.100">{userInfo.userName}</Center>
-                                        )
-                                    })}
-                                </Flex>
+                                <View style={SC999_Style.userInfoArea}>
+
+                                    {/* <Heading size="md">row</Heading> */}
+                                    <Flex direction="row" mb="2.5" mt="1.5" _text={{
+                                        color: "coolGray.800"
+                                    }}>
+                                        {/* map処理2：列のループ */}
+                                        {userInfoList_ScreenDisp_ROW.map((userInfo: T999_UserInfo) => {
+                                            return (
+                                                <Center style={SC999_Style.userInfoBox} size="20" bg="primary.100">{userInfo.userName}</Center>
+                                            )
+                                        })}
+                                    </Flex>
+                                </View>
                             </>
                         )
                     })}
-
                 </Flex>
                 <Divider />
                 <Heading size="md">ユーザ一覧（シンプルコード）</Heading>

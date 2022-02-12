@@ -41,6 +41,18 @@ export const SC999_Style = StyleSheet.create({
         // marginBottom: "1%",
         fontSize: 9,                //フォントサイズ
     },
+    userInfoArea: {
+        // height: '10%',               //縦幅
+        // width: '100%',              //横幅
+        // alignItems: 'center',     //配置（上下）
+        justifyContent: 'center',   //配置（左右）
+        // marginTop: 0,          //余白(上)
+        // marginBottom: 0,       //余白(下)
+        // marginLeft: 0,         //余白(左)
+        // marginRight: 0,        //余白(右)
+        // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
+        // backgroundColor: '#888',    //背景色
+    },
     userInfoBox: {
         // height: '3%',               //縦幅
         // width: '100%',              //横幅

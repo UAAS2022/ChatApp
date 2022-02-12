@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
+import { SC000_Style } from "../SC000_BaseComponent/SC000_Style"
 
 export const SC310_V00_Board = (props: object) => {
     return (
