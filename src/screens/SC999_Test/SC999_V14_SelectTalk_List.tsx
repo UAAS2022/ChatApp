@@ -161,7 +161,7 @@ export const SC999_V14_SelectTalk_List = () => {
                     {/* map処理1：行のループ */}
                     {talkInfoList.map((talkInfo: SC999_TalkUserInfo) => {
                         return (
-                            <Center style={SC999_Style.talkInfoBox} size="20" bg="primary.100">トークID：{talkInfo.talkId}</Center>
+                            <Center style={SC999_Style.talkInfoBox} size="20" bg={"violet.100"}>トークID：{talkInfo.talkId}</Center>
                         )
                     })}
                 </Flex>

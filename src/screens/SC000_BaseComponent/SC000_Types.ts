@@ -29,7 +29,7 @@ export type SC000_Context = {
 export type SC000_ScreenController = {
     screenId: string,
     layoutPattern: number,
-    infoObj: any,
+    // infoObj: any,
 }
 // メニューボタン
 export type SC000_ScreenChangeBtnInfo = {

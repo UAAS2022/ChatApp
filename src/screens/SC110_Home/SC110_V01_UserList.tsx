@@ -121,8 +121,6 @@ export const SC110_V01_UserList = () => {
     // -----------------------------------------------------------------------
     return (
         <>
-            <Text>{"\n"}</Text>
-            <Divider />
             {/* <Button size="sm" style={SC110_Style.regularBtn} onPress={() => { getUserList(); }}>一覧更新</Button> */}
 
             {/* <Heading size="md">ユーザ一覧</Heading> */}

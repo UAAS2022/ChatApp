@@ -41,10 +41,11 @@ export const CC0020_MenuBtn = (props: any) => {
     const { state, dispatch } = useContext(SC000_S_Context)
     // [reset]ボタンタップ時のイベントハンドラ関数
     const onClickSwitch = () => {
+        const newState = { ...state }
         // 取得したstateの値を更新する
-        state.screenControllerInfo.screenId = nextScreenId
-        state.screenControllerInfo.layoutPattern = getLayoutPattern(nextScreenId)
-        dispatch(SC000_CHANGE_SCREEN(state.screenControllerInfo))
+        newState.screenControllerInfo.screenId = nextScreenId
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(nextScreenId)
+        dispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
     return (
         <>
