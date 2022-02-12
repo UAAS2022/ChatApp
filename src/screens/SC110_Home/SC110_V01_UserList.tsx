@@ -132,25 +132,23 @@ export const SC110_V01_UserList = () => {
                     color: "coolGray.800"
                 }}>
                     {/* map処理1：行のループ */}
-                    {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: SC000_UserInfo[]) => {
+                    {userInfoList_ScreenDisp.map((userInfoList_ScreenDisp_ROW: SC000_UserInfo[], index) => {
                         return (
-                            <>
-                                <View style={SC110_Style.userInfoArea}>
-                                    {/* <Heading size="md">row</Heading> */}
+                            <View style={SC110_Style.userInfoArea} key={index}>
+                                {/* <Heading size="md">row</Heading> */}
 
-                                    <Flex direction="row" mb="2.5" mt="1.5" _text={{
-                                        color: "coolGray.800"
-                                    }}>
+                                <Flex direction="row" mb="2.5" mt="1.5" _text={{
+                                    color: "coolGray.800"
+                                }}>
 
-                                        {/* map処理2：列のループ (デフォルトは4だが、1以上の好きな値をCONST.tsで設定可能)*/}
-                                        {userInfoList_ScreenDisp_ROW.map((userInfo: SC000_UserInfo) => {
-                                            return (
-                                                <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100">{userInfo.userName}</Center>
-                                            )
-                                        })}
-                                    </Flex>
-                                </View>
-                            </>
+                                    {/* map処理2：列のループ (デフォルトは4だが、1以上の好きな値をCONST.tsで設定可能)*/}
+                                    {userInfoList_ScreenDisp_ROW.map((userInfo: SC000_UserInfo, index) => {
+                                        return (
+                                            <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100" key={index}>{userInfo.userName}</Center>
+                                        )
+                                    })}
+                                </Flex>
+                            </View>
                         )
                     })}
                 </Flex>
