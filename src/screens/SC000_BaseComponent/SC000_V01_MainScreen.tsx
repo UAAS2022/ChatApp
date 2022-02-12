@@ -26,7 +26,7 @@ import {
 import { SC000_S_Context } from "./SC000_Store"
 import { SC000_Style } from "./SC000_Style"
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
-import { SC000_SCREENID } from "./SC000_Const"
+import { CONST_SC000 } from "../../common/C000_Const"
 import { SC110_V00_Home } from '../SC110_Home/SC110_V00_Home'
 import { SC210_V00_TalkList } from '../SC210_TalkList/SC210_V00_TalkList'
 import { SC310_V00_Board } from '../SC310_Board/SC310_V00_Board'
@@ -42,17 +42,17 @@ export const SC000_V01_MainScreenCmp = () => {
         console.log("C0000_Main:screenController----------------------")
         console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
-            case SC000_SCREENID.SC110:
+            case CONST_SC000.SCREENID.SC110:
                 return <SC110_V00_Home />
-            case SC000_SCREENID.SC210:
+            case CONST_SC000.SCREENID.SC210:
                 return <SC210_V00_TalkList />
-            case SC000_SCREENID.SC310:
+            case CONST_SC000.SCREENID.SC310:
                 return <SC310_V00_Board />
-            case SC000_SCREENID.SC410:
+            case CONST_SC000.SCREENID.SC410:
                 return <SC410_V00_Manage />
-            case SC000_SCREENID.SC998:
+            case CONST_SC000.SCREENID.SC998:
                 return <SC998_V00_Nabe />
-            case SC000_SCREENID.SC999:
+            case CONST_SC000.SCREENID.SC999:
                 return <SC999_V00_Test />
             default:
                 return <SC110_V00_Home />
@@ -70,7 +70,7 @@ export const SC000_V01_MainScreenCmp = () => {
 
 export const SC000_V01_MainScreen = () => {
     try {
-        const { state, dispatch } = useContext(SC000_S_Context)
+        const { state } = useContext(SC000_S_Context)
         const { screenId, layoutPattern } = state.screenControllerInfo
         console.log("C0000_Main:screenController----------------------")
         console.log("SC000_V01_MainScreen:", screenId, layoutPattern)

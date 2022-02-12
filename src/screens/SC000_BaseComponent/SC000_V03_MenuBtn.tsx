@@ -22,10 +22,10 @@ import {
     Alert
 } from 'react-native';
 // import { screenIdSet } from '../views/v0000_BaseComponent/V0000_BaseComponent'
-import { CHANGE_SCREEN } from './SC000_Action'
+import { SC000_CHANGE_SCREEN } from './SC000_Action'
 import { SC000_S_Context } from "./SC000_Store"
 import { SC000_Style } from "./SC000_Style"
-import { SC000_SCREENID } from "./SC000_Const"
+import { CONST_SC000 } from "../../common/C000_Const"
 // import { getLayoutPattern } from "./SC000_V01_MainScreen"
 
 export const CC0020_MenuBtn = (props: any) => {
@@ -44,7 +44,7 @@ export const CC0020_MenuBtn = (props: any) => {
         // 取得したstateの値を更新する
         state.screenControllerInfo.screenId = nextScreenId
         state.screenControllerInfo.layoutPattern = getLayoutPattern(nextScreenId)
-        dispatch(CHANGE_SCREEN(state.screenControllerInfo))
+        dispatch(SC000_CHANGE_SCREEN(state.screenControllerInfo))
     }
     return (
         <>
@@ -61,16 +61,16 @@ export const CC0020_MenuBtn = (props: any) => {
 export const getLayoutPattern = (screenId: string): number => {
     let layoutPattern = 1
     switch (screenId) {
-        case SC000_SCREENID.SC110:
+        case CONST_SC000.SCREENID.SC110:
             layoutPattern = 1
             break;
-        case SC000_SCREENID.SC210:
+        case CONST_SC000.SCREENID.SC210:
             layoutPattern = 1
             break;
-        case SC000_SCREENID.SC310:
+        case CONST_SC000.SCREENID.SC310:
             layoutPattern = 1
             break;
-        case SC000_SCREENID.SC410:
+        case CONST_SC000.SCREENID.SC410:
             layoutPattern = 1
             break;
     }
