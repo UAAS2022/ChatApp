@@ -17,11 +17,11 @@ export const s310_CreateChatMessage = async (
     // エラーフラグを初期化
     let errFlg = "0"
 
-    // ①トークIDを採番------------------------------------------------------------------------
+    // ①チャットメッセージIDを採番------------------------------------------------------------------------
     // 採番したIDを取得する
     const result_c020 = await c020_CreateSecId(FIREBASE_COLLECTIONS.S110_ChatMessageId, logUserId, SERVICE_ID)
     const docId = result_c020.returnInfo.secId
-    console.log("①トークIDを採番", docId)
+    console.log("①チャットメッセージを採番", docId)
     // --------------------------------------------------------------------------------------
 
     // ② 最大通番+1を取得------------------------------------------------------------------------
@@ -34,7 +34,7 @@ export const s310_CreateChatMessage = async (
         let tmp_T110_ChatMessage = doc.data() as T110_ChatMessage
         seq = tmp_T110_ChatMessage.Seq + 1
     });
-    console.log("① 最大通番+1を取得", seq)
+    console.log("② 最大通番+1を取得", seq)
     // ------------------------------------------------------------------------------------
 
     // ③ ドキュメント追加--------------------------------------------------------------------
@@ -57,7 +57,7 @@ export const s310_CreateChatMessage = async (
     // const result_FB = await setDoc(doc(DB_FIREBASE, FIREBASE_COLLECTIONS.T110_ChatMessage, docId), newChatMessageInfo);       //→Idを指定する場合はこっち
     const docRef2 = doc(DB_FIREBASE, FIREBASE_COLLECTIONS.T110_ChatMessage, docId)
     const result_FB_2 = await setDoc(docRef2, newChatMessageInfo);                                //→Idを指定しない場合はこっち
-    console.log("② ドキュメント追加", docId)
+    console.log("③ ドキュメント追加", docId)
     // ------------------------------------------------------------------------------------
 
     // ③ ドキュメントID取得--------------------------------------------------------------------

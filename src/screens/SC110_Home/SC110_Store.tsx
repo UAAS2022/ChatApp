@@ -1,5 +1,5 @@
 import { createContext, useState, useReducer } from "react";
-import type { SC110_Context, } from "./SC110_Types"
+import type { SC110_Provider, SC110_Context, } from "./SC110_Types"
 import { reducer } from "./SC110_Reducer"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
@@ -11,7 +11,7 @@ import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_E
 // 　3.プロバイダ(SC110_S_Provider)
 
 // 1.コンテキスト（S999_S_Context）
-export const SC110_S_Context = createContext<any>({} as SC110_Context);
+export const SC110_S_Context = createContext<SC110_Provider>({} as SC110_Provider);
 
 // 2.コンテキストの初期値(DefaultState)
 // コンテキストに値を追加する場合、ここに初期値も追加する必要がある。

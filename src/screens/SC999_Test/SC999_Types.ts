@@ -65,6 +65,14 @@ export type SC999_V15 = {
 export type SC999_V19 = {
     chatMessageInfoList: SC999_ChatMessageInfo[]
 }
+
+export type SC999_V20 = {
+    messageItem: SC999_V20_MessageItem
+};
+export type SC999_V20_MessageItem = {
+    loginUserId: string | undefined;
+    chatMessageInfo: SC999_ChatMessageInfo;
+};
 // Actionの型定義。
 // --------------------------------------------------------------
 export type SC999_Action = {

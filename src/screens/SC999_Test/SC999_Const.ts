@@ -1,3 +1,6 @@
+import { CONST_SC000 } from "../../common/C000_Const"
+import { SC000_LoginUserInfo } from "../SC000_BaseComponent/SC000_Types"
+
 // Actionを追加する場合、ここに必ずActionTypeも追加する（こうしたほうがやりやすい）。
 export const SC999_ACTIONTYPE = {
     CHANGE_SCREEN: "CHANGE_SCREEN",
@@ -28,4 +31,61 @@ export const SC999_COMPONENT_ID = {
     SC999_V18: "SC999_V18",
     SC999_V19: "SC999_V19",
     SC999_V20: "SC999_V20",
+    SC999_V21: "SC999_V21",
+    SC999_V22: "SC999_V22",
+    SC999_V23: "SC999_V23",
+    SC999_V24: "SC999_V24",
+    SC999_V25: "SC999_V25",
+    SC999_V26: "SC999_V26",
+    SC999_V27: "SC999_V27",
+    SC999_V28: "SC999_V28",
+    SC999_V29: "SC999_V29",
+    SC999_V30: "SC999_V30",
 }
+
+// SC999_V20--------------------------------------------------------------------------------
+
+export const CONST_SC999_V20 = {
+    talkId: "oS03SA5bZ9XXbaH6MaJe",
+}
+// ------------------------------------------------------------------------------------------
+
+// SC999_V21--------------------------------------------------------------------------------
+export const CONST_SC999_V21 = {
+    loginUserInfo: {
+        tsune: {
+            userId: "tsune",
+            userName: "つねを",
+            comment: "よろろ",
+            // latestLoginDatatime: Date,
+            profileImagePath: "../../../",
+            genderCd: "1",
+            age: 29,
+            areaCd: "26",
+            hashtag: "",
+        } as SC000_LoginUserInfo,
+        nabe: {
+            userId: "nabe",
+            userName: "なべべ",
+            comment: "おけけ",
+            // latestLoginDatatime: Date,
+            profileImagePath: "../../../",
+            genderCd: "1",
+            age: 29,
+            areaCd: "26",
+            hashtag: "",
+        } as SC000_LoginUserInfo,
+        hide: {
+            userId: "hide",
+            userName: "ひでごり",
+            comment: "やっぱガルバだよな。",
+            // latestLoginDatatime: Date,
+            profileImagePath: "../../../",
+            genderCd: "1",
+            age: 29,
+            areaCd: "26",
+            hashtag: "",
+        } as SC000_LoginUserInfo,
+    },
+}
+// ------------------------------------------------------------------------------------------

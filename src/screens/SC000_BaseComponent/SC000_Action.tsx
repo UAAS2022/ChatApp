@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import type {
     SC000_ScreenController,
+    SC000_LoginUserInfo,
     SC110_BaseContext,
 } from "./SC000_Types"
 // import { SC000_ACTIONTYPE } from "../../common/C000_Const"
@@ -12,6 +13,7 @@ import type {
 export const SC000_ACTIONTYPE = {
     SC000: {
         SC000_CHANGE_SCREEN: "SC000_CHANGE_SCREEN",
+        SC000_UPDATE_LOGIN_USER: "SC000_UPDATE_LOGIN_USER",
         SC000_ERROR: "SC000_ERROR",
     },
     SC110: {
@@ -30,7 +32,12 @@ export const SC000_CHANGE_SCREEN = (payload: SC000_ScreenController) => {
         payload
     }
 }
-
+export const SC000_UPDATE_LOGIN_USER = (payload: SC000_LoginUserInfo) => {
+    return {
+        type: SC000_ACTIONTYPE.SC000.SC000_UPDATE_LOGIN_USER,
+        payload
+    }
+}
 export const SC000_ERROR = (payload: SC000_ScreenController) => {
     return {
         type: SC000_ACTIONTYPE.SC000.SC000_ERROR,

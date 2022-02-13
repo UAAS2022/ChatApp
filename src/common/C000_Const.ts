@@ -13,6 +13,8 @@ export const CONST_SC000 = {
         SC950: "SC950",
         SC998: "SC998",
         SC999: "SC999",
+        SC999_V04: "SC999_V04",
+        SC999_V21: "SC999_V21",
     },
 }
 

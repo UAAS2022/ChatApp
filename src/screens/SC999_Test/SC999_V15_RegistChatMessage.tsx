@@ -46,27 +46,27 @@ const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
 
 export const SC999_V15_RegistChatMessage = () => {
     // const db = getFirestore();
-    const [chatMessageInfo, setTalkInfo] = useState<SC999_ChatMessageInfo>({} as SC999_ChatMessageInfo);
+    const [chatMessageInfo, setChatMessageInfo] = useState<SC999_ChatMessageInfo>({} as SC999_ChatMessageInfo);
 
     //onChangeイベントハンドラ（テキストインプットの中身が変わるたびにステートを更新する）
     // --------------------------------------------------------------
     //トークID
     const onChangeTalkId = (value: string) => {
         const newState = { ...chatMessageInfo, talkId: value }
-        setTalkInfo(newState)
+        setChatMessageInfo(newState)
         console.log("talkId", newState.talkId)
     }
     //ユーザID
     const onChangeUserId = (value: string) => {
         const newState = { ...chatMessageInfo, sendUserId: value }
-        setTalkInfo(newState)
+        setChatMessageInfo(newState)
         console.log("sendUserId", newState.sendUserId)
     }
 
     //チャットメッセージ
     const onChangeChatMessage = (value: string) => {
         const newState = { ...chatMessageInfo, message: value }
-        setTalkInfo(newState)
+        setChatMessageInfo(newState)
         console.log("message", newState.message)
     }
 
@@ -96,7 +96,7 @@ export const SC999_V15_RegistChatMessage = () => {
             // 処理成功
             else {
                 // 初期化
-                setTalkInfo({} as SC999_ChatMessageInfo);
+                setChatMessageInfo({} as SC999_ChatMessageInfo);
                 //ダイアログ
                 Alert.alert("",
                     "登録しました。",
