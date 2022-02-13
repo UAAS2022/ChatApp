@@ -20,16 +20,31 @@ export type SC000_Action = {
 // S999_Contextで、ほぼ固定
 export type SC000_Context = {
     screenControllerInfo: SC000_ScreenController,
+    loginUserInfo: SC000_LoginUserInfo,
     errorInfo: SC000_ErrorInfo,
     baseContext_SC110: SC110_BaseContext
 }
 // --------------------------------------------------------------
 // 画面ごとのコンテキスト内の情報をここに定義していく
+
+// SC000---------------------------------------------------------
 // スクリーンコントローラ
 export type SC000_ScreenController = {
     screenId: string,
     layoutPattern: number,
     // infoObj: any,
+}
+// ログインユーザ情報
+export type SC000_LoginUserInfo = {
+    userId: string,
+    userName: string,
+    comment: string,
+    latestLoginDatatime: Date,
+    profileImagePath: string,
+    genderCd: string,
+    age: number,
+    areaCd: string,
+    hashtag: string,
 }
 // メニューボタン
 export type SC000_ScreenChangeBtnInfo = {
@@ -38,7 +53,7 @@ export type SC000_ScreenChangeBtnInfo = {
     nextScreenId: string,
     // action: SC000_A_ScreenController
 }
-// スクリーンコントローラ
+// エラー情報
 export type SC000_ErrorInfo = {
     errorKbn: number,
 }

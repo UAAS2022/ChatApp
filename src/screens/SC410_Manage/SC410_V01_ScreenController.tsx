@@ -41,6 +41,8 @@ import { SC410_Style } from "./SC410_Style"
 import { SC410_V02_Manage_Main } from "./SC410_V02_Manage_Main"
 import { SC410_V06_IF_SC998 } from "./SC410_V06_IF_SC998"
 import { SC410_V07_IF_SC999 } from "./SC410_V07_IF_SC999"
+import { SC410_V08_Login_Demo } from "./SC410_V08_Login_Demo"
+import { SC410_V09_IF_SC999_V04 } from "./SC410_V09_IF_SC999_V04"
 
 
 const Path = "../../static/img" + "/murata_unko.jpeg"
@@ -58,6 +60,10 @@ export const SC410_V01_ScreenController = (props: object) => {
             return <SC410_V06_IF_SC998 />
         case CONST_SC000.SCREENID.SC999:
             return <SC410_V07_IF_SC999 />
+        case CONST_SC000.SCREENID.SC999_V21:
+            return <SC410_V08_Login_Demo />
+        case CONST_SC000.SCREENID.SC999_V04:
+            return <SC410_V09_IF_SC999_V04 />
         default:
             return <SC410_V02_Manage_Main />
     }

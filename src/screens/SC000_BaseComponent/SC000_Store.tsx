@@ -1,6 +1,6 @@
 import { createContext, useState, useReducer, useContext } from "react";
 import type { SC000_Provider, SC000_Context } from "./SC000_Types"
-import type { SC000_ScreenController } from "./SC000_Types"
+import type { SC000_ScreenController, SC000_LoginUserInfo } from "./SC000_Types"
 import { reducer, } from "./SC000_Reducer"
 
 // 1.コンテキスト（S999_S_Context）
@@ -15,6 +15,7 @@ const DEfAULT_ScreenControllerInfo = {
     layoutPattern: 1,
     infoObj: {}
 }
+const DEfAULT_LoginUserInfo = {} as SC000_LoginUserInfo
 const DEfAULT_ErrorInfo = {
     errorKbn: 0
 }
@@ -25,6 +26,7 @@ const DEFAULT_BaseContext_SC110 = {
 // コンテキストに↑で定義した初期値を設定し、デフォルトステートを作成
 const DEFAULT_State: SC000_Context = {
     screenControllerInfo: DEfAULT_ScreenControllerInfo,
+    loginUserInfo: DEfAULT_LoginUserInfo,
     errorInfo: DEfAULT_ErrorInfo,
     baseContext_SC110: DEFAULT_BaseContext_SC110,
 }

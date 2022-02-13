@@ -18,7 +18,7 @@ import { SC999_COMPONENT_ID } from "./SC999_Const"
 import { SC999_V03_Example } from "./SC999_V03_Example"
 import { SC999_V02_Default } from "./SC999_V02_Default"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
-import { SC999_V04_FireBaseTest } from "./SC999_V04_FireBaseTest"
+import { SC999_V04_Chat_Demo } from "./SC999_V04_Chat_Demo"
 import { SC999_V05_RegistUser } from "./SC999_V05_RegistUser"
 import { SC999_V09_SelectUser_List } from "./SC999_V09_SelectUser_List"
 import { SC999_V07_DeleteUser } from "./SC999_V07_DeleteUser"
@@ -31,9 +31,13 @@ import { SC999_V13_SelectTalk } from "./SC999_V13_SelectTalk"
 import { SC999_V14_SelectTalk_List } from "./SC999_V14_SelectTalk_List"
 import { SC999_V15_RegistChatMessage } from "./SC999_V15_RegistChatMessage"
 import { SC999_V19_SelectChatMessageList_List } from "./SC999_V19_SelectChatMessageList_List"
+import { SC999_V20_ChatMessage_Pre1 } from "./SC999_V20_ChatMessage_Pre1"
+import { SC999_V21_Login_Demo } from "./SC999_V21_Login_Demo"
+import { SC999_V22_ChatMessage_Pre2 } from "./SC999_V22_ChatMessage_Pre2"
+import { SC999_V23_ChatMessage_Pre3 } from "./SC999_V23_ChatMessage_Pre3"
 
 // スクリーンコンポーネント
-export const SC999_V01_Test_MainScreen = () => {
+export const SC999_V01_ScreenController = () => {
     const { state, dispatch } = useContext(SC999_S_Context)
     const { componentId } = state.screenControllerInfo
     console.log("C0000_Main:screenController----------------------")
@@ -44,7 +48,7 @@ export const SC999_V01_Test_MainScreen = () => {
         case SC999_COMPONENT_ID.SC999_V03:
             return <SC999_V03_Example />
         case SC999_COMPONENT_ID.SC999_V04:
-            return <SC999_V04_FireBaseTest />
+            return <SC999_V04_Chat_Demo />
         case SC999_COMPONENT_ID.SC999_V05:
             return <SC999_V05_RegistUser />
         case SC999_COMPONENT_ID.SC999_V06:
@@ -69,6 +73,14 @@ export const SC999_V01_Test_MainScreen = () => {
             return <SC999_V15_RegistChatMessage />
         case SC999_COMPONENT_ID.SC999_V19:
             return <SC999_V19_SelectChatMessageList_List />
+        case SC999_COMPONENT_ID.SC999_V20:
+            return <SC999_V20_ChatMessage_Pre1 />
+        case SC999_COMPONENT_ID.SC999_V21:
+            return <SC999_V21_Login_Demo />
+        case SC999_COMPONENT_ID.SC999_V22:
+            return <SC999_V22_ChatMessage_Pre2 />
+        case SC999_COMPONENT_ID.SC999_V23:
+            return <SC999_V23_ChatMessage_Pre3 />
         default:
             return <SC999_V02_Default />
     }
@@ -296,6 +308,63 @@ export const SC999_V01_Test_MenuBar4 = () => {
                 </Button>
                 <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV19}>
                     V19_一覧
+                </Button>
+            </View>
+        </>
+    )
+}
+
+// メニューコンポーネント（本当は別ファイル）
+export const SC999_V01_Test_MenuBar5 = () => {
+    const { state, dispatch } = useContext(SC999_S_Context)
+    const { componentId } = state.screenControllerInfo
+    const onClickSwitchV20 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V20
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV21 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V21
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV22 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V22
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV23 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V23
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    const onClickSwitchV24 = () => {
+        const newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.componentId = SC999_COMPONENT_ID.SC999_V24
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
+    return (
+        <>
+            <View style={SC999_Style.menuBtnBar}>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV20}>
+                    V20_チャット
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV21}>
+                    V21_
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV22}>
+                    V22_チャット(サブスクべた書き)
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV23}>
+                    V23_チャット(サブスク分離)
+                </Button>
+                <Button size="sm" variant="outline" style={SC999_Style.menuBtn} onPress={onClickSwitchV24}>
+                    V24_
                 </Button>
             </View>
         </>
