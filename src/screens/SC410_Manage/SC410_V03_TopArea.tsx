@@ -40,7 +40,7 @@ import { SC410_Style } from "./SC410_Style"
 
 const Path = "../../static/img" + "/murata_unko.jpeg"
 
-export const SC410_V01_TopArea = (props: object) => {
+export const SC410_V03_TopArea = (props: object) => {
     const data = [{
         data: ["violet.100", "violet.200", "violet.300", "violet.400", "violet.500"]
     }];
