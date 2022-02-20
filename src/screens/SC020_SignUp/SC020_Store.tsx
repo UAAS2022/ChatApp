@@ -1,5 +1,5 @@
 import { createContext, useState, useReducer } from "react";
-import type { SC110_Provider, SC110_Context, } from "./SC020_Types"
+import type { SC020_Provider, SC020_Context, } from "./SC020_Types"
 import { reducer } from "./SC020_Reducer"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
@@ -8,20 +8,20 @@ import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_E
 // ここでは以下の3つを用意する。
 // 　1.コンテキスト（S999_S_Context）
 // 　2.コンテキストの初期値(DefaultState)
-// 　3.プロバイダ(SC110_S_Provider)
+// 　3.プロバイダ(SC020_S_Provider)
 
 // 1.コンテキスト（S999_S_Context）
-export const SC110_S_Context = createContext<SC110_Provider>({} as SC110_Provider);
+export const Context_SC020 = createContext<SC020_Provider>({} as SC020_Provider);
 
 // 2.コンテキストの初期値(DefaultState)
 // コンテキストに値を追加する場合、ここに初期値も追加する必要がある。
-const DefaultState: SC110_Context = {
+const DefaultState: SC020_Context = {
     userInfoList_ScreenDisp: [[]],
 }
 
-// 3.プロバイダ(SC110_S_Provider)
+// 3.プロバイダ(SC020_S_Provider)
 //　詳しい説明はげぇじ本P183を参照
-export const SC110_S_Provider = (props: any) => {
+export const Provider_SC020 = (props: any) => {
     try {
         // JSXでchildrenを使うため、propsからchildrenを取得する
         const { children } = props;
@@ -31,9 +31,9 @@ export const SC110_S_Provider = (props: any) => {
 
         // valueの中に{state, dispatch}を設定し、childrenコンポーネントで使えるようにする
         return (
-            <SC110_S_Context.Provider value={{ state, dispatch }}>
+            <Context_SC020.Provider value={{ state, dispatch }}>
                 {children}
-            </SC110_S_Context.Provider>
+            </Context_SC020.Provider>
         );
     } catch (error) {
         if (error instanceof Error) {

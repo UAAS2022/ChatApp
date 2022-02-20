@@ -50,7 +50,7 @@ export const CC0020_MenuBtn = (props: any) => {
     return (
         <>
             <View style={SC000_Style.v03_MenuBtnView}>
-                <Button style={SC000_Style.v03_MenuBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onClickSwitch}>{buttonName}</Button>
+                <Button style={SC000_Style.v03_MenuBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onClickSwitch} bg={"pink.100"} >{buttonName}</Button>
             </View>
         </>
     )

@@ -30,8 +30,8 @@ export const reducer = (state: SC999_Context, action: SC999_Action) => {
             break
     }
 
-    console.log("SC010_Reducer,reducer.action:", action,)
-    console.log("SC010_Reducer,reducer.state:", state,)
-    console.log("SC010_Reducer,reducer.newState:", newState)
+    // console.log("SC010_Reducer,reducer.action:", action,)
+    // console.log("SC010_Reducer,reducer.state:", state,)
+    // console.log("SC010_Reducer,reducer.newState:", newState)
     return newState
 }

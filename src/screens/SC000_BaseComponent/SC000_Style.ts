@@ -59,7 +59,7 @@ export const SC000_Style = StyleSheet.create({
         // marginTop: "1%",
         // marginBottom: "1%",
         fontSize: 9,                //フォントサイズ
-        backgroundColor: '#fff',    //背景色
+        // backgroundColor: '#fff',    //背景色
     },
     v03_MenuBtn: {
         height: '100%',              //縦幅
@@ -71,7 +71,7 @@ export const SC000_Style = StyleSheet.create({
         // marginTop: "1%",
         // marginBottom: "1%",
         fontSize: 9,                //フォントサイズ
-        backgroundColor: '#fff',    //背景色
+        // backgroundColor: '#fff0f5',    //背景色
     },
     v04_MenuBar: {
         height: '8%',               //縦幅
