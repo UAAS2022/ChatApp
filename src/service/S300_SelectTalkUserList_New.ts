@@ -9,7 +9,7 @@ const SERVICE_ID = "S300"
 
 export const s250_SelectTalkList_New = async () => {
     // 戻り値用のリストを定義
-    let talkUserList = [] as any[]
+    let talkUserList = [] as T101_TalkUser[]
     // クエリを定義
     const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T101_TalkUser), orderBy("LatestLoginDatatime", 'desc'), limit(100))
     // クエリを実行し、FirebaseからquerySnapshotを取得

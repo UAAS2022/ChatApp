@@ -75,7 +75,7 @@ export const SC999_V05_RegistUser = () => {
             const userId = userInfo.userId
             const userName = userInfo.userName
             const comment = c010_UaasUtil_isNotBlank(userInfo.comment) ? userInfo.comment : ""  // 三項演算子を使って、undef,null制御
-            const profileImagePath = "../../../"
+            const profileImagePath = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
             const genderCd = "0"
             const age = 0
             const areaCd = "0"
@@ -161,8 +161,6 @@ export const SC999_V05_RegistUser = () => {
         </>
     )
 }
-
-
 
 //[Unhandled promise rejection: FirebaseError: Invalid document reference. Document references must have an even number of segments, but T999_V04_FB_SampleMessage has 1.]
 // FirebaseError: Invalid document reference. Document references must have an even number of segments, but T999_V04_FB_SampleMessage has 1.

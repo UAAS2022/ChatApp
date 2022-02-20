@@ -7,7 +7,7 @@ import type { T110_ChatMessage } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S351"
 
-export const s351_SelectChatMessage_New = async (
+export const s351_SelectChatMessageList_New = async (
     talkId: string,
     // userId: string,
 ) => {

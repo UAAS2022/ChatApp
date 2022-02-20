@@ -3,7 +3,6 @@ import type { SC410_Context, SC410_ScreenController, } from "./SC410_Types"
 import type { SC000_Action } from "../SC000_BaseComponent/SC000_Types"
 
 // ①ActionTypeを定義
-// ①ActionTypeを定義
 // ================================================================================
 export const SC410_ACTIONTYPE = {
     CHANGE_SCREEN: "CHANGE_SCREEN",

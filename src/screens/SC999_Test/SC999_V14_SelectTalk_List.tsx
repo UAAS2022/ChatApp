@@ -26,7 +26,7 @@ import {
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { SC999_Style } from "./SC999_Style"
-import type { SC999_Context, T999_UserInfo, SC999_TalkUserInfo } from './SC999_Types'
+import type { SC999_Context, T999_UserInfo, SC999_TalkUserInfo, SC999_TalkUserInfo_Detail } from './SC999_Types'
 import { UPDATE_V14 } from './SC999_Action'
 import { SC999_S_Context } from "./SC999_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
@@ -67,13 +67,19 @@ export const SC999_V14_SelectTalk_List = () => {
         console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s301_SelectTalkUserList_ByUserId(talkInfo_Input.userId)
-        const dbObj_newTalkList = resultObj.talkUserList
+        const dbObj_newTalkList = resultObj.talkUserInfoList_Detail
 
         // データをuserInfoListステートに合わせる
         const new_TalkInfoList = dbObj_newTalkList.map((dbObj_talkInfo) => {
-            const talkInfo = {} as SC999_TalkUserInfo
-            talkInfo.talkId = dbObj_talkInfo.TalkId
-            talkInfo.userId = dbObj_talkInfo.UserId
+            const talkInfo = {} as SC999_TalkUserInfo_Detail
+            talkInfo.talkId = dbObj_talkInfo.talkUserInfo.TalkId
+            talkInfo.userInfo = {
+                _0_DocId: dbObj_talkInfo.chatUserInfo._0_DocId,
+                userId: dbObj_talkInfo.chatUserInfo.UserId,
+                userName: dbObj_talkInfo.chatUserInfo.UserName,
+                latestLoginDatatime: dbObj_talkInfo.chatUserInfo.LatestLoginDatatime.toDate(),
+                profileImagePath: dbObj_talkInfo.chatUserInfo.ProfileImagePath
+            }
             return talkInfo
         })
 
@@ -159,15 +165,15 @@ export const SC999_V14_SelectTalk_List = () => {
                     color: "coolGray.800"
                 }}>
                     {/* map処理1：行のループ */}
-                    {talkInfoList.map((talkInfo: SC999_TalkUserInfo) => {
+                    {talkInfoList.map((talkInfo: SC999_TalkUserInfo_Detail, index) => {
                         return (
-                            <Center style={SC999_Style.talkInfoBox} size="20" bg={"violet.100"}>トークID：{talkInfo.talkId}</Center>
+                            <Center key={index} style={SC999_Style.talkInfoBox} size="20" bg={"violet.100"}>{talkInfo.userInfo.userName}</Center>
                         )
                     })}
                 </Flex>
                 <Divider />
                 <Heading size="md">トーク一覧（シンプルコード）</Heading>
-                {talkInfoList.map((talkInfo: SC999_TalkUserInfo) => { return (<Text>{talkInfo.talkId}</Text>) })}
+                {talkInfoList.map((talkInfo: SC999_TalkUserInfo_Detail, index) => { return (<View key={index}><Text >{talkInfo.talkId}</Text></View>) })}
             </ScrollView>
         </>
     )

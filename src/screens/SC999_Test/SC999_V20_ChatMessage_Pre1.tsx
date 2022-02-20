@@ -34,7 +34,7 @@ import { c010_UaasUtil_isNotBlank, c010_UaasUtil_isNotEmpty } from '../../common
 import { s310_CreateChatMessage } from "../../service/S310_CreateChatMessage"
 import { UPDATE_V19 } from './SC999_Action'
 import { SC999_S_Context } from "./SC999_Store"
-import { s351_SelectChatMessage_New } from "../../service/S351_SelectChatMessage_New"
+import { s351_SelectChatMessageList_New } from "../../service/S351_SelectChatMessageList_New"
 
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
@@ -130,7 +130,7 @@ export const SC999_V20_ChatMessage_Pre1 = () => {
         console.log("getChatMessageList開始！=========================================================");
 
         // Firebaseからデータを取得する
-        const resultObj = await s351_SelectChatMessage_New(TALKID)
+        const resultObj = await s351_SelectChatMessageList_New(TALKID)
         const dbObj_newChatMessageInfoList = resultObj.chatMessageList
 
         // データをuserInfoListステートに合わせる

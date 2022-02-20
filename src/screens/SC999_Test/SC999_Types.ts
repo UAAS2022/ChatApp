@@ -30,19 +30,39 @@ export type SC999_ScreenController = {
 
 // ユーザ情報
 export type T999_UserInfo = {
+    _0_DocId: string,
     userId: string,
     userName: string,
     comment: string,
+    latestLoginDatatime: Timestamp | Date,
+    profileImagePath: string,
     genderCd: string,
     age: number,
     areaCd: string,
-    hashtag: string,
+    hashtags: string,
+    _CrtUserId: string,
+    _CrtServiceId: string,
+    _CrtDatetime: Timestamp,
+    _UpdUserId: string,
+    _UpdServiceId: string,
+    _UpdDatetime: Timestamp,
+}
+export type SC999_V14_UserInfo = {
+    _0_DocId: string,
+    userId: string,
+    userName: string,
+    latestLoginDatatime: Date,
+    profileImagePath: string,
 }
 
-// トーク情報
+// トークユーザ情報
 export type SC999_TalkUserInfo = {
     talkId: string,
     userId: string,
+}
+export type SC999_TalkUserInfo_Detail = {
+    talkId: string,
+    userInfo: SC999_V14_UserInfo,
 }
 // トーク情報
 export type SC999_ChatMessageInfo = {
@@ -55,7 +75,7 @@ export type SC999_ChatMessageInfo = {
 }
 
 export type SC999_V14 = {
-    talkList: SC999_TalkUserInfo[]
+    talkList: SC999_TalkUserInfo_Detail[]
 }
 
 export type SC999_V15 = {
