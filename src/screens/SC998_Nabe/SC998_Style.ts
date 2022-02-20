@@ -136,5 +136,13 @@ export const SC998_Style = StyleSheet.create({
         flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
 
     },
-
+    v00_glasspozi2: {
+        height: '200%',             //縦幅
+        width: '15%',              //横幅
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: '80%',              //余白(左)
+        marginRight:'5%',             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
 });
