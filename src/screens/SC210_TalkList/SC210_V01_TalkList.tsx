@@ -106,12 +106,15 @@ export const SC210_V01_TalkList = (props: object) => {
         // ③ステートを更新する
         screenDispatch(UPDATE_TALKLIST(new_talkUserInfoList_Detail))
     }
-    useEffect(() => {
-        getTalkUserInfoList_Detail()
-    }, [])
+
+    // useEffect(() => {
+    //     getTalkUserInfoList_Detail()
+    // }, [])
 
     return (
         <>
+            <Button onPress={getTalkUserInfoList_Detail}>更新</Button>
+            <Divider />
             <FlatList
                 data={screenState.talkUserInfoList_Detail}
                 inverted={false}
@@ -129,37 +132,37 @@ export const SC210_V01_TalkList = (props: object) => {
             <Heading fontSize="xl" p="4" pb="3">
                 Inbox
             </Heading>
-            <ScrollView >
-                <FlatList data={screenState.talkUserInfoList_Detail} renderItem={({
-                    item
-                }) => <Box borderBottomWidth="1" _dark={{
-                    borderColor: "gray.600"
-                }} borderColor="coolGray.200" pl="4" pr="5" py="2">
-                        <HStack space={3} justifyContent="space-between">
-                            <Avatar size="48px" source={{
-                                uri: item.userInfo.profileImagePath
-                            }} />
-                            <VStack>
-                                <Text _dark={{
-                                    color: "warmGray.50"
-                                }} color="coolGray.800" bold>
-                                    {item.userInfo.userName}
-                                </Text>
-                                <Text color="coolGray.600" _dark={{
-                                    color: "warmGray.200"
-                                }}>
-                                    {item.userInfo.userName}
-                                </Text>
-                            </VStack>
-                            <Spacer />
-                            <Text fontSize="xs" _dark={{
+            {/* <ScrollView > */}
+            <FlatList data={screenState.talkUserInfoList_Detail} renderItem={({
+                item
+            }) => <Box borderBottomWidth="1" _dark={{
+                borderColor: "gray.600"
+            }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+                    <HStack space={3} justifyContent="space-between">
+                        <Avatar size="48px" source={{
+                            uri: item.userInfo.profileImagePath
+                        }} />
+                        <VStack>
+                            <Text _dark={{
                                 color: "warmGray.50"
-                            }} color="coolGray.800" alignSelf="flex-start">
-                                {item.userInfo.latestLoginDatatime}
+                            }} color="coolGray.800" bold>
+                                {item.userInfo.userName}
                             </Text>
-                        </HStack>
-                    </Box>} keyExtractor={item => item.talkId} />
-            </ScrollView>
+                            <Text color="coolGray.600" _dark={{
+                                color: "warmGray.200"
+                            }}>
+                                {item.userInfo.userName}
+                            </Text>
+                        </VStack>
+                        <Spacer />
+                        <Text fontSize="xs" _dark={{
+                            color: "warmGray.50"
+                        }} color="coolGray.800" alignSelf="flex-start">
+                            {item.userInfo.latestLoginDatatime}
+                        </Text>
+                    </HStack>
+                </Box>} keyExtractor={item => item.talkId} />
+            {/* </ScrollView> */}
             {/* ------------------------------------------------------------------------------------------ */}
             <Box>
                 <Heading fontSize="xl" p="4" pb="3">

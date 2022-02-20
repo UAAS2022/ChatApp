@@ -46,14 +46,13 @@ export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
         const result_s140 = await s140_SelectUser(chatUserId)
         const tmpChatUserInfo = result_s140.userInfo
         console.log("②ユーザIDに紐づくユーザ情報を取得:", tmpChatUserInfo.UserId)
-        // chatUserInfoList.push(chatUserInfo)
         // ③オブジェクトをまとめてプッシュ
         const talkInfo_Detail = {
             talkUserInfo: talkUserInfo,
             chatUserInfo: tmpChatUserInfo,
         }
         talkUserInfoList_Detail.push(talkInfo_Detail)
-        // console.log("③オブジェクトをまとめてプッシュ:", talkInfo)
+        console.log("③オブジェクトをまとめてプッシュ:", talkInfo_Detail.talkUserInfo.UserId)
     }
     // 戻り値を定義
     const resultObj = {

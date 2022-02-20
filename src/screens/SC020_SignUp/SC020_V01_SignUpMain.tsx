@@ -72,67 +72,67 @@ export const SC020_V01_SignUpMain = () => {
             logUserId)
     }
     return (
-        <Box>
-            <Stack space={4} w="100%" alignItems="flex-start">
-                <Input w={{
-                    base: "75%",
-                    md: "25%"
-                }} placeholder="ユーザーID" value={localState.userId}
-                    onChangeText={(value) => { onChangeUserId(value) }} />
-                <Input w={{
-                    base: "75%",
-                    md: "25%"
-                }} placeholder="パスワード"
-                    value={localState.password}
-                    onChangeText={(value) => { onChangePassword(value) }} />
-            </Stack>
-            {/* 名前BOX */}
-            <Box alignSelf="flex-start" bg="primary.500" _text={{
-                fontSize: "md",
-                fontWeight: "medium",
-                color: "warmGray.50",
-                letterSpacing: "lg"
-            }}>
-                NAME
+        <>
+            <Box>
+                <Stack space={4} w="100%" alignItems="flex-start">
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} placeholder="ユーザーID" value={localState.userId}
+                        onChangeText={(value) => { onChangeUserId(value) }} />
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} placeholder="パスワード"
+                        value={localState.password}
+                        onChangeText={(value) => { onChangePassword(value) }} />
+                </Stack>
+                {/* 名前BOX */}
+                <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    fontSize: "md",
+                    fontWeight: "medium",
+                    color: "warmGray.50",
+                    letterSpacing: "lg"
+                }}>
+                    NAME
+                </Box>
+                <Box alignItems="flex-start">
+                    <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
+                        value={localState.userName}
+                        onChangeText={(value) => { onChangeUserName(value) }} />
+                </Box>
+                {/* 性別BOX */}
+                <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    fontSize: "md",
+                    fontWeight: "medium",
+                    color: "warmGray.50",
+                    letterSpacing: "lg"
+                }}>
+                    雌雄
+                </Box>
+                <Box alignItems="flex-start">
+                    <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
+                        value={localState.genderCd}
+                        onChangeText={(value) => { onChangegenderCd(value) }} />
+                </Box>
+                {/* コメント */}
+                <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    fontSize: "md",
+                    fontWeight: "medium",
+                    color: "warmGray.50",
+                    letterSpacing: "lg"
+                }}>
+                    コメント
+                </Box>
+                <Box alignItems="flex-start">
+                    <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
+                        value={localState.comment}
+                        onChangeText={(value) => { onChangeComment(value) }} />
+                </Box>
+                <Box alignItems="center">
+                    <Button onPress={createM050}>おしてね😎</Button>
+                </Box>
             </Box>
-            <Box alignItems="flex-start">
-                <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
-                    value={localState.userName}
-                    onChangeText={(value) => { onChangeUserName(value) }} />
-            </Box>
-            {/* 性別BOX */}
-            <Box alignSelf="flex-start" bg="primary.500" _text={{
-                fontSize: "md",
-                fontWeight: "medium",
-                color: "warmGray.50",
-                letterSpacing: "lg"
-            }}>
-                雌雄
-            </Box>
-            <Box alignItems="flex-start">
-                <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
-                    value={localState.genderCd}
-                    onChangeText={(value) => { onChangegenderCd(value) }} />
-            </Box>
-            {/* コメント */}
-            <Box alignSelf="flex-start" bg="primary.500" _text={{
-                fontSize: "md",
-                fontWeight: "medium",
-                color: "warmGray.50",
-                letterSpacing: "lg"
-            }}>
-                コメント
-            </Box>
-            <Box alignItems="flex-start">
-                <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
-                    value={localState.comment}
-                    onChangeText={(value) => { onChangeComment(value) }} />
-            </Box>
-            <Box alignItems="center">
-                <Button onPress={createM050}>おしてね😎</Button>
-            </Box>;
-
-        </Box>
-
+        </>
     )
 }

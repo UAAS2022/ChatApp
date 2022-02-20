@@ -42,7 +42,7 @@ export const SC000_V04_MenuBar = (props: object) => {
                 <CC0020_MenuBtn btnInfo={menuBtn1} />
                 <CC0020_MenuBtn btnInfo={menuBtn2} />
                 <View style={SC000_Style.v03_MenuBtnView}>
-                    <Button h="100%" w="100%" colorScheme="" bg={"coolGray.200"} >工事中</Button>
+                    <Button style={SC000_Style.v03_MenuBtn} colorScheme="" bg={"coolGray.200"} >工事中</Button>
                 </View>
                 <CC0020_MenuBtn btnInfo={menuBtn4} />
             </View>
