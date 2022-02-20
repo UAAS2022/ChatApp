@@ -63,7 +63,7 @@ export const SC999_V09_SelectUser_List = () => {
             userInfo.genderCd = dbObj_userInfo.GenderCd
             userInfo.age = dbObj_userInfo.Age
             userInfo.areaCd = dbObj_userInfo.AreaCd
-            userInfo.hashtag = dbObj_userInfo.Hashtags
+            userInfo.hashtags = dbObj_userInfo.Hashtags
             return userInfo
         })
         // console.log(new_UserInfoList);

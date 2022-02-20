@@ -76,7 +76,7 @@ export const SC999_V13_SelectTalk = () => {
             else {
                 const newState: SC999_TalkUserInfo = {
                     talkId: resultObj.talkInfo.TalkId,
-                    userId: resultObj.talkInfo.UserId,
+                    userId: resultObj.talkInfo.UserId
                 }
                 // 初期化
                 setTalkInfo(newState);
