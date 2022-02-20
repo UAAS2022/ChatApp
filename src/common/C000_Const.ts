@@ -4,6 +4,7 @@
 export const CONST_SC000 = {
     // 画面ID
     SCREENID: {
+        SC020: "SC020",
         SC110: "SC110",
         SC120: "SC120",
         SC210: "SC210",
