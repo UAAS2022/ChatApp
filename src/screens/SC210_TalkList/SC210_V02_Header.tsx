@@ -36,7 +36,7 @@ import {
 import { CONST_SC000, CONST_SC210 } from "../../common/C000_Const"
 import { SC000_CHANGE_SCREEN } from "../SC000_BaseComponent/SC000_Action"
 import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
-import { useState_SC000_LayoutPattern } from "../SC000_BaseComponent/SC000_V01_MainScreen"
+import { useState_SC000_LayoutPattern, useState_SC000_ScreenController } from "../SC000_BaseComponent/SC000_V00_BaseComponent"
 import { getLayoutPattern } from "../SC000_BaseComponent/SC000_V03_MenuBtn"
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
@@ -47,23 +47,29 @@ import { SC210_Style } from "./SC210_Style"
 
 export const SC210_V02_Header = (props: any) => {
     // B:スクリーンコンテキストで表示切り替え情報を管理した場合----------------------------------------------------------
-    // スクリーンコンテキストを呼び出す
-    const { state, dispatch } = useContext(Context_SC210)
+    // ①ベースコンテキストを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
+    // ②画面コンテキストを取得する
+    const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC210)
 
-    // 
-    const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
+    // ④カスタムフック呼び出し
+    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC210)
+    const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     // CS210への遷移関数
     const onClickSwitch_SC210_SC = () => {
         // 取得したstateの値を更新する
-        let newState = { ...state }
+        let newState = { ...screenState }
         // 取得したstateの値を更新する
         newState.screenControllerInfo.componentId = CONST_SC210.COMPONENT_ID.V03
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC210)
-        // // レイアウトパターン変更
-        updateLayoutPattern()
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC210)
+        // // // レイアウトパターン変更
+        // updateLayoutPattern()
         // ステートを更新
-        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+        screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+        // BaseContextの画面情報更新
+        updateBaseScreenId(CONST_SC000.SCREENID.SC210)
+        console.log("SC210_V02_Header_newState.screenControllerInfo", newState.screenControllerInfo)
     }
     // ---------------------------------------------------------------------------------------------------------
 
@@ -78,7 +84,7 @@ export const SC210_V02_Header = (props: any) => {
             }}> */}
             <View style={SC210_Style.v03_Header}>
                 <Button style={SC210_Style.v02_BackBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC210_SC}>戻る</Button>
-                <Heading size="md">{state.chatScreenPreInfo.talkName}</Heading>
+                <Heading size="md">{screenState.chatScreenPreInfo.talkName}</Heading>
             </View>
             {/* </Stack> */}
         </>

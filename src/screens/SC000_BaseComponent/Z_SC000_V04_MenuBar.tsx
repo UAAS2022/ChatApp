@@ -41,16 +41,37 @@ export const SC000_V04_MenuBar = (props: object) => {
     const menuBtn4: SC000_ScreenChangeBtnInfo = { buttonId: "Manage", buttonName: "Manage", nextScreenId: CONST_SC000.SCREENID.SC410, }
     const menuBtn998: SC000_ScreenChangeBtnInfo = { buttonId: "Nabe", buttonName: "Nabe", nextScreenId: CONST_SC000.SCREENID.SC998, }
     const menuBtn999: SC000_ScreenChangeBtnInfo = { buttonId: "Test", buttonName: "Test", nextScreenId: CONST_SC000.SCREENID.SC999, }
-    return (
-        <>
-            <View style={SC000_Style.v04_MenuBar}>
-                <CC0020_MenuBtn btnInfo={menuBtn1} />
-                <CC0020_MenuBtn btnInfo={menuBtn2} />
-                <View style={SC000_Style.v03_MenuBtnView}>
-                    <Button style={SC000_Style.v03_MenuBtn} colorScheme="" bg={"coolGray.200"} >工事中</Button>
-                </View>
-                <CC0020_MenuBtn btnInfo={menuBtn4} />
-            </View>
-        </>
-    );
+    switch (layoutPattern) {
+        case 1:
+            return (
+                <>
+                    <View style={SC000_Style.v04_MenuBar}>
+                        <CC0020_MenuBtn btnInfo={menuBtn1} />
+                        <CC0020_MenuBtn btnInfo={menuBtn2} />
+                        <View style={SC000_Style.v03_MenuBtnView}>
+                            <Button style={SC000_Style.v03_MenuBtn} colorScheme="" bg={"coolGray.200"} >工事中</Button>
+                        </View>
+                        <CC0020_MenuBtn btnInfo={menuBtn4} />
+                    </View>
+                </>
+            );
+        case 2:
+            return (
+                <>
+                </>
+            );
+        default:
+            return (
+                <>
+                    <View style={SC000_Style.v04_MenuBar}>
+                        <CC0020_MenuBtn btnInfo={menuBtn1} />
+                        <CC0020_MenuBtn btnInfo={menuBtn2} />
+                        <View style={SC000_Style.v03_MenuBtnView}>
+                            <Button style={SC000_Style.v03_MenuBtn} colorScheme="" bg={"coolGray.200"} >工事中</Button>
+                        </View>
+                        <CC0020_MenuBtn btnInfo={menuBtn4} />
+                    </View>
+                </>
+            );
+    }
 }

@@ -37,7 +37,7 @@ const DEfAULT_TalkInfoList = [{
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 const DEfAULT_ScreenControllerInfo = {
     componentId: CONST_SC210.COMPONENT_ID.V03,
-    layoutPattern: 0,
+    layoutPattern: 1,
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

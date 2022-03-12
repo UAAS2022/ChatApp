@@ -55,7 +55,7 @@ export const SC410_V04_SectionList = (props: object) => {
         let newState = { ...baseState }
         // 取得したstateの値を更新する
         newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC998
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC998)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC998)
         baseDispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC999_BA = () => {
@@ -63,7 +63,7 @@ export const SC410_V04_SectionList = (props: object) => {
         let newState = { ...baseState }
         // 取得したstateの値を更新する
         newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
         baseDispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
     // ---------------------------------------------------------------------------------------------------------
