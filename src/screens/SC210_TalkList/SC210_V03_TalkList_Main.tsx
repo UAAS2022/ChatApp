@@ -36,10 +36,10 @@ import { dateToString } from "../../common/C050_DateUtil"
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { getLayoutPattern } from "../SC000_BaseComponent/SC000_V03_MenuBtn"
 import { CONST_SC000, CONST_SC210 } from "../../common/C000_Const"
-import { useState_SC000_LayoutPattern } from "../SC000_BaseComponent/SC000_V01_MainScreen"
+import { useState_SC000_LayoutPattern, useState_SC000_ScreenController } from "../SC000_BaseComponent/SC000_V00_BaseComponent"
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
 import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
-import { SC210_UPDATE_TAlKUSER, SC000_UPDATE_LAYOUTPATTERN } from "../SC000_BaseComponent/SC000_Action"
+import { SC210_UPDATE_TAlKUSER, SC000_UPDATE_LAYOUTPATTERN, SC000_CHANGE_SCREEN } from "../SC000_BaseComponent/SC000_Action"
 import { SC210_BaseContext, SC210_TalkUserInfo_Detail } from "../SC000_BaseComponent/SC000_Types"
 import { SC000_Style } from "../SC000_BaseComponent/SC000_Style"
 import { UPDATE_CHATSCREEN_PREINFO, CHANGE_SCREEN } from "./SC210_Action"
@@ -87,6 +87,9 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // ②画面コンテキストを取得する
     const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC210)
+    // ④カスタムフック呼び出し
+    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC210)
+    const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     const getTalkUserInfoList_Detail = async () => {
         // ①Firebaseからデータを取得する
@@ -156,7 +159,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
 
     const disableMenuBar = () => {
         const newState = { ...baseState }
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
         // メニューバー非表示
         baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
     }
@@ -173,16 +176,18 @@ export const SC210_V03_TalkList_Main = (props: object) => {
             layoutPattern: getLayoutPattern(CONST_SC000.SCREENID.SC220),
         }
         newState.screenControllerInfo.componentId = CONST_SC210.COMPONENT_ID.V04
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
         // // メニューバー非表示
         // useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
-        // チャット画面に遷移する
+        // トーク画面の内容をチャット画面に切り替える
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+
+        // BaseComponentの画面IDを更新する
+        updateBaseScreenId(CONST_SC000.SCREENID.SC220)
         console.log("newState.componentId:", newScreenControllerInfo.componentId)
         console.log("goToChat:終了")
     }
-
-    const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
+    console.log("SC210_V03_TalkList_Main:baseState.screenControllerInfo", baseState.screenControllerInfo)
 
     useEffect(() => {
         getTalkUserInfoList_Detail()
@@ -219,7 +224,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                     <>
                         <TouchableOpacity onPress={() => {
                             goToChat(item.talkInfo)
-                            updateLayoutPattern()
+                            // updateLayoutPattern()
                             // useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
                         }}>
                             <Box borderBottomWidth="1"
