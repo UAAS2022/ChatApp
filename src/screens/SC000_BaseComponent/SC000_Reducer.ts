@@ -19,7 +19,16 @@ export const reducer = (state: SC000_Context, action: SC000_Action) => {
         case SC000_ACTIONTYPE.SC000.SC000_CHANGE_SCREEN:
             newState = { ...state, ...payload }
             break
+        case SC000_ACTIONTYPE.SC000.SC000_UPDATE_LOGIN_USER:
+            newState = { ...state, ...payload }
+            break
+        case SC000_ACTIONTYPE.SC000.SC000_UPDATE_LAYOUTPATTERN:
+            newState = { ...state, ...payload }
+            break
         case SC000_ACTIONTYPE.SC110.SC110_UPDATE_USERLIST:
+            newState = { ...state, ...payload }
+            break
+        case SC000_ACTIONTYPE.SC210.SC210_UPDATE_TAlKUSER:
             newState = { ...state, ...payload }
             break
     }

@@ -1,5 +1,12 @@
 import { createContext, useState, useReducer } from "react";
-import type { SC210_Provider, SC210_Context, SC210_UserInfo } from "./SC210_Types"
+import type {
+    SC210_Provider,
+    SC210_Context,
+    SC210_TalkInfo,
+    SC210_UserInfo,
+    SC210_ScreenController
+} from "./SC210_Types"
+import { CONST_SC000, CONST_SC210 } from "../../common/C000_Const"
 import { reducer } from "./SC210_Reducer"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
@@ -18,7 +25,7 @@ export const Context_SC210 = createContext<SC210_Provider>({} as SC210_Provider)
 // ==========================================================================================
 // 各要素の初期値を定義
 const DEfAULT_TalkInfoList = [{
-    talkId: "",
+    talkInfo: {} as SC210_TalkInfo,
     userInfo: {
         // _0_DocId: "",
         // userId: "",
@@ -28,9 +35,22 @@ const DEfAULT_TalkInfoList = [{
     } as SC210_UserInfo,
 }]
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+const DEfAULT_ScreenControllerInfo = {
+    componentId: CONST_SC210.COMPONENT_ID.V03,
+    layoutPattern: 0,
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+const DEfAULT_ChatScreenPreInfo = {
+    talkId: "",
+    talkName: "",
+    talkKbn: "",
+}
 // コンテキストに↑で定義した初期値を設定し、デフォルトステートを作成
 const DEFAULT_State: SC210_Context = {
-    talkUserInfoList_Detail: DEfAULT_TalkInfoList,
+    screenControllerInfo: DEfAULT_ScreenControllerInfo,
+    // talkUserInfoList_Detail: DEfAULT_TalkInfoList,
+    chatScreenPreInfo: DEfAULT_ChatScreenPreInfo,
 }
 // ==========================================================================================
 

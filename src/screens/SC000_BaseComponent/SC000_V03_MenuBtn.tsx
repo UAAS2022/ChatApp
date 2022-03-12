@@ -71,6 +71,9 @@ export const getLayoutPattern = (screenId: string): number => {
         case CONST_SC000.SCREENID.SC210:
             layoutPattern = 1
             break;
+        case CONST_SC000.SCREENID.SC220:
+            layoutPattern = 1
+            break;
         case CONST_SC000.SCREENID.SC310:
             layoutPattern = 1
             break;

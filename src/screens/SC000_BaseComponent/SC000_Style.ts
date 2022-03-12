@@ -49,6 +49,15 @@ export const SC000_Style = StyleSheet.create({
         marginRight: 0,             //余白(右)
         backgroundColor: '#fff',    //背景色
     },
+    v01_MainScreen_NoMenu: {
+        height: '100%',             //縦幅
+        width: '100%',              //横幅
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: 0,              //余白(左)
+        marginRight: 0,             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
     v03_MenuBtnView: {
         height: '90%',              //縦幅
         width: '25%',              //横幅
