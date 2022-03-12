@@ -9,6 +9,7 @@ import {
     Heading,
     Flex,
     Divider,
+    Box,
 } from "native-base"
 import {
     StyleSheet,
@@ -142,7 +143,9 @@ export const SC110_V01_UserList = () => {
                                     {/* map処理2：列のループ (デフォルトは4だが、1以上の好きな値をCONST.tsで設定可能)*/}
                                     {userInfoList_ScreenDisp_ROW.map((userInfo: SC000_UserInfo, index) => {
                                         return (
-                                            <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100" key={index}>{userInfo.userName}</Center>
+                                            <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100" onTouchEnd={() => Alert.alert('うほほほほ')} key={index}>{userInfo.userName}
+
+                                            </Center>
                                         )
                                     })}
                                 </Flex>
