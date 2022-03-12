@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import {
+    Select,
     Stack,
     Box,
     Input,
-    Button
+    Button,
+    Center,
+    CheckIcon
 } from "native-base"
 import {
     StyleSheet,
@@ -12,6 +15,8 @@ import { SC020_InputUserInfo } from './SC020_Types';
 import { FieldValue } from '@firebase/firestore';
 import { s110_CreateUser } from '../../service/S110_CreateUser';
 import { async } from '@firebase/util';
+import { SC020_V01_SignUpseibetu } from './SC020_V01_SignUpseibetu';
+
 
 export const SC020_V01_SignUpMain = () => {
     const [localState, setLocalState] = useState<SC020_InputUserInfo>({} as SC020_InputUserInfo);
@@ -97,7 +102,7 @@ export const SC020_V01_SignUpMain = () => {
                     NAME
                 </Box>
                 <Box alignItems="flex-start">
-                    <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
+                    <Input mx="3" placeholder="ユーザー名" w="75%" maxWidth="300px"
                         value={localState.userName}
                         onChangeText={(value) => { onChangeUserName(value) }} />
                 </Box>
@@ -108,12 +113,23 @@ export const SC020_V01_SignUpMain = () => {
                     color: "warmGray.50",
                     letterSpacing: "lg"
                 }}>
-                    雌雄
+                    性別
                 </Box>
-                <Box alignItems="flex-start">
+                {/* <Box alignItems="flex-start">
                     <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
                         value={localState.genderCd}
                         onChangeText={(value) => { onChangegenderCd(value) }} />
+                </Box> */}
+                <Box alignItems="flex-start">
+                    <Select selectedValue={localState.genderCd} minWidth="200" accessibilityLabel="♂ or ♀" placeholder="♂ or ♀"
+                        _selectedItem={{
+                            bg: "teal.600",
+                            endIcon: <CheckIcon size="5" />
+                        }} mt={1} onValueChange={itemValue => onChangegenderCd(itemValue)}>
+                        <Select.Item label="♂" value="1" />
+                        <Select.Item label="♀" value="2" />
+
+                    </Select>
                 </Box>
                 {/* コメント */}
                 <Box alignSelf="flex-start" bg="primary.500" _text={{
@@ -125,7 +141,7 @@ export const SC020_V01_SignUpMain = () => {
                     コメント
                 </Box>
                 <Box alignItems="flex-start">
-                    <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
+                    <Input mx="3" placeholder="入力してね" w="75%" maxWidth="300px"
                         value={localState.comment}
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box>

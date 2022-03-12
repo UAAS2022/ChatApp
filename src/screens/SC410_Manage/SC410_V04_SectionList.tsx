@@ -104,12 +104,20 @@ export const SC410_V04_SectionList = (props: object) => {
         newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC020)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
+    const onClickSwitch_SC998_Jim = () => {
+        // newStateを初期化
+        let newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999_V30
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999_V30)
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
     // ---------------------------------------------------------------------------------------------------------
 
     return (
         <>
             <ScrollView>
-                <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >プロフィール</Button>
+                <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC998_Jim}  >プロフィール</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC998_BA} >①なべ画面へ(baseContext使用)</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC999_BA} >①テスト画面へ(baseContext使用)</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC998_SC} >②なべ画面へ(画面Context使用)</Button>

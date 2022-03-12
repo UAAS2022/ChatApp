@@ -35,7 +35,7 @@ export const SC020_V00_SignUp = () => {
         return (
             <>
                 <View style={SC000_Style.v00_HeaderArea}>
-                    <CC0010_ScreenTitle >登録画面</CC0010_ScreenTitle>
+                    <CC0010_ScreenTitle >ユーザー登録</CC0010_ScreenTitle>
 
                 </View>
                 <SC020_V01_SignUpMain />
