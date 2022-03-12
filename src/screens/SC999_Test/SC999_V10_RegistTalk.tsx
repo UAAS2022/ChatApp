@@ -108,7 +108,12 @@ export const SC999_V10_RegistTalk = () => {
             // 処理成功
             else {
                 // 初期化
-                setTalkInfo({} as SC999_TalkUserInfo);
+                setTalkInfo(
+                    {
+                        talkId: talkInfo.talkId,
+                        userId: ""
+                    } as SC999_TalkUserInfo
+                );
                 //ダイアログ
                 Alert.alert("",
                     "登録しました。",
@@ -139,7 +144,12 @@ export const SC999_V10_RegistTalk = () => {
             // 処理成功
             else {
                 // 初期化
-                setTalkInfo({} as SC999_TalkUserInfo);
+                setTalkInfo(
+                    {
+                        talkId: talkInfo.talkId,
+                        userId: ""
+                    } as SC999_TalkUserInfo
+                );
                 //ダイアログ
                 Alert.alert("",
                     "登録しました。",

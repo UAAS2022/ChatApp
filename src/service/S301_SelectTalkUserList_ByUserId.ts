@@ -3,8 +3,9 @@ import { collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs,
 import { query, where, orderBy, limit } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
-import type { T101_TalkUser, M050_User, } from '../common/C020_FirebaseUtil_Types';
+import type { T101_TalkUser, M050_User, T100_Talk, } from '../common/C020_FirebaseUtil_Types';
 import { s140_SelectUser } from "./S140_SelectUser"
+import { s240_SelectTalk } from "./S240_SelectTalk"
 import { s290_SelectTalkUser } from "./S290_SelectTalkUser"
 import { s302_SelectTalkUserList_ByTalkId } from "./S302_SelectTalkUserList_ByTalkId"
 
@@ -17,6 +18,7 @@ export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
     // let talkUserInfo = {} as T101_TalkUser
     // let chatUserInfoList = [] as M050_User[]
     let talkUserInfoList_Detail = [] as {
+        talkInfo: T100_Talk,
         talkUserInfo: T101_TalkUser,
         chatUserInfo: M050_User,
     }[]
@@ -29,15 +31,18 @@ export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
     const querySnapshot = await getDocs(query_FB);
     // querySnapshotからdocのデータを取り出し、リストに追加する
     querySnapshot.forEach(async (doc) => {
-        // トーク情報取得
+        // トークユーザ情報取得
         const tmpTalkUserInfo = doc.data() as T101_TalkUser
         talkUserList.push(tmpTalkUserInfo)
     });
     console.log("talkUserList.length", talkUserList.length)
-    // 取得したトーク情報に対し、for文でユーザ情報を取得する
+    // 取得したトークユーザ情報に対し、for文でユーザ情報を取得する
     for (const talkUserInfo of talkUserList) {
-        // ①トークIDに紐づくユーザIDを取得予定（条件：自分以外）
         const tmpTalkId = talkUserInfo.TalkId
+        // ①トーク情報を取得する
+        const result_s240 = await s240_SelectTalk(tmpTalkId)
+        const talkInfo = result_s240.talkInfo
+        // ①トークIDに紐づくユーザIDを取得（条件：自分以外）
         // トークごとのユーザIDを取得する（自分自身を除く）
         const result_s302 = await s302_SelectTalkUserList_ByTalkId(tmpTalkId, "1", userId)
         const chatUserId = result_s302.talkUserList[0].UserId
@@ -48,6 +53,7 @@ export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
         console.log("②ユーザIDに紐づくユーザ情報を取得:", tmpChatUserInfo.UserId)
         // ③オブジェクトをまとめてプッシュ
         const talkInfo_Detail = {
+            talkInfo: talkInfo,
             talkUserInfo: talkUserInfo,
             chatUserInfo: tmpChatUserInfo,
         }

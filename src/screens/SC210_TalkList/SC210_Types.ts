@@ -11,23 +11,40 @@ export type SC210_Provider = {
 // ==============================================================
 // S999_Contextで、ほぼ固定
 export type SC210_Context = {
-    talkUserInfoList_Detail: SC210_TalkUserInfo_Detail[],
-
+    screenControllerInfo: SC210_ScreenController,
+    // talkUserInfoList_Detail: SC210_TalkUserInfo_Detail[],
+    chatScreenPreInfo: SC210_ChatScreenPreInfo
 }
 
 // --------------------------------------------------------------
 // 画面ごとのコンテキスト内の情報をここに定義していく
 // スクリーンコントローラ
+export type SC210_ScreenController = {
+    componentId: string,
+    layoutPattern: number,
+}
+
 export type SC210_TalkUserInfo_Detail = {
-    talkId: string,
+    talkInfo: SC210_TalkInfo,
     userInfo: SC210_UserInfo,
+}
+export type SC210_TalkInfo = {
+    talkId: string,
+    talkName: string,
+    talkKbn: string,
 }
 export type SC210_UserInfo = {
     _0_DocId: string,
     userId: string,
     userName: string,
-    latestLoginDatatime: Date,
+    latestLoginDatatime: String,
     profileImagePath: string,
+}
+
+export type SC210_ChatScreenPreInfo = {
+    talkId: string,
+    talkName: string,
+    talkKbn: string,
 }
 // --------------------------------------------------------------
 

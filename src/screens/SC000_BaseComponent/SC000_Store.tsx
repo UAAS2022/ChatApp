@@ -19,8 +19,13 @@ const DEfAULT_LoginUserInfo = {} as SC000_LoginUserInfo
 const DEfAULT_ErrorInfo = {
     errorKbn: 0
 }
+// SC2110
 const DEFAULT_BaseContext_SC110 = {
     userInfoList_ScreenDisp: [[]],
+}
+// SC210
+const DEFAULT_BaseContext_SC210 = {
+    talkUserInfoList_Detail: [],
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // コンテキストに↑で定義した初期値を設定し、デフォルトステートを作成
@@ -29,10 +34,9 @@ const DEFAULT_State: SC000_Context = {
     loginUserInfo: DEfAULT_LoginUserInfo,
     errorInfo: DEfAULT_ErrorInfo,
     baseContext_SC110: DEFAULT_BaseContext_SC110,
+    baseContext_SC210: DEFAULT_BaseContext_SC210,
 }
 // ==========================================================================================
-
-
 
 // 3.プロバイダ(SC010_S_Provider)
 //　詳しい説明はげぇじ本P183を参照

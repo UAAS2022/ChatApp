@@ -20,6 +20,12 @@ export const reducer = (state: SC210_Context, action: SC000_Action) => {
         case SC210_ACTIONTYPE.UPDATE_TALKLIST:
             newState = { ...state, ...payload }
             break
+        case SC210_ACTIONTYPE.CHANGE_SCREEN:
+            newState = { ...state, ...payload }
+            break
+        case SC210_ACTIONTYPE.UPDATE_CHATSCREEN_PREINFO:
+            newState = { ...state, ...payload }
+            break
     }
     return newState
 }

@@ -25,6 +25,8 @@ import {
 } from 'react-native';
 import { SC000_S_Context } from "./SC000_Store"
 import { SC000_Style } from "./SC000_Style"
+import { SC000_UPDATE_LAYOUTPATTERN } from "./SC000_Action"
+import { getLayoutPattern } from "../SC000_BaseComponent/SC000_V03_MenuBtn"
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
 import { CONST_SC000 } from "../../common/C000_Const"
 import { SC110_V00_Home } from '../SC110_Home/SC110_V00_Home'
@@ -35,7 +37,7 @@ import { SC998_V00_Nabe } from '../SC998_Nabe/SC998_V00_Nabe'
 import { SC999_V00_Test } from '../SC999_Test/SC999_V00_Test'
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
-export const SC000_V01_MainScreenCmp = () => {
+export const SC000_V01_MainScreenController = () => {
     try {
         const { state, dispatch } = useContext(SC000_S_Context)
         const { screenId } = state.screenControllerInfo
@@ -64,9 +66,64 @@ export const SC000_V01_MainScreenCmp = () => {
         // throw(error)
         return (<SC950_V00_Error />)
     }
-
-
 }
+
+export const SC000_V01_MenuBarController = () => {
+    try {
+        const { state, dispatch } = useContext(SC000_S_Context)
+        const { screenId, layoutPattern } = state.screenControllerInfo
+        console.log("C0000_Main:screenController----------------------")
+        console.log("C0000_Main:screenId:", screenId)
+        switch (layoutPattern) {
+            case 1:
+                return (
+                    <>
+                        <Divider />
+                        <SC000_V04_MenuBar />
+                    </>
+                )
+            case 2:
+                return (<></>)
+            default:
+                return (
+                    <>
+                        <Divider />
+                        <SC000_V04_MenuBar />
+                    </>
+                )
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            sc950_V00_commonErr(error)
+        }
+        // throw(error)
+        return (<SC950_V00_Error />)
+    }
+}
+
+// export const SC000_V01_MainScreen_bk = () => {
+//     const { state } = useContext(SC000_S_Context)
+//     const { screenId, layoutPattern } = state.screenControllerInfo
+//     try {
+
+//         return (
+//             <>
+//                 <SafeAreaView>
+//                     <View style={SC000_Style.v01_MainScreen}>
+//                         <SC000_V01_MainScreenController />
+//                     </View>
+//                     <SC000_V04_MenuBar />
+//                 </SafeAreaView>
+//             </>
+//         )
+//     } catch (error) {
+//         if (error instanceof Error) {
+//             sc950_V00_commonErr(error)
+//         }
+//         // throw(error)
+//         return (<SC950_V00_Error />)
+//     }
+// }
 
 export const SC000_V01_MainScreen = () => {
     try {
@@ -80,7 +137,7 @@ export const SC000_V01_MainScreen = () => {
                     <>
                         <SafeAreaView>
                             <View style={SC000_Style.v01_MainScreen}>
-                                <SC000_V01_MainScreenCmp />
+                                <SC000_V01_MainScreenController />
                             </View>
                             <Divider />
                             <SC000_V04_MenuBar />
@@ -90,8 +147,8 @@ export const SC000_V01_MainScreen = () => {
             case 2:
                 return (
                     <>
-                        <View style={SC000_Style.v01_MainScreen}>
-                            <SC000_V01_MainScreenCmp />
+                        <View style={SC000_Style.v01_MainScreen_NoMenu}>
+                            <SC000_V01_MainScreenController />
                         </View>
                     </>
                 )
@@ -101,7 +158,7 @@ export const SC000_V01_MainScreen = () => {
                         <SafeAreaView>
                             <Text>case def</Text>
                             <View style={SC000_Style.v01_MainScreen}>
-                                <SC000_V01_MainScreenCmp />
+                                <SC000_V01_MainScreenController />
                             </View>
                             <Divider />
                             <SC000_V04_MenuBar />
@@ -117,4 +174,17 @@ export const SC000_V01_MainScreen = () => {
         return (<SC950_V00_Error />)
     }
 
+}
+
+export const useState_SC000_LayoutPattern = (screenId: string) => {
+    // ①ベースコンテキストを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
+    const newState = { ...baseState }
+    newState.screenControllerInfo.layoutPattern = getLayoutPattern(screenId)
+
+    const updateLayoutPattern = () => {
+        // メニューバー非表示
+        baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
+    }
+    return [updateLayoutPattern]
 }
