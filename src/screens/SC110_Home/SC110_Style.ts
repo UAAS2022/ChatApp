@@ -39,6 +39,30 @@ export const SC110_Style = StyleSheet.create({
         // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
         // backgroundColor: '#999',    //背景色
     },
+    userInfoBox2: {
+        height: '100%',               //縦幅
+        width: '100%',              //横幅
+        // alignItems: 'flex-start',     //配置（上下）
+        // justifyContent: 'center',   //配置（左右）
+        // marginTop: '0%',          //余白(上)
+        // marginBottom: '0%',            //余白(下)
+        // marginLeft: '1%',         //余白(左)
+        // marginRight: '1%',        //余白(右)
+        // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
+        backgroundColor: 'transparent',    //背景色
+    },
+    userInfoBox3: {
+        height: '100%',               //縦幅
+        width: '100%',              //横幅
+        // alignItems: 'flex-start',     //配置（上下）
+        // justifyContent: 'center',   //配置（左右）
+        // marginTop: '0%',          //余白(上)
+        // marginBottom: '0%',            //余白(下)
+        // marginLeft: '1%',         //余白(左)
+        // marginRight: '1%',        //余白(右)
+        // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
+        // backgroundColor: 'transparent',    //背景色
+    },
     // v02_UserBtn: {
     //     height: '100%',              //縦幅
     //     width: '25%',              //横幅

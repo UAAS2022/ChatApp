@@ -35,7 +35,7 @@ export const SC998_V00_Nabe = () => {
                 <SC998_V02_Cmp2 />
                 <SC998_V03_Cmp3 />
                 <SC998_V04_Miracle/> */}
-     
+
             </SC998_S_Provider>
         </SafeAreaView>
     )
