@@ -11,7 +11,9 @@ export type SC110_Provider = {
 // ==============================================================
 // S999_Contextで、ほぼ固定
 export type SC110_Context = {
+    screenControllerInfo: SC110_ScreenController,
     userInfoList_ScreenDisp: SC110_UserInfo[][],
+    preInfo_SC120: SC110_PreInfo_SC120,
 }
 // --------------------------------------------------------------
 // 画面ごとのコンテキスト内の情報をここに定義していく
@@ -29,7 +31,15 @@ export type SC110_UserInfo = {
     areaCd: string,
     hashtag: string,
 }
-
+// スクリーンコントローラ
+export type SC110_ScreenController = {
+    componentId: string,
+    // layoutPattern: number,
+}
+// プレ情報
+export type SC110_PreInfo_SC120 = {
+    userId: string
+}
 // ==============================================================
 
 

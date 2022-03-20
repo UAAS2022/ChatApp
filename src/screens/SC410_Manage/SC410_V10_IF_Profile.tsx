@@ -1,6 +1,6 @@
 // View
 
-import React, { useState, useEffect, useConText } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     Box,
     Center,

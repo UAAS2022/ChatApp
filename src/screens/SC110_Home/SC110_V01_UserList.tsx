@@ -22,26 +22,34 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { CONST_SC110 } from "../../common/C000_Const"
+import { CONST_SC000, CONST_SC110 } from "../../common/C000_Const"
 import { SC110_UPDATE_USERLIST } from '../SC000_BaseComponent/SC000_Action'
 import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
 import { SC000_UserInfo } from "../SC000_BaseComponent/SC000_Types"
+import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
+import { SC000_Style } from "../SC000_BaseComponent/SC000_Style"
+import { useState_SC000_ScreenController } from "../SC000_BaseComponent/SC000_V00_BaseComponent"
 import { SC110_Style } from "./SC110_Style"
 // import type { SC110_Context, SC110_UserInfo } from './SC110_Types'
-// import { UPDATE_USERLIST } from './SC110_Action'
-// import { SC110_S_Context } from "./SC110_Store"
+import { CHANGE_SCREEN, UPDATE_PREINFO_120 } from './SC110_Action'
+import { Context_SC110 } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 
 
 export const SC110_V01_UserList = () => {
 
-    // コンテキストからステートとdispatchを取得
-    const { state, dispatch } = useContext(SC000_S_Context);
+    // ①ベースコンテキストを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
+    // ②画面コンテキストを取得する
+    const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC110)
+    // ④カスタムフック呼び出し
+    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC210)
+    const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     // 表示用と保持用のリストをそれぞれ取得
     // const userInfoList = state.baseContext_SC110.userInfoList_ScreenDisp
-    const userInfoList_ScreenDisp = state.baseContext_SC110.userInfoList_ScreenDisp
+    const userInfoList_ScreenDisp = baseState.baseContext_SC110.userInfoList_ScreenDisp
 
     const getUserList = async () => {
         console.log("getUserList開始！=========================================================");
@@ -96,7 +104,7 @@ export const SC110_V01_UserList = () => {
                 userInfoList_ScreenDisp: new_UserInfoList_ScreenDisp,
             }
         }
-        dispatch(SC110_UPDATE_USERLIST(newState))
+        baseDispatch(SC110_UPDATE_USERLIST(newState))
 
         console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
         console.log(userInfoList_ScreenDisp);
@@ -112,6 +120,33 @@ export const SC110_V01_UserList = () => {
         }
     }
 
+
+    // preInfo_SC120情報を更新する
+    const updatePreInfo_SC120 = (userId: string) => {
+        // ステートの定義
+        const newState = { ...screenState }
+        // チャットスクリーンプレ情報を更新
+        newState.preInfo_SC120.userId = userId
+        // ステートを更新する
+        screenDispatch(UPDATE_PREINFO_120(newState.preInfo_SC120))
+    }
+
+    // 画面遷移
+    const goToSC120 = (userId: string) => {
+        console.log("goToSC120:開始")
+        // ステートの定義
+        const newState = { ...screenState }
+        // プレ情報を更新する
+        updatePreInfo_SC120(userId)
+        // 画面遷移情報を更新
+        newState.screenControllerInfo.componentId = CONST_SC110.COMPONENT_ID.V04
+        // トーク画面の内容をチャット画面に切り替える
+        screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+        // BaseComponentの画面IDを更新する
+        updateBaseScreenId(CONST_SC000.SCREENID.SC120)
+        console.log("goToChat:終了")
+    }
+
     // 初期表示処理-------------------------------------------------------------
     //　裏持ちのユーザ情報リストのステートを更新
     useEffect(() => {
@@ -125,6 +160,10 @@ export const SC110_V01_UserList = () => {
 
             {/* <Heading size="md">ユーザ一覧</Heading> */}
             {/* スクロールエリアを定義 */}
+            <View style={SC000_Style.v00_HeaderArea}>
+                <CC0010_ScreenTitle >Home画面</CC0010_ScreenTitle>
+            </View>
+            <Divider />
             <ScrollView onMomentumScrollBegin={onUpScrollEvent}>
                 <Flex direction="column" mb="2.5" mt="1.5" _text={{
                     color: "coolGray.800"

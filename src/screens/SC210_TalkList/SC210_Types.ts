@@ -21,7 +21,7 @@ export type SC210_Context = {
 // スクリーンコントローラ
 export type SC210_ScreenController = {
     componentId: string,
-    layoutPattern: number,
+    // layoutPattern: number,
 }
 
 export type SC210_TalkUserInfo_Detail = {

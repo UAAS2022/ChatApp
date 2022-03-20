@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import type { SC000_Action } from "../SC000_BaseComponent/SC000_Types"
-import type { SC110_Counter, SC110_UserInfo } from "./SC110_Types"
+import type { SC110_ScreenController, SC110_UserInfo, SC110_PreInfo_SC120 } from "./SC110_Types"
 // import { SC110_ACTIONTYPE } from "./SC110_Const"
 
 // SC110_Action.tsxでは、更新パターン(type)と更新後の内容(payload)を2個イチで入れるための箱を定義するイメージ。
@@ -11,17 +11,18 @@ import type { SC110_Counter, SC110_UserInfo } from "./SC110_Types"
 // ①ActionTypeを定義
 // ================================================================================
 export const SC110_ACTIONTYPE = {
-    UPDATE_COUNTER: "UPDATE_COUNTER",
+    CHANGE_SCREEN: "CHANGE_SCREEN",
     UPDATE_USERLIST: "UPDATE_USERLIST",
+    UPDATE_PREINFO_120: "UPDATE_PREINFO_120",
 }
 // ================================================================================
 
 // ②Actionを定義
 // ================================================================================
-// COUNTERオブジェクトの値を更新するためのAction
-export const UPDATE_COUNTER = (payload: SC110_Counter): SC000_Action => {
+// 表示画面を切り替えるためのAction
+export const CHANGE_SCREEN = (payload: SC110_ScreenController): SC000_Action => {
     return {
-        type: SC110_ACTIONTYPE.UPDATE_COUNTER,
+        type: SC110_ACTIONTYPE.CHANGE_SCREEN,
         payload,
     }
 }
@@ -30,6 +31,14 @@ export const UPDATE_COUNTER = (payload: SC110_Counter): SC000_Action => {
 export const UPDATE_USERLIST = (payload: { userInfoList_ScreenDisp: SC110_UserInfo[][] }): SC000_Action => {
     return {
         type: SC110_ACTIONTYPE.UPDATE_USERLIST,
+        payload,
+    }
+}
+
+// USERオブジェクトの値を更新するためのAction
+export const UPDATE_PREINFO_120 = (payload: SC110_PreInfo_SC120): SC000_Action => {
+    return {
+        type: SC110_ACTIONTYPE.UPDATE_PREINFO_120,
         payload,
     }
 }

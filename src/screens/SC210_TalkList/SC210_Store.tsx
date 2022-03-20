@@ -24,7 +24,7 @@ export const Context_SC210 = createContext<SC210_Provider>({} as SC210_Provider)
 // コンテキストに値を追加する場合、ここに初期値も追加する必要がある。
 // ==========================================================================================
 // 各要素の初期値を定義
-const DEfAULT_TalkInfoList = [{
+const DEFAULT_TalkInfoList = [{
     talkInfo: {} as SC210_TalkInfo,
     userInfo: {
         // _0_DocId: "",
@@ -35,22 +35,22 @@ const DEfAULT_TalkInfoList = [{
     } as SC210_UserInfo,
 }]
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-const DEfAULT_ScreenControllerInfo = {
+const DEFAULT_ScreenControllerInfo = {
     componentId: CONST_SC210.COMPONENT_ID.V03,
     layoutPattern: 1,
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-const DEfAULT_ChatScreenPreInfo = {
+const DEFAULT_ChatScreenPreInfo = {
     talkId: "",
     talkName: "",
     talkKbn: "",
 }
 // コンテキストに↑で定義した初期値を設定し、デフォルトステートを作成
 const DEFAULT_State: SC210_Context = {
-    screenControllerInfo: DEfAULT_ScreenControllerInfo,
+    screenControllerInfo: DEFAULT_ScreenControllerInfo,
     // talkUserInfoList_Detail: DEfAULT_TalkInfoList,
-    chatScreenPreInfo: DEfAULT_ChatScreenPreInfo,
+    chatScreenPreInfo: DEFAULT_ChatScreenPreInfo,
 }
 // ==========================================================================================
 

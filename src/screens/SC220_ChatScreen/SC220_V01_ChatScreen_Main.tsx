@@ -28,7 +28,7 @@ import {
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
 import { SC220_Style } from "./SC220_Style"
-import type { SC999_ChatMessageInfo, SC999_V20_MessageItem } from './SC220_Types'
+import type { SC220_ChatMessageInfo, SC220_V20_MessageItem } from './SC220_Types'
 import { CONST_SC999_V20 } from "../SC999_Test/SC999_Const"
 import { c010_UaasUtil_isNotBlank, c010_UaasUtil_isNotEmpty } from '../../common/C010_UaasUtil'
 import { s310_CreateChatMessage } from "../../service/S310_CreateChatMessage"
@@ -36,7 +36,7 @@ import { s351_SelectChatMessageList_New } from "../../service/S351_SelectChatMes
 import { s352_SelectChatMessageList_RealTime } from "../../service/S352_SelectChatMessageList_RealTime"
 
 // 業務エラーチェッククラス
-const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
+const check = (chatMessageInfo: SC220_ChatMessageInfo): boolean => {
     let errFlg = true
     // console.log("checkchatMessageInfo", chatMessageInfo)
     // if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
@@ -58,8 +58,8 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
 
     // ③ローカルステートを定義する
-    const [chatMessageInfo, setChatMessageInfo] = useState<SC999_ChatMessageInfo>({} as SC999_ChatMessageInfo);
-    const [chatMessageInfoList, setChatMessageInfoList] = useState<SC999_ChatMessageInfo[]>([{}] as SC999_ChatMessageInfo[]);
+    const [chatMessageInfo, setChatMessageInfo] = useState<SC220_ChatMessageInfo>({} as SC220_ChatMessageInfo);
+    const [chatMessageInfoList, setChatMessageInfoList] = useState<SC220_ChatMessageInfo[]>([{}] as SC220_ChatMessageInfo[]);
 
     // ベースコンテキストからユーザ情報を取得する
     // const loginUserId = baseState.loginUserInfo.userId
@@ -86,7 +86,7 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
 
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
-    const registChatMessage = async (chatMessageInfo: SC999_ChatMessageInfo) => {
+    const registChatMessage = async (chatMessageInfo: SC220_ChatMessageInfo) => {
         // console.log("chatMessageInfo", chatMessageInfo)
         if (check(chatMessageInfo)) {
             // サービスパラメータの取得
@@ -111,7 +111,7 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
             // 処理成功
             else {
                 // 初期化
-                setChatMessageInfo({} as SC999_ChatMessageInfo);
+                setChatMessageInfo({} as SC220_ChatMessageInfo);
             }
         }
     };
@@ -125,7 +125,7 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
         const dbObj_newChatMessageInfoList = resultObj.chatMessageList
         // データをuserInfoListステートに合わせる
         let new_ChatMessageInfoList = dbObj_newChatMessageInfoList.map((dbObj_chatMessageInfo) => {
-            const chatMessageInfo = {} as SC999_ChatMessageInfo
+            const chatMessageInfo = {} as SC220_ChatMessageInfo
             chatMessageInfo._0_DocId = dbObj_chatMessageInfo._0_DocId
             chatMessageInfo.talkId = dbObj_chatMessageInfo.TalkId
             chatMessageInfo.seq = dbObj_chatMessageInfo.Seq
@@ -169,7 +169,7 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
                 style={SC220_Style.v20_ScrollView}
                 data={chatMessageInfoList}
                 inverted={true}
-                renderItem={({ item }: { item: SC999_ChatMessageInfo }) => (
+                renderItem={({ item }: { item: SC220_ChatMessageInfo }) => (
                     <MessageItem loginUserId={loginUserId} chatMessageInfo={item} />
                 )}
                 keyExtractor={(_, index) => index.toString()}
@@ -194,7 +194,7 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
     )
 }
 
-export const MessageItem: React.FC<SC999_V20_MessageItem> = ({ chatMessageInfo, loginUserId }: SC999_V20_MessageItem) => {
+export const MessageItem: React.FC<SC220_V20_MessageItem> = ({ chatMessageInfo, loginUserId }: SC220_V20_MessageItem) => {
     return (
         <View>
             {/* ■ ユーザ名 */}
