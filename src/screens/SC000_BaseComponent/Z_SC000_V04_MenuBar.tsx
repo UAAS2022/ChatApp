@@ -23,8 +23,8 @@ import {
     FlatList,
     Alert
 } from 'react-native';
-import { CC0020_MenuBtn } from '../SC000_BaseComponent/SC000_V03_MenuBtn'
-import type { SC000_ScreenChangeBtnInfo } from "../SC000_BaseComponent/SC000_Types"
+import { CC0020_MenuBtn } from './SC000_V03_MenuBtn'
+import type { SC000_ScreenChangeBtnInfo } from "./SC000_Types"
 // import { GO_TO_SC110, GO_TO_SC210, GO_TO_SC021 } from "../SC000_BaseComponent/SC000_Action"
 import { SC000_Style } from "./SC000_Style"
 import { SC000_S_Context } from "./SC000_Store"

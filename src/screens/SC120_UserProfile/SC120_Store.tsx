@@ -1,7 +1,11 @@
 import { createContext, useState, useReducer } from "react";
-import type { SC110_Provider, SC110_Context, SC110_ScreenController, SC110_PreInfo_SC120 } from "./SC110_Types"
-import { CONST_SC000, CONST_SC110 } from "../../common/C000_Const"
-import { reducer } from "./SC110_Reducer"
+import type {
+    SC120_Provider,
+    SC120_Context,
+    SC120_UserProfileInfo,
+} from "./SC120_Types"
+import { CONST_SC000 } from "../../common/C000_Const"
+import { reducer } from "./SC120_Reducer"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
 
@@ -9,36 +13,39 @@ import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_E
 // ここでは以下の3つを用意する。
 // 　1.コンテキスト（S999_S_Context）
 // 　2.コンテキストの初期値(DefaultState)
-// 　3.プロバイダ(SC110_S_Provider)
+// 　3.プロバイダ(SC120_S_Provider)
 
 // 1.コンテキスト（S999_S_Context）
-export const Context_SC110 = createContext<SC110_Provider>({} as SC110_Provider);
+export const Context_SC120 = createContext<SC120_Provider>({} as SC120_Provider);
 
 // 2.コンテキストの初期値(DefaultState)
 // コンテキストに値を追加する場合、ここに初期値も追加する必要がある。
-const DefaultState: SC110_Context = {
-    screenControllerInfo: {
-        componentId: CONST_SC110.COMPONENT_ID.V03,
-    } as SC110_ScreenController,
-    userInfoList_ScreenDisp: [[]],
-    preInfo_SC120: {} as SC110_PreInfo_SC120,
+// ==========================================================================================
+// 各要素の初期値を定義
+const DEFAULT_UserProfileInfo = {
+} as SC120_UserProfileInfo
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// コンテキストに↑で定義した初期値を設定し、デフォルトステートを作成
+const DEFAULT_State: SC120_Context = {
+    userProfileInfo: DEFAULT_UserProfileInfo,
 }
+// ==========================================================================================
 
-// 3.プロバイダ(SC110_S_Provider)
+// 3.プロバイダ(SC120_S_Provider)
 //　詳しい説明はげぇじ本P183を参照
-export const Provider_SC110 = (props: any) => {
+export const Provider_SC120 = (props: any) => {
     try {
         // JSXでchildrenを使うため、propsからchildrenを取得する
         const { children } = props;
 
         // useReducerを使ってstateとdispatchを取得する
-        const [state, dispatch] = useReducer(reducer, DefaultState)
+        const [state, dispatch] = useReducer(reducer, DEFAULT_State)
 
         // valueの中に{state, dispatch}を設定し、childrenコンポーネントで使えるようにする
         return (
-            <Context_SC110.Provider value={{ state, dispatch }}>
+            <Context_SC120.Provider value={{ state, dispatch }}>
                 {children}
-            </Context_SC110.Provider>
+            </Context_SC120.Provider>
         );
     } catch (error) {
         if (error instanceof Error) {

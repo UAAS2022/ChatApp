@@ -25,7 +25,6 @@ import {
 } from 'react-native';
 import { SC000_S_Context } from "./SC000_Store"
 import { SC000_Style } from "./SC000_Style"
-import { SC000_UPDATE_LAYOUTPATTERN } from "./SC000_Action"
 import { getLayoutPattern } from "../SC000_BaseComponent/SC000_V03_MenuBtn"
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
 import { CONST_SC000 } from "../../common/C000_Const"
@@ -45,6 +44,8 @@ export const SC000_V01_MainScreenController = () => {
         console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
             case CONST_SC000.SCREENID.SC110:
+                return <SC110_V00_Home />
+            case CONST_SC000.SCREENID.SC120:
                 return <SC110_V00_Home />
             case CONST_SC000.SCREENID.SC210:
                 return <SC210_V00_TalkList />
@@ -172,80 +173,6 @@ export const SC000_V01_MainScreen = () => {
                     </>
                 )
         }
-    } catch (error) {
-        if (error instanceof Error) {
-            sc950_V00_commonErr(error)
-        }
-        // throw(error)
-        return (<SC950_V00_Error />)
-    }
-
-}
-
-// カスタムフック
-export const useState_SC000_LayoutPattern = (screenId: string) => {
-    // ①ベースコンテキストを取得する
-    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
-    const newState = { ...baseState }
-    newState.screenControllerInfo.layoutPattern = getLayoutPattern(screenId)
-
-    const updateLayoutPattern = () => {
-        // メニューバー非表示
-        console.log("カスタムフック実行_useState_SC000_LayoutPattern:", newState.screenControllerInfo)
-        baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
-    }
-    return [updateLayoutPattern]
-}
-
-
-// ==BK==============================================
-export const SC000_V01_MainScreen_bk = () => {
-    try {
-        const { state } = useContext(SC000_S_Context)
-        const { screenId, layoutPattern } = state.screenControllerInfo
-        console.log("C0000_Main:screenController----------------------")
-        console.log("SC000_V01_MainScreen:", screenId, layoutPattern)
-        return (
-            <>
-                {(() => {
-                    switch (layoutPattern) {
-                        case 1:
-                            return (
-                                <>
-                                    <SafeAreaView>
-                                        <View style={SC000_Style.v01_MainScreen}>
-                                            <SC000_V01_MainScreenController />
-                                        </View>
-                                        <Divider />
-                                        <SC000_V04_MenuBar />
-                                    </SafeAreaView>
-                                </>
-                            )
-                        case 2:
-                            return (
-                                <>
-                                    <View style={SC000_Style.v01_MainScreen_NoMenu}>
-                                        <SC000_V01_MainScreenController />
-                                    </View>
-                                </>
-                            )
-                        default:
-                            return (
-                                <>
-                                    <SafeAreaView>
-                                        <Text>case def</Text>
-                                        <View style={SC000_Style.v01_MainScreen}>
-                                            <SC000_V01_MainScreenController />
-                                        </View>
-                                        <Divider />
-                                        <SC000_V04_MenuBar />
-                                    </SafeAreaView>
-                                </>
-                            )
-                    }
-                })()}
-            </>
-        )
     } catch (error) {
         if (error instanceof Error) {
             sc950_V00_commonErr(error)

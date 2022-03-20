@@ -91,6 +91,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC210)
     const [updateBaseScreenId] = useState_SC000_ScreenController()
 
+    // Firebaseからデータを取得する関数
     const getTalkUserInfoList_Detail = async () => {
         // ①Firebaseからデータを取得する
         // const userId = baseState.loginUserInfo.userId
@@ -164,7 +165,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
     }
 
-    const goToChat = (talkInfo: SC210_TalkInfo) => {
+    const goToSC220 = (talkInfo: SC210_TalkInfo) => {
         console.log("goToChat:開始")
         // ステートの定義
         const newState = { ...screenState }
@@ -223,7 +224,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                 (
                     <>
                         <TouchableOpacity onPress={() => {
-                            goToChat(item.talkInfo)
+                            goToSC220(item.talkInfo)
                             // updateLayoutPattern()
                             // useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
                         }}>

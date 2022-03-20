@@ -19,7 +19,7 @@ const DEfAULT_LoginUserInfo = {} as SC000_LoginUserInfo
 const DEfAULT_ErrorInfo = {
     errorKbn: 0
 }
-// SC2110
+// SC110
 const DEFAULT_BaseContext_SC110 = {
     userInfoList_ScreenDisp: [[]],
 }

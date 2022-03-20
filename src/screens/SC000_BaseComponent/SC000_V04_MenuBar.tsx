@@ -33,7 +33,7 @@ import { CONST_SC000 } from "../../common/C000_Const"
 export const SC000_V04_MenuBar = (props: object) => {
     // レイアウトパターンを定義
     const { state } = useContext(SC000_S_Context)
-    const { screenId, layoutPattern } = state.screenControllerInfo
+    // const { screenId, layoutPattern } = state.screenControllerInfo
     // メニューボタンを定義
     const menuBtn1: SC000_ScreenChangeBtnInfo = { buttonId: "HOME", buttonName: "HOME", nextScreenId: CONST_SC000.SCREENID.SC110 }
     const menuBtn2: SC000_ScreenChangeBtnInfo = { buttonId: "TalkList", buttonName: "Talk", nextScreenId: CONST_SC000.SCREENID.SC210 }

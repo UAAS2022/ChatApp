@@ -32,7 +32,7 @@ export type SC000_Context = {
 // スクリーンコントローラ
 export type SC000_ScreenController = {
     screenId: string,
-    layoutPattern: number,
+    // layoutPattern: number,
     // infoObj: any,
 }
 // ログインユーザ情報

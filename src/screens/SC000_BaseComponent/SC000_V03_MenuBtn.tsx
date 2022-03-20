@@ -44,7 +44,7 @@ export const CC0020_MenuBtn = (props: any) => {
         const newState = { ...state }
         // 取得したstateの値を更新する
         newState.screenControllerInfo.screenId = nextScreenId
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(nextScreenId)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(nextScreenId)
         dispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
     return (

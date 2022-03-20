@@ -31,50 +31,46 @@ import {
     Alert,
     Image
 } from 'react-native';
-import { CONST_SC000, CONST_SC210 } from "../../common/C000_Const"
+import { CONST_SC000, CONST_SC110 } from "../../common/C000_Const"
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
 import { SC000_Style } from "../SC000_BaseComponent/SC000_Style"
-import { Provider_SC210, Context_SC210 } from './SC210_Store'
+import { Provider_SC110, Context_SC110 } from './SC110_Store'
 // import { SC000_Img, murata_unko } from "../../common/C000_Const"
-import { SC210_V03_TalkList_Main } from "./SC210_V03_TalkList_Main"
-import { SC210_V04_IF_SC220 } from "./SC210_V04_IF_SC220"
+import { SC110_V01_UserList } from "./SC110_V01_UserList"
+import { SC110_V04_IF_SC120 } from "./SC110_V04_IF_SC120"
 
 
 
 const Path = "../../static/img" + "/murata_unko.jpeg"
 
-export const SC210_V01_ScreenController = (props: object) => {
+export const SC110_V01_ScreenController = (props: object) => {
     // コンテキストを取得する
-    const { state } = useContext(Context_SC210)
+    const { state } = useContext(Context_SC110)
     // コンテキストからscreenIdを取得する
     const { componentId } = state.screenControllerInfo
-    console.log("SC210_V01_ScreenController------------------------------")
+    console.log("SC110_V01_ScreenController------------------------------")
     console.log("state", state)
-    console.log("SC210_V01_ScreenController_componentId:", componentId)
+    console.log("SC110_V01_ScreenController_componentId:", componentId)
     // screenIdの値に応じて画面を切り替える
     switch (componentId) {
-        case CONST_SC210.COMPONENT_ID.V03:
+        case CONST_SC110.COMPONENT_ID.V03:
             return (
                 <>
-                    <SC210_V03_TalkList_Main />
+                    <SC110_V01_UserList />
                     {/* <SC000_V04_MenuBar /> */}
                 </>
             )
-        case CONST_SC210.COMPONENT_ID.V04:
-            return <SC210_V04_IF_SC220 />
+        case CONST_SC110.COMPONENT_ID.V04:
+            return <SC110_V04_IF_SC120 />
         default:
             return (
                 <>
-                    <SC210_V03_TalkList_Main />
+                    <SC110_V01_UserList />
                     {/* <SC000_V04_MenuBar /> */}
                 </>
             )
     }
-}
-
-const useBaseScreenId = () => {
-
 }
 
 
