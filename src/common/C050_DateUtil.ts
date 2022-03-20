@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 //日付から文字列に変換する関数
-export const dateToString = (date: Date, format_str: String) => {
+export const dateToString = (date: Date, format_str: string) => {
 
     const year_str = String(date.getFullYear());
     //月だけ+1すること
@@ -24,7 +24,7 @@ export const dateToString = (date: Date, format_str: String) => {
 };
 
 //日付から文字列に変換する関数(0埋めあり)
-export const dateToString_Zero = (date: Date, format_str: String) => {
+export const dateToString_Zero = (date: Date, format_str: string) => {
 
     const year_str = String(date.getFullYear());
     //月だけ+1すること

@@ -37,7 +37,7 @@ import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 
 
-export const SC110_V01_UserList = () => {
+export const SC110_V03_UserList = () => {
 
     // ①ベースコンテキストを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
@@ -185,7 +185,7 @@ export const SC110_V01_UserList = () => {
                                             <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100"
                                                 key={index}  >
                                                 {/* {userInfo.userName} */}
-                                                <TouchableOpacity style={SC110_Style.userInfoBox2} onPress={() => Alert.alert('ウホホ')} >
+                                                <TouchableOpacity style={SC110_Style.userInfoBox3} onPress={() => { goToSC120(userInfo.userId) }} >
                                                     {/* {userInfo.userName} */}
                                                     <Image style={SC110_Style.userInfoBox3} source={{
                                                         uri: userInfo.profileImagePath
