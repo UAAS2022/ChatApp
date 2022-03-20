@@ -10,20 +10,16 @@ import {
     Flex,
     Divider,
     Box,
+
 } from "native-base"
 import {
-    StyleSheet,
-    TextInput,
-    SafeAreaView,
-    KeyboardAvoidingView,
+    Image,
     View,
-    Text,
-    FlatList,
     Alert,
-    Dimensions,
     ScrollView,
     NativeScrollEvent,
-    NativeSyntheticEvent
+    NativeSyntheticEvent,
+    TouchableOpacity
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { CONST_SC110 } from "../../common/C000_Const"
@@ -60,7 +56,7 @@ export const SC110_V01_UserList = () => {
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
             // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
-            // userInfo.profileImagePath = dbObj_userInfo.ProfileImagePath
+            userInfo.profileImagePath = dbObj_userInfo.ProfileImagePath
             userInfo.genderCd = dbObj_userInfo.GenderCd
             userInfo.age = dbObj_userInfo.Age
             userInfo.areaCd = dbObj_userInfo.AreaCd
@@ -86,6 +82,9 @@ export const SC110_V01_UserList = () => {
                 tmpList = []
             }
 
+        }
+        const log = () => {
+            console.log("耳耳耳っ耳耳耳耳ミッミッ耳いいミッみm")
         }
         // 最後のループのtempListを追加する
         if (tmpList.length !== 0) {
@@ -143,8 +142,17 @@ export const SC110_V01_UserList = () => {
                                     {/* map処理2：列のループ (デフォルトは4だが、1以上の好きな値をCONST.tsで設定可能)*/}
                                     {userInfoList_ScreenDisp_ROW.map((userInfo: SC000_UserInfo, index) => {
                                         return (
-                                            <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100" onTouchEnd={() => Alert.alert('うほほほほ')} key={index}>{userInfo.userName}
 
+                                            <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100"
+                                                key={index}  >
+                                                {/* {userInfo.userName} */}
+                                                <TouchableOpacity style={SC110_Style.userInfoBox2} onPress={() => Alert.alert('ウホホ')} >
+                                                    {/* {userInfo.userName} */}
+                                                    <Image style={SC110_Style.userInfoBox3} source={{
+                                                        uri: userInfo.profileImagePath
+                                                    }} />
+
+                                                </TouchableOpacity>
                                             </Center>
                                         )
                                     })}
