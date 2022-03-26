@@ -68,5 +68,19 @@ export const SC410_Style = StyleSheet.create({
         // marginRight: '1%',      //余白(右)
         // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
         // backgroundColor: '#888',    //背景色
+    },
+    v07_Profile: {
+        // height: '100%',               //縦幅
+        // width: '100%',              //横幅
+        // alignItems: 'flex-end',     //配置（上下）
+        // alignSelf: 'flex-start',     //配置
+        // justifyContent: 'center',   //配置（左右）???
+        // marginTop: '1%',          //余白(上)
+        // marginBottom: '1%',            //余白(下)
+        // marginLeft: '3%',         //余白(左)
+        // marginRight: '1%',      //余白(右)
+        // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)
+        color:'#696969',
+        backgroundColor: '#f0fff0',    //背景色
     }
 });

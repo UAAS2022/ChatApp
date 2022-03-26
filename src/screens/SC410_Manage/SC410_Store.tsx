@@ -22,10 +22,27 @@ const DEfAULT_ScreenControllerInfo = {
     layoutPattern: 1,
     infoObj: {}
 }
+
+const DEFAULT_userProfileInfo = {
+    userId: "xxx",
+    userName: "",
+    comment: "",
+    latestLoginDatatime: "",
+    profileImagePath: "",
+    genderCd: "",
+    age: 2,
+    areaCd: "",
+    hashtag: "",
+}
+const DEFAULT_screenInfo_SC420 =
+{
+    userProfileInfo: DEFAULT_userProfileInfo
+}
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // コンテキストに↑で定義した初期値を設定し、デフォルトステートを作成
 const DEFAULT_State: SC410_Context = {
     screenControllerInfo: DEfAULT_ScreenControllerInfo,
+    screenInfo_SC420: DEFAULT_screenInfo_SC420
 }
 // ==========================================================================================
 

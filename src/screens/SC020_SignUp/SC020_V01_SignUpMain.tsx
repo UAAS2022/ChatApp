@@ -12,11 +12,7 @@ import {
     StyleSheet,
 } from 'react-native'
 import { SC020_InputUserInfo } from './SC020_Types';
-import { FieldValue } from '@firebase/firestore';
 import { s110_CreateUser } from '../../service/S110_CreateUser';
-import { async } from '@firebase/util';
-import { SC020_V01_SignUpseibetu } from './SC020_V01_SignUpseibetu';
-
 
 export const SC020_V01_SignUpMain = () => {
     const [localState, setLocalState] = useState<SC020_InputUserInfo>({} as SC020_InputUserInfo);
@@ -79,12 +75,28 @@ export const SC020_V01_SignUpMain = () => {
     return (
         <>
             <Box>
-                <Stack space={4} w="100%" alignItems="flex-start">
+                <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    fontSize: "md",
+                    fontWeight: "medium",
+                    color: "warmGray.50",
+                    letterSpacing: "lg"
+                }}>
+                    ユーザーID
+                </Box>
+                <Stack space={0} w="100%" alignItems="flex-start">
                     <Input w={{
                         base: "75%",
                         md: "25%"
                     }} placeholder="ユーザーID" value={localState.userId}
                         onChangeText={(value) => { onChangeUserId(value) }} />
+                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        fontSize: "md",
+                        fontWeight: "medium",
+                        color: "warmGray.50",
+                        letterSpacing: "lg"
+                    }}>
+                        パスワード
+                    </Box>
                     <Input w={{
                         base: "75%",
                         md: "25%"
@@ -99,10 +111,10 @@ export const SC020_V01_SignUpMain = () => {
                     color: "warmGray.50",
                     letterSpacing: "lg"
                 }}>
-                    NAME
+                    ニックネーム
                 </Box>
                 <Box alignItems="flex-start">
-                    <Input mx="3" placeholder="ユーザー名" w="75%" maxWidth="300px"
+                    <Input mx="0" placeholder="ニックネーム" w="75%" maxWidth="300px"
                         value={localState.userName}
                         onChangeText={(value) => { onChangeUserName(value) }} />
                 </Box>
@@ -141,7 +153,7 @@ export const SC020_V01_SignUpMain = () => {
                     コメント
                 </Box>
                 <Box alignItems="flex-start">
-                    <Input mx="3" placeholder="入力してね" w="75%" maxWidth="300px"
+                    <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
                         value={localState.comment}
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box>
