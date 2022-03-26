@@ -12,18 +12,8 @@ import {
 } from "native-base"
 import {
     Button as Button_Def,
-    StyleSheet,
-    TextInput,
-    SafeAreaView,
-    KeyboardAvoidingView,
     View,
     Text,
-    FlatList,
-    Alert,
-    Dimensions,
-    ScrollView,
-    NativeScrollEvent,
-    NativeSyntheticEvent,
     Image,
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';

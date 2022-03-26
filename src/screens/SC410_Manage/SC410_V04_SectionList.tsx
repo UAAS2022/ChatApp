@@ -124,7 +124,7 @@ export const SC410_V04_SectionList = (props: object) => {
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC999_SC} >②テスト画面へ(画面Context使用)</Button>
                 <Button h="16" w="98%" margin="0.5%" bg={"violet.100"} ><>↑①と②で状態が保存されるか否かの違いがある。</><>②のが操作性良さそう。</></Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC999_V21} >煩悩まみれのスーパー強欲獅子児チャット</Button>
-                <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC020} >ダ</Button>
+                <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC020} >登録画面</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>

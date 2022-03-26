@@ -13,6 +13,7 @@ export type SC410_Provider = {
 // S999_Contextで、ほぼ固定
 export type SC410_Context = {
     screenControllerInfo: SC410_ScreenController,
+    screenInfo_SC420:SC420_ScreenInfo
 
 }
 
@@ -23,6 +24,23 @@ export type SC410_ScreenController = {
     screenId: string,
     layoutPattern: number,
     infoObj: any,
+}
+// --------------------------------------------------------------
+// 画面ごとのコンテキスト内の情報をここに定義していく
+export type SC420_ScreenInfo = {
+    userProfileInfo:SC410_UserProfileInfo
+}
+// ユーザプロフィール情報
+export type SC410_UserProfileInfo = {
+    userId: string,
+    userName: string,
+    comment: string,
+    latestLoginDatatime: string,
+    profileImagePath: string,
+    genderCd: string,
+    age: number,
+    areaCd: string,
+    hashtag: string,
 }
 
 // Actionの型定義。
