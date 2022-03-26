@@ -9,7 +9,7 @@ const SERVICE_ID = "S210"
 
 export const s210_CreateTalk = async (
     talkName: string,
-    talkKbn: number,
+    talkKbn: string,
     logUserId: string
 ) => {
     // エラーフラグを初期化

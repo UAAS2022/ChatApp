@@ -42,7 +42,7 @@ import { SC000_Style } from "../SC000_BaseComponent/SC000_Style"
 import { UPDATE_TALKLIST, UPDATE_CHATSCREEN_PREINFO, CHANGE_SCREEN } from "./SC210_Action"
 import { Context_SC210 } from "./SC210_Store"
 import { SC210_TalkUserInfo_Detail, SC210_TalkInfo } from "./SC210_Types"
-import { s301_SelectTalkUserList_ByUserId } from "../../service/S301_SelectTalkUserList_ByUserId"
+import { s303_SelectTalkUserList_ByUserId_Detail } from "../../service/S303_SelectTalkUserList_ByUserId_Detail"
 // import { SC000_Img, murata_unko } from "../../common/C000_Const"
 
 
@@ -89,7 +89,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         // ①Firebaseからデータを取得する
         // const userId = baseState.loginUserInfo.userId
         const userId = "xxx"
-        const result_S302 = await s301_SelectTalkUserList_ByUserId(userId)
+        const result_S302 = await s303_SelectTalkUserList_ByUserId_Detail(userId)
         const dbObj_talkUserInfoList_Detail = result_S302.talkUserInfoList_Detail
         console.log("dbObj_talkUserInfoList_Detail.length", dbObj_talkUserInfoList_Detail.length)
         // ②データをuserInfoListステートに合わせる
