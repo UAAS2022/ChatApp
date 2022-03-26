@@ -30,7 +30,7 @@ import type { SC999_Context, T999_UserInfo, SC999_TalkUserInfo, SC999_TalkUserIn
 import { UPDATE_V14 } from './SC999_Action'
 import { SC999_S_Context } from "./SC999_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
-import { s301_SelectTalkUserList_ByUserId } from "../../service/S301_SelectTalkUserList_ByUserId"
+import { s303_SelectTalkUserList_ByUserId_Detail } from "../../service/S303_SelectTalkUserList_ByUserId_Detail"
 
 
 const MAXROW = 4
@@ -66,7 +66,7 @@ export const SC999_V14_SelectTalk_List = () => {
     const getTalkList = async () => {
         console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s301_SelectTalkUserList_ByUserId(talkInfo_Input.userId)
+        const resultObj = await s303_SelectTalkUserList_ByUserId_Detail(talkInfo_Input.userId)
         const dbObj_newTalkList = resultObj.talkUserInfoList_Detail
 
         // データをuserInfoListステートに合わせる

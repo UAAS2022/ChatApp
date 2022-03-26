@@ -86,7 +86,7 @@ export const SC999_V10_RegistTalk = () => {
             const userId = talkInfo.userId
 
             // トークを登録する
-            const result_S210 = await s210_CreateTalk("", 0, userId)
+            const result_S210 = await s210_CreateTalk("", "1", userId)
             const talkId = result_S210.returnInfo.talkId
             if (result_S210.errFlg == "1") {
                 errFlg = "1"
