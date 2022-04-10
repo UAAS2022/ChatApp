@@ -159,6 +159,18 @@ export const SC410_V08_Login_Demo = () => {
         onClickSwitch_SC999_V22()
     }
 
+    const onChangeLoginState_DAHYUN = () => {
+        // ユーザID・パスワードを指定し、ステートを更新する
+        const newLocalState = { ...localState, userId: "DAHYUN", password: "DAHYUN" }
+        setLocalState(newLocalState)
+    }
+    const onChangeLoginUser_DAHYUN = () => {
+        // ユーザID・パスワードを指定し、ステートを更新する
+        onChangeLoginState_DAHYUN()
+        // ログイン処理を実行する
+        doLogin()
+    }
+
     return (
         <>
             <SC410_V05_ManageHeader />
@@ -166,6 +178,7 @@ export const SC410_V08_Login_Demo = () => {
                 <Heading style={{ color: "#fff" }} size="md">ログインユーザ選択</Heading>
                 <Divider />
                 <Text style={SC999_Style.v21_Font}>Who are you？</Text>
+                {/* つね　なべ　ごり */}
                 <Stack mb="2.5%" mt="1.5%" direction={{
                     base: "row",
                     md: "row",
@@ -177,6 +190,19 @@ export const SC410_V08_Login_Demo = () => {
                     <Button style={SC999_Style.v21_LoginUserChangeBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onChangeLoginUser_NABE}>わたなべ</Button>
                     <Button style={SC999_Style.v21_LoginUserChangeBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onChangeLoginUser_GORI}>煩悩ゴリラ</Button>
                 </Stack>
+
+                {/* ダヒョン */}
+                <Stack mb="2.5%" mt="1.5%" direction={{
+                    base: "row",
+                    md: "row",
+                }} space={2} mx={{
+                    base: "auto",
+                    md: "0"
+                }}>
+                    <Button style={SC999_Style.v21_LoginUserChangeBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onChangeLoginUser_DAHYUN}>ダヒョン</Button>
+                </Stack>
+
+                {/* ログインフォーム */}
                 <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",
                     fontWeight: "medium",

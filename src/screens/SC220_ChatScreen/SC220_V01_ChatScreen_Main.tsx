@@ -63,7 +63,8 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
 
     // ベースコンテキストからユーザ情報を取得する
     // const loginUserId = baseState.loginUserInfo.userId
-    const loginUserId = USERID
+    // const loginUserId = USERID
+    const loginUserId = baseState.loginUserInfo.userId
 
     // propsからトークIDを受け取る
     // const talkId = TALKID

@@ -74,11 +74,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
     // ④propsからデータを取得する
     const { userId } = props
     // ⑤ベースコンテキストからログインユーザIDを取得する
-    const loginUserInfo = {
-        _0_DocId: LOGINUSERID,
-        userId: LOGINUSERID,
-        userName: "ごりごり",
-    }
+    const loginUserInfo = baseState.loginUserInfo
     const loginUserId = loginUserInfo.userId
     // const loginUserId = baseState.loginUserInfo.userId
     // ⑥ベースコンテキストのHookから情報を取得する

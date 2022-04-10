@@ -11,7 +11,7 @@ const SERVICE_ID = "S140"
 export const s140_SelectUser = async (userId: string) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
-    c060_DebugLog(SERVICE_ID, "START", [])
+    c060_DebugLog(SERVICE_ID, "START", [userId])
     // ---------------------------------------------------------------------------------------------------------
     // ドキュメントIDを定義
     const docId = c020_MakeDocId([userId])
