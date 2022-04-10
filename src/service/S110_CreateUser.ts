@@ -18,6 +18,8 @@ export const s110_CreateUser = async (
     hashtags: string,
     logUserId: string
 ) => {
+    // コンソールログ
+    console.log("s110_CreateUser")
     // エラーフラグを初期化
     let errFlg = "0"
     // ドキュメントIDを定義
@@ -49,6 +51,7 @@ export const s110_CreateUser = async (
         // await addDoc(collection(db_Firebase, FIREBASE_COLLECTIONS.T999_M050_USER), newUserInfo);                                 //→Idを指定しない場合はこっち
     } else {
         errFlg = "1"
+        console.log("error")
     }
     // 返却処理
     const resultObj = {

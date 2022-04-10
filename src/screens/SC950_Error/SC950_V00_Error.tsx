@@ -16,7 +16,7 @@ import {
 //エラー発生時の共通処理
 export const sc950_V00_commonErr = (error: Error) => {
     //コンソールにエラーログを出力する
-    console.log(error.message)
+    //console.log(error.message)
     //エラー区分を更新する
     // const { state, dispatch } = useContext(SC000_S_Context)
     // state.errorInfo.errorKbn = 1
@@ -39,7 +39,7 @@ export const SC950_V00_Error = () => {
         );
     } catch (error) {
         if (error instanceof Error) {
-            console.log(error.message)
+            //console.log(error.message)
         }
         throw (error)
     }

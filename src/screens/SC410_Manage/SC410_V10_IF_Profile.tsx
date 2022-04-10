@@ -47,7 +47,7 @@ export const SC410_V10_IF_Profile = (props: any) => {
         // ③ステートを更新する
         screenDispatch(UPDATE_USERPROFILE(newState.screenInfo_SC420.userProfileInfo))
 
-        console.log(screenState)
+        //console.log(screenState)
 
     }
 

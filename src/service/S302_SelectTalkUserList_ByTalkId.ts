@@ -10,10 +10,10 @@ import { s290_SelectTalkUser } from "./S290_SelectTalkUser"
 const SERVICE_ID = "S302"
 
 export const s302_SelectTalkUserList_ByTalkId = async (talkId: string, processKbn: string, userId: string | undefined) => {
-    console.log("s302_SelectTalkUserList_ByTalkId------------------------------")
-    console.log("talkId:", talkId)
-    console.log("processKbn", processKbn)
-    console.log("userId", userId)
+    //console.log("s302_SelectTalkUserList_ByTalkId------------------------------")
+    //console.log("talkId:", talkId)
+    //console.log("processKbn", processKbn)
+    //console.log("userId", userId)
 
     // 戻り値用のリストを定義
     let talkUserList = [] as T101_TalkUser[]
@@ -24,19 +24,19 @@ export const s302_SelectTalkUserList_ByTalkId = async (talkId: string, processKb
         query_FB = query(query_FB, where("UserId", "!=", userId))
     }
     query_FB = query(query_FB, orderBy("UserId", 'asc'), orderBy("_UpdDatetime", 'desc'))
-    console.log("s302_SelectTalkUserList_ByTalkId------------------------------")
+    //console.log("s302_SelectTalkUserList_ByTalkId------------------------------")
     const querySnapshot = await getDocs(query_FB);
     // querySnapshotからdocのデータを取り出し、戻り値用のリストに追加する
     querySnapshot.forEach((doc) => {
         // ①トーク情報取得
         const talkInfo = doc.data() as T101_TalkUser
         talkUserList.push(talkInfo)
-        console.log("S302①トーク情報取得", talkInfo.TalkId)
+        //console.log("S302①トーク情報取得", talkInfo.TalkId)
     });
     // 戻り値を定義
     const resultObj = {
         talkUserList: talkUserList
     }
-    console.log("s302_SelectTalkUserList_ByTalkId------------------------------")
+    //console.log("s302_SelectTalkUserList_ByTalkId------------------------------")
     return resultObj
 }

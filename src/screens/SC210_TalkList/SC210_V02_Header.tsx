@@ -70,7 +70,7 @@ export const SC210_V02_Header = (props: any) => {
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
         // BaseContextの画面情報更新
         updateBaseScreenId(CONST_SC000.SCREENID.SC210)
-        console.log("SC210_V02_Header_newState.screenControllerInfo", newState.screenControllerInfo)
+        //console.log("SC210_V02_Header_newState.screenControllerInfo", newState.screenControllerInfo)
     }
     // ---------------------------------------------------------------------------------------------------------
 

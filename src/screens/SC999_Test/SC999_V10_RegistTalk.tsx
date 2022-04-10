@@ -33,7 +33,7 @@ import { s260_CreateTalkUser } from "../../service/S260_CreateTalkUser"
 // 業務エラーチェッククラス
 const check_registTalk_withTalkId = (talkInfo: SC999_TalkUserInfo): boolean => {
     let errFlg = true
-    console.log("checktalkInfo", talkInfo)
+    //console.log("checktalkInfo", talkInfo)
     if (!c010_UaasUtil_isNotBlank(talkInfo.userId)) {
         Alert.alert('エラー', 'ユーザIDを入力してください。')
         errFlg = false
@@ -43,7 +43,7 @@ const check_registTalk_withTalkId = (talkInfo: SC999_TalkUserInfo): boolean => {
 // 業務エラーチェッククラス
 const check_registTalk = (talkInfo: SC999_TalkUserInfo): boolean => {
     let errFlg = true
-    console.log("checktalkInfo", talkInfo)
+    //console.log("checktalkInfo", talkInfo)
     if (!c010_UaasUtil_isNotBlank(talkInfo.talkId)) {
         Alert.alert('エラー', 'トークIDを入力してください。')
         errFlg = false
@@ -64,20 +64,20 @@ export const SC999_V10_RegistTalk = () => {
     const onChangeTalkId = (value: string) => {
         const newState = { ...talkInfo, talkId: value }
         setTalkInfo(newState)
-        console.log("talkId", newState.talkId)
+        //console.log("talkId", newState.talkId)
     }
     //ユーザID
     const onChangeUserId = (value: string) => {
         const newState = { ...talkInfo, userId: value }
         setTalkInfo(newState)
-        console.log("userId", newState.userId)
+        //console.log("userId", newState.userId)
     }
     // --------------------------------------------------------------
 
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const registTalk_withTalkId = async (talkInfo: SC999_TalkUserInfo) => {
-        console.log("talkInfo", talkInfo)
+        //console.log("talkInfo", talkInfo)
         // エラーフラグの初期化
         let errFlg = "0"
         if (check_registTalk_withTalkId(talkInfo)) {
@@ -124,7 +124,7 @@ export const SC999_V10_RegistTalk = () => {
     };
 
     const registTalk = async (talkInfo: SC999_TalkUserInfo) => {
-        console.log("talkInfo", talkInfo)
+        //console.log("talkInfo", talkInfo)
         if (check_registTalk(talkInfo)) {
             // サービスパラメータの取得
             const talkId = talkInfo.talkId

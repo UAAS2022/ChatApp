@@ -45,7 +45,7 @@ export const SC110_V01_UserList = () => {
     const userInfoList_ScreenDisp = state.userInfoList_ScreenDisp
 
     const getUserList = async () => {
-        console.log("getUserList開始！=========================================================");
+        //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s150_SelectUserList_New()
         const dbObj_newuserInfoList = resultObj.userList
@@ -65,7 +65,7 @@ export const SC110_V01_UserList = () => {
             return userInfo
         })
 
-        // console.log("getUserList終了！=========================================================");
+        // //console.log("getUserList終了！=========================================================");
 
         // 画面に表示する用
         let new_UserInfoList_ScreenDisp: SC110_UserInfo[][] = []
@@ -93,14 +93,14 @@ export const SC110_V01_UserList = () => {
             userInfoList_ScreenDisp: new_UserInfoList_ScreenDisp,
         }
         dispatch(UPDATE_USERLIST(newState))
-        console.log("userInfoList！----------------------------------------------------------------");
-        console.log(userInfoList);
-        console.log("userInfoList！----------------------------------------------------------------");
+        //console.log("userInfoList！----------------------------------------------------------------");
+        //console.log(userInfoList);
+        //console.log("userInfoList！----------------------------------------------------------------");
 
-        console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-        console.log(userInfoList_ScreenDisp);
-        console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-        console.log("getUserList終了！=========================================================");
+        //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
+        //console.log(userInfoList_ScreenDisp);
+        //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
+        //console.log("getUserList終了！=========================================================");
     }
 
     //最上部でさらに下すワイプすることで発火するイベントを定義 （下にぐってスクロールさせて更新する仕組み）

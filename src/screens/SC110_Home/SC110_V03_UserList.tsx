@@ -52,7 +52,7 @@ export const SC110_V03_UserList = () => {
     const userInfoList_ScreenDisp = baseState.baseContext_SC110.userInfoList_ScreenDisp
 
     const getUserList = async () => {
-        console.log("getUserList開始！=========================================================");
+        //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s150_SelectUserList_New()
         const dbObj_newuserInfoList = resultObj.userList
@@ -72,7 +72,7 @@ export const SC110_V03_UserList = () => {
             return userInfo
         })
 
-        // console.log("getUserList終了！=========================================================");
+        // //console.log("getUserList終了！=========================================================");
 
         // 画面に表示する用
         let new_UserInfoList_ScreenDisp: SC000_UserInfo[][] = []
@@ -92,7 +92,7 @@ export const SC110_V03_UserList = () => {
 
         }
         const log = () => {
-            console.log("耳耳耳っ耳耳耳耳ミッミッ耳いいミッみm")
+            //console.log("耳耳耳っ耳耳耳耳ミッミッ耳いいミッみm")
         }
         // 最後のループのtempListを追加する
         if (tmpList.length !== 0) {
@@ -106,10 +106,10 @@ export const SC110_V03_UserList = () => {
         }
         baseDispatch(SC110_UPDATE_USERLIST(newState))
 
-        console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-        console.log(userInfoList_ScreenDisp);
-        console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-        console.log("getUserList終了！=========================================================");
+        //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
+        //console.log(userInfoList_ScreenDisp);
+        //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
+        //console.log("getUserList終了！=========================================================");
     }
 
     //最上部でさらに下すワイプすることで発火するイベントを定義 （下にぐってスクロールさせて更新する仕組み）
@@ -133,7 +133,7 @@ export const SC110_V03_UserList = () => {
 
     // 画面遷移
     const goToSC120 = (userId: string) => {
-        console.log("goToSC120:開始")
+        //console.log("goToSC120:開始")
         // ステートの定義
         const newState = { ...screenState }
         // プレ情報を更新する
@@ -144,7 +144,7 @@ export const SC110_V03_UserList = () => {
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
         // BaseComponentの画面IDを更新する
         updateBaseScreenId(CONST_SC000.SCREENID.SC120)
-        console.log("goToChat:終了")
+        //console.log("goToChat:終了")
     }
 
     // 初期表示処理-------------------------------------------------------------

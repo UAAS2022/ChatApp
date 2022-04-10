@@ -20,7 +20,7 @@ export const s352_SelectChatMessageList_RealTime = async (
         snapshot.docChanges().forEach((change) => {
             // メッセージが追加された場合
             if (change.type === "added") {
-                console.log("New Message: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                //console.log("New Message: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 // 取得処理実行
                 // getChatMessageList()
                 // 変更ドキュメントを取得
@@ -35,7 +35,7 @@ export const s352_SelectChatMessageList_RealTime = async (
                 newChatMessageInfo.sendDateTime = newDoc.SendDateTime
                 // リストに追加メッセージを格納する(unshift:先頭に追加、push：最後尾に追加)
                 newChatMessageInfoList.unshift(newChatMessageInfo)
-                console.log(newChatMessageInfo.seq, newChatMessageInfo.message);
+                //console.log(newChatMessageInfo.seq, newChatMessageInfo.message);
                 // ステートの更新
                 setChatMessageInfoList(newChatMessageInfoList)
                 // サブスクの終了
@@ -43,11 +43,11 @@ export const s352_SelectChatMessageList_RealTime = async (
             }
             // // メッセージが修正された場合
             // else if (change.type === "modified") {
-            //     console.log("Modified Message: ");
+            //     //console.log("Modified Message: ");
             // }
             // // メッセージが削除された場合
             // else if (change.type === "removed") {
-            //     console.log("Removed Message: ");
+            //     //console.log("Removed Message: ");
             // }
         });
     });

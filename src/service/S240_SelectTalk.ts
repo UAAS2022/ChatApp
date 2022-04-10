@@ -8,7 +8,7 @@ import type { T100_Talk } from '../common/C020_FirebaseUtil_Types';
 const SERVICE_ID = "S240"
 
 export const s240_SelectTalk = async (talkId: string) => {
-    console.log("s240_SelectTalk:開始------------------------------")
+    //console.log("s240_SelectTalk:開始------------------------------")
     // 戻り値定義
     let talkInfo = {} as T100_Talk
     // ドキュメントIDを定義
@@ -22,12 +22,12 @@ export const s240_SelectTalk = async (talkId: string) => {
         talkInfo = docSnap.data() as T100_Talk
     } else {
         // doc.data() will be undefined in this case
-        console.log("No such document!");
+        //console.log("No such document!");
     }
     // 戻り値を定義
     const resultObj = {
         talkInfo: talkInfo
     }
-    console.log("s240_SelectTalk:終了------------------------------")
+    //console.log("s240_SelectTalk:終了------------------------------")
     return resultObj
 }

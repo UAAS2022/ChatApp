@@ -34,9 +34,9 @@ export const CC0020_MenuBtn = (props: any) => {
     // 必要な情報を取得する
     const { buttonName, nextScreenId, layoutPattern, action } = btnInfo;
     // ログ出力
-    console.log("btnInfo----------------------")
-    console.log(btnInfo)
-    console.log("btnInfo----------------------")
+    // //console.log("btnInfo----------------------")
+    // //console.log(btnInfo)
+    // //console.log("btnInfo----------------------")
     // useContextを用いてstate, dispatchを取得する
     const { state, dispatch } = useContext(SC000_S_Context)
     // [reset]ボタンタップ時のイベントハンドラ関数

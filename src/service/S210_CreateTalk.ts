@@ -18,7 +18,7 @@ export const s210_CreateTalk = async (
     // 採番したIDを取得する
     const result_c020 = await c020_CreateSecId(FIREBASE_COLLECTIONS.S100_TalkId, logUserId, SERVICE_ID)
     const talkId = result_c020.returnInfo.secId
-    console.log("①トークIDを採番", talkId)
+    //console.log("①トークIDを採番", talkId)
     // --------------------------------------------------------------------------------------
 
     // ②トーク情報を登録------------------------------------------------------------------------

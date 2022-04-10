@@ -72,9 +72,9 @@ export const c020_CheckUnique = async (collectionName: string, itemList: string[
         let condition = conditionList[count1]
         query_FB = query(query_FB, where(item, "==", condition))
         count1 = count1 + 1
-        console.log("query:-------------------------------------------------")
-        console.log("item:", item, "condition", condition)
-        console.log("query:-------------------------------------------------")
+        //console.log("query:-------------------------------------------------")
+        //console.log("item:", item, "condition", condition)
+        //console.log("query:-------------------------------------------------")
     }
 
     // 検証用--------------------------------------------------------------------------------
@@ -85,14 +85,14 @@ export const c020_CheckUnique = async (collectionName: string, itemList: string[
     //     let condition = conditionList[countTemp]
     //     countTemp = countTemp + 1
     //     tmpList.push(where(item, "==", condition))
-    //     console.log("query:-------------------------------------------------")
-    //     console.log("item:", item, "condition", condition)
-    //     console.log("query:-------------------------------------------------")
+    //     //console.log("query:-------------------------------------------------")
+    //     //console.log("item:", item, "condition", condition)
+    //     //console.log("query:-------------------------------------------------")
     // }
     // query_FB = query(collectionObj, ...tmpList)
-    // console.log("query:-------------------------------------------------")
-    // console.log("query_FB:", query_FB)
-    // console.log("query:-------------------------------------------------")
+    // //console.log("query:-------------------------------------------------")
+    // //console.log("query_FB:", query_FB)
+    // //console.log("query:-------------------------------------------------")
     // 検証用--------------------------------------------------------------------------------
 
     // クエリ実行
@@ -103,25 +103,25 @@ export const c020_CheckUnique = async (collectionName: string, itemList: string[
     }
     // let count2 = 0
     // querySnapshot.forEach((doc) => {
-    //     console.log("doc.data():-------------------------------------------------")
-    //     console.log("doc.data()_count", count2, ":", doc.data())
-    //     console.log("doc.data():-------------------------------------------------")
+    //     //console.log("doc.data():-------------------------------------------------")
+    //     //console.log("doc.data()_count", count2, ":", doc.data())
+    //     //console.log("doc.data():-------------------------------------------------")
     //     count2 = count2 + 1
     //     errFlg = true
     // });
 
-    // console.log("itemList:-------------------------------------------------")
-    // console.log("itemList:", itemList)
-    // console.log("itemList:-------------------------------------------------")
-    // console.log("conditions:-------------------------------------------------")
-    // console.log("conditions:", conditionList)
-    // console.log("conditions:-------------------------------------------------")
-    // console.log("querySnapshot_1:-------------------------------------------------")
-    // console.log("querySnapshot.size:", querySnapshot.size)
-    // console.log("querySnapshot_1:-------------------------------------------------")
-    // console.log("errFlg:-------------------------------------------------")
-    // console.log("errFlg:", errFlg)
-    // console.log("errFlg:-------------------------------------------------")
+    // //console.log("itemList:-------------------------------------------------")
+    // //console.log("itemList:", itemList)
+    // //console.log("itemList:-------------------------------------------------")
+    // //console.log("conditions:-------------------------------------------------")
+    // //console.log("conditions:", conditionList)
+    // //console.log("conditions:-------------------------------------------------")
+    // //console.log("querySnapshot_1:-------------------------------------------------")
+    // //console.log("querySnapshot.size:", querySnapshot.size)
+    // //console.log("querySnapshot_1:-------------------------------------------------")
+    // //console.log("errFlg:-------------------------------------------------")
+    // //console.log("errFlg:", errFlg)
+    // //console.log("errFlg:-------------------------------------------------")
     // docIdを返却する
     return errFlg
 

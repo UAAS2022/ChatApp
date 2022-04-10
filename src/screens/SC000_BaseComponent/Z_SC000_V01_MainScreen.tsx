@@ -41,8 +41,8 @@ export const SC000_V01_MainScreenController = () => {
     try {
         const { state, dispatch } = useContext(SC000_S_Context)
         const { screenId } = state.screenControllerInfo
-        console.log("C0000_Main:screenController----------------------")
-        console.log("C0000_Main:screenId:", screenId)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
             case CONST_SC000.SCREENID.SC110:
                 return <SC110_V00_Home />
@@ -72,8 +72,8 @@ export const SC000_V01_MenuBarController = () => {
     try {
         const { state, dispatch } = useContext(SC000_S_Context)
         const { screenId, layoutPattern } = state.screenControllerInfo
-        console.log("C0000_Main:screenController----------------------")
-        console.log("C0000_Main:screenId:", screenId)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("C0000_Main:screenId:", screenId)
         switch (layoutPattern) {
             case 1:
                 return (
@@ -129,8 +129,8 @@ export const SC000_V01_MainScreen = () => {
     try {
         const { state } = useContext(SC000_S_Context)
         const { screenId, layoutPattern } = state.screenControllerInfo
-        console.log("C0000_Main:screenController----------------------")
-        console.log("SC000_V01_MainScreen:", screenId, layoutPattern)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("SC000_V01_MainScreen:", screenId, layoutPattern)
         switch (layoutPattern) {
             case 1:
                 return (
@@ -185,7 +185,7 @@ export const useState_SC000_LayoutPattern = (screenId: string) => {
 
     const updateLayoutPattern = () => {
         // メニューバー非表示
-        console.log("カスタムフック_useState_SC000_LayoutPattern:", newState.screenControllerInfo)
+        //console.log("カスタムフック_useState_SC000_LayoutPattern:", newState.screenControllerInfo)
         baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
     }
     return [updateLayoutPattern]

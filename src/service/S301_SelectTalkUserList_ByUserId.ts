@@ -8,8 +8,8 @@ import type { T101_TalkUser, M050_User, T100_Talk, } from '../common/C020_Fireba
 const SERVICE_ID = "S301"
 
 export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
-    console.log("s303_SelectTalkUserList_ByUserId_Simple：開始------------------------------")
-    console.log("userId", userId)
+    //console.log("s303_SelectTalkUserList_ByUserId_Simple：開始------------------------------")
+    //console.log("userId", userId)
     // 戻り値用のリストを定義
     let talkUserList = [] as T101_TalkUser[]
     // クエリを定義
@@ -24,12 +24,12 @@ export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
         const tmpTalkUserInfo = doc.data() as T101_TalkUser
         talkUserList.push(tmpTalkUserInfo)
     });
-    console.log("talkUserList.length", talkUserList.length)
+    //console.log("talkUserList.length", talkUserList.length)
     // 戻り値を定義
     const resultObj = {
         talkUserList: talkUserList
     }
-    console.log("resultObj.talkUserInfoList_Detail.length:", resultObj.talkUserList.length)
-    console.log("s303_SelectTalkUserList_ByUserId_Simple：終了------------------------------")
+    //console.log("resultObj.talkUserInfoList_Detail.length:", resultObj.talkUserList.length)
+    //console.log("s303_SelectTalkUserList_ByUserId_Simple：終了------------------------------")
     return resultObj
 }

@@ -38,7 +38,7 @@ const MAXROW = 4
 // 業務エラーチェッククラス
 const check = (talkInfo: SC999_TalkUserInfo): boolean => {
     let errFlg = true
-    console.log("checktalkInfo", talkInfo)
+    //console.log("checktalkInfo", talkInfo)
     if (!c010_UaasUtil_isNotBlank(talkInfo.userId)) {
         Alert.alert('エラー', 'ユーザIDを入力してください。')
         errFlg = false
@@ -60,11 +60,11 @@ export const SC999_V14_SelectTalk_List = () => {
     const onChangeUserId = (value: string) => {
         const newState = { ...talkInfo_Input, userId: value }
         setTalkInfo_Input(newState)
-        console.log("userId", newState.userId)
+        //console.log("userId", newState.userId)
     }
 
     const getTalkList = async () => {
-        console.log("getUserList開始！=========================================================");
+        //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s303_SelectTalkUserList_ByUserId_Detail(talkInfo_Input.userId)
         const dbObj_newTalkList = resultObj.talkUserInfoList_Detail
@@ -90,16 +90,16 @@ export const SC999_V14_SelectTalk_List = () => {
             }
         }
         dispatch(UPDATE_V14(newState))
-        console.log("dbObj_newTalkList----------------------------------------------------------------");
-        console.log(dbObj_newTalkList);
-        console.log("dbObj_newTalkList----------------------------------------------------------------");
-        console.log("new_TalkInfoList----------------------------------------------------------------");
-        console.log(new_TalkInfoList);
-        console.log("new_TalkInfoList----------------------------------------------------------------");
-        console.log("state----------------------------------------------------------------");
-        console.log(state);
-        console.log("state----------------------------------------------------------------");
-        console.log("getUserList終了！=========================================================");
+        //console.log("dbObj_newTalkList----------------------------------------------------------------");
+        //console.log(dbObj_newTalkList);
+        //console.log("dbObj_newTalkList----------------------------------------------------------------");
+        //console.log("new_TalkInfoList----------------------------------------------------------------");
+        //console.log(new_TalkInfoList);
+        //console.log("new_TalkInfoList----------------------------------------------------------------");
+        //console.log("state----------------------------------------------------------------");
+        //console.log(state);
+        //console.log("state----------------------------------------------------------------");
+        //console.log("getUserList終了！=========================================================");
     }
 
     const onGetTalkEvent = () => {

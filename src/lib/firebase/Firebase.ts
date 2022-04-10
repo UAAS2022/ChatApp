@@ -23,7 +23,7 @@ export const FIREBASE_COLLECTIONS = {
 }
 
 if (getApps().length < 1) {
-    console.log("firebase:aaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    //console.log("firebase:aaaaaaaaaaaaaaaaaaaaaaaaaaa")
     initializeApp(firebaseConfig);
 }
 
@@ -37,13 +37,13 @@ export const selectUser_List = async () => {
     const querySnapshot = await getDocs(fb_collection);
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
+        // //console.log(doc.id, " => ", doc.data());
         userList.push(doc.data())
     });
     // const usersCollectionRef = collection(db_Firebase, 'T999_M050_USER')
     // getDocs(usersCollectionRef).then((querySnapshot) => {
-    //     console.log(querySnapshot.docs.map((doc) => doc.data()))
-    //     console.log(querySnapshot.docs.data())
+    //     //console.log(querySnapshot.docs.map((doc) => doc.data()))
+    //     //console.log(querySnapshot.docs.data())
     // });
     return userList
 }

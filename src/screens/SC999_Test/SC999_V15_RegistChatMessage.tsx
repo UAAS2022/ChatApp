@@ -32,7 +32,7 @@ import { s310_CreateChatMessage } from "../../service/S310_CreateChatMessage"
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
     let errFlg = true
-    console.log("checkchatMessageInfo", chatMessageInfo)
+    //console.log("checkchatMessageInfo", chatMessageInfo)
     if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
         Alert.alert('エラー', 'トークIDを入力してください。')
         errFlg = false
@@ -54,20 +54,20 @@ export const SC999_V15_RegistChatMessage = () => {
     const onChangeTalkId = (value: string) => {
         const newState = { ...chatMessageInfo, talkId: value }
         setChatMessageInfo(newState)
-        console.log("talkId", newState.talkId)
+        //console.log("talkId", newState.talkId)
     }
     //ユーザID
     const onChangeUserId = (value: string) => {
         const newState = { ...chatMessageInfo, sendUserId: value }
         setChatMessageInfo(newState)
-        console.log("sendUserId", newState.sendUserId)
+        //console.log("sendUserId", newState.sendUserId)
     }
 
     //チャットメッセージ
     const onChangeChatMessage = (value: string) => {
         const newState = { ...chatMessageInfo, message: value }
         setChatMessageInfo(newState)
-        console.log("message", newState.message)
+        //console.log("message", newState.message)
     }
 
     // --------------------------------------------------------------
@@ -75,7 +75,7 @@ export const SC999_V15_RegistChatMessage = () => {
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const registChatMessage = async (chatMessageInfo: SC999_ChatMessageInfo) => {
-        console.log("chatMessageInfo", chatMessageInfo)
+        //console.log("chatMessageInfo", chatMessageInfo)
         if (check(chatMessageInfo)) {
             // サービスパラメータの取得
             const talkId = chatMessageInfo.talkId

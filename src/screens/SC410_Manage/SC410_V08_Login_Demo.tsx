@@ -9,6 +9,8 @@ import {
     Heading,
     Flex,
     Divider,
+    Box,
+    Input,
 } from "native-base"
 import {
     Button as Button_Def,
@@ -44,6 +46,8 @@ import {
     c010_UaasUtil_isNotEmpty,
     c010_UaasUtil_isNotBlank,
 } from "../../common/C010_UaasUtil"
+import { SC030_InputUserInfo } from "../SC030_SignIn/SC030_Types"
+import { SC030_Style } from "../SC030_SignIn/SC030_Style"
 
 const USERINFO_TSUNE = CONST_SC999_V21.loginUserInfo.tsune
 const USERINFO_NABE = CONST_SC999_V21.loginUserInfo.nabe
@@ -53,24 +57,46 @@ export const SC410_V08_Login_Demo = () => {
     // ①ベースコンテキストを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // ②スクリーンコンテキストを取得する
-    const { state, dispatch } = useContext(SC410_S_Context)
+    const { state: screenState, dispatch: screenDispatch } = useContext(SC410_S_Context)
+    // ③ローカルステートからコンテキストを取得する
+    const [localState, setLocalState] = useState<SC030_InputUserInfo>({} as SC030_InputUserInfo);
 
     // チャット画面を開くイベントハンドラ関数
     const onClickSwitch_SC999_V22 = () => {
         // newStateを初期化
-        let newState = { ...state }
+        let newState = { ...screenState }
         // 取得したstateの値を更新する
         newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999_V04
         newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
-        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+        screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
+
+    // ログイン情報の入力イベントハンドラ-------------------------------------------------------
+    //ユーザID
+    const onChangeUserId = (value: string) => {
+        const newLocalState = { ...localState, userId: value }
+        setLocalState(newLocalState)
+
+    }
+    //パスワード
+    const onChangePassword = (value: string) => {
+        const newLocalState = { ...localState, password: value }
+        setLocalState(newLocalState)
+    }
+    // -------------------------------------------------------------------------------------
+
+
     // ログイン用関数（未検証）
-    const doLogin = async (userId: string, password: string) => {
+    // const doLogin = async (userId: string, password: string) => {
+    const doLogin = async () => {
+        // ローカルステートから認証情報を取得する
+        const userId = localState.userId
+        const password = localState.password
         // 1. ユーザIDとパスワードからログインする
         let loginUserId = ""
         // ユーザ機密情報を取得する
         const result_S191 = await s191_SelectUserPrivate_Login(userId, password)
-        if (!c010_UaasUtil_isNotEmpty(result_S191.userPrivateInfo)) {
+        if (c010_UaasUtil_isNotEmpty(result_S191.userPrivateInfo)) {
             loginUserId = result_S191.userPrivateInfo.UserId
         }
 
@@ -81,18 +107,32 @@ export const SC410_V08_Login_Demo = () => {
             const loginUserInfo = (await result_SC140).userInfo
             // 2.2.コンテキストに格納する
             // 2.2.1.新しいステートを定義する
-            let newBaseState_loginUserInfo = { ...baseState.loginUserInfo }
-            newBaseState_loginUserInfo.userId = loginUserInfo.UserId
-            newBaseState_loginUserInfo.userName = loginUserInfo.UserName
-            newBaseState_loginUserInfo.comment = loginUserInfo.Comment
-            newBaseState_loginUserInfo.latestLoginDatatime = loginUserInfo.LatestLoginDatatime.toDate()
-            newBaseState_loginUserInfo.profileImagePath = loginUserInfo.ProfileImagePath
-            newBaseState_loginUserInfo.genderCd = loginUserInfo.GenderCd
-            newBaseState_loginUserInfo.age = loginUserInfo.Age
-            newBaseState_loginUserInfo.areaCd = loginUserInfo.AreaCd
-            newBaseState_loginUserInfo.hashtag = loginUserInfo.Hashtags
+            // let newBaseState_loginUserInfo = { ...baseState.loginUserInfo }
+            // newBaseState_loginUserInfo.userId = loginUserInfo.UserId
+            // newBaseState_loginUserInfo.userName = loginUserInfo.UserName
+            // newBaseState_loginUserInfo.comment = loginUserInfo.Comment
+            // newBaseState_loginUserInfo.latestLoginDatatime = loginUserInfo.LatestLoginDatatime.toDate()
+            // newBaseState_loginUserInfo.profileImagePath = loginUserInfo.ProfileImagePath
+            // newBaseState_loginUserInfo.genderCd = loginUserInfo.GenderCd
+            // newBaseState_loginUserInfo.age = loginUserInfo.Age
+            // newBaseState_loginUserInfo.areaCd = loginUserInfo.AreaCd
+            // newBaseState_loginUserInfo.hashtag = loginUserInfo.Hashtags
+            let newBaseState = { ...baseState }
+            newBaseState.loginUserInfo.userId = loginUserInfo.UserId
+            newBaseState.loginUserInfo.userName = loginUserInfo.UserName
+            newBaseState.loginUserInfo.comment = loginUserInfo.Comment
+            newBaseState.loginUserInfo.latestLoginDatatime = loginUserInfo.LatestLoginDatatime.toDate()
+            newBaseState.loginUserInfo.profileImagePath = loginUserInfo.ProfileImagePath
+            newBaseState.loginUserInfo.genderCd = loginUserInfo.GenderCd
+            newBaseState.loginUserInfo.age = loginUserInfo.Age
+            newBaseState.loginUserInfo.areaCd = loginUserInfo.AreaCd
+            newBaseState.loginUserInfo.hashtag = loginUserInfo.Hashtags
             // 2.2.2.dispatchする
-            baseDispatch(SC000_UPDATE_LOGIN_USER(newBaseState_loginUserInfo))
+            baseDispatch(SC000_UPDATE_LOGIN_USER(newBaseState.loginUserInfo))
+            // ログ出力
+            console.log("SC410_V08_Login_Demo loginUserInfo---------------------------------------------")
+            console.log(baseState.loginUserInfo)
+            console.log("SC410_V08_Login_Demo loginUserInfo---------------------------------------------")
         }
 
     }
@@ -139,6 +179,61 @@ export const SC410_V08_Login_Demo = () => {
                     <Button style={SC999_Style.v21_LoginUserChangeBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onChangeLoginUser_NABE}>わたなべ</Button>
                     <Button style={SC999_Style.v21_LoginUserChangeBtn} size="sm" variant="outline" colorScheme="secondary" onPress={onChangeLoginUser_GORI}>煩悩ゴリラ</Button>
                 </Stack>
+                <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    fontSize: "md",
+                    fontWeight: "medium",
+                    color: "warmGray.50",
+                    letterSpacing: "lg"
+                }}>
+                    ユーザID
+                </Box>
+                <Stack space={0} w="100%" alignItems="flex-start">
+                    <Input w={{
+                        base: "75%",
+                        md: "25%",
+                    }}
+                        color="white"
+                        placeholder="ユーザーID" value={localState.userId}
+                        onChangeText={(value) => { onChangeUserId(value) }} />
+                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        fontSize: "md",
+                        fontWeight: "medium",
+                        color: "warmGray.50",
+                        letterSpacing: "lg"
+                    }}>
+                        パスワード
+                    </Box>
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} placeholder="パスワード"
+                        color="white"
+                        value={localState.password}
+                        onChangeText={(value) => { onChangePassword(value) }} />
+                </Stack>
+                <Button style={SC999_Style.v21_LoginUserChangeBtn} size="sm" variant="outline" colorScheme="secondary" onPress={doLogin}>ログイン</Button>
+
+
+                {/* <Stack space={4} w="100%" alignItems="center">
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} placeholder="Name" />
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} placeholder="Password" />
+                </Stack>; */}
+                {/* <Stack space={4} w="100%" alignItems="center">
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} ml="2" color="muted.400" />} placeholder="Name" />
+                    <Input w={{
+                        base: "75%",
+                        md: "25%"
+                    }} InputRightElement={<Icon as={<MaterialIcons name="visibility-off" />} size={5} mr="2" color="muted.400" />} placeholder="Password" />
+                </Stack>; */}
             </View>
         </>
     )

@@ -40,8 +40,8 @@ import { SC999_V23_ChatMessage_Pre3 } from "./SC999_V23_ChatMessage_Pre3"
 export const SC999_V01_ScreenController = () => {
     const { state, dispatch } = useContext(SC999_S_Context)
     const { componentId } = state.screenControllerInfo
-    console.log("C0000_Main:screenController----------------------")
-    console.log("C0000_Main:screenId:", componentId)
+    //console.log("C0000_Main:screenController----------------------")
+    //console.log("C0000_Main:screenId:", componentId)
     switch (componentId) {
         case SC999_COMPONENT_ID.SC999_V02:
             return <SC999_V02_Default />

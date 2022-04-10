@@ -48,7 +48,7 @@ import { s303_SelectTalkUserList_ByUserId_Detail } from "../../service/S303_Sele
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC120_UserProfileInfo): boolean => {
     let errFlg = true
-    // console.log("checkchatMessageInfo", chatMessageInfo)
+    // //console.log("checkchatMessageInfo", chatMessageInfo)
     // if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
     //     Alert.alert('エラー', 'トークIDを入力してください。')
     //     errFlg = false
@@ -101,9 +101,6 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.userProfileInfo.hashtag = result_S140.userInfo.Hashtags
         // ③ステートを更新する
         screenDispatch(UPDATE_USERPROFILE(newState.userProfileInfo))
-        console.log("SC120_V01_UserProfile_Main---------------------------------------")
-        console.log(screenState)
-        console.log("SC120_V01_UserProfile_Main---------------------------------------")
     }
 
     // ユーザプロフィール情報取得イベントハンドラ2
@@ -123,9 +120,6 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.hashtag = result_S140.userInfo.Hashtags
         // ③ステートを更新する
         setlocalState_UserProfileInfo(newState)
-        console.log("SC120_V01_UserProfile_Main---------------------------------------")
-        console.log(screenState)
-        console.log("SC120_V01_UserProfile_Main---------------------------------------")
     }
 
     const onClickStartChat = async () => {

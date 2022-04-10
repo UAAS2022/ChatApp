@@ -35,7 +35,6 @@ import { SC110_V01_ScreenController } from "./SC110_V01_ScreenController"
 
 export const SC110_V00_Home = () => {
     try {
-        console.log("V0010_Home:----------------------")
         return (
             <>
                 <Provider_SC110>

@@ -49,9 +49,6 @@ export const SC210_V01_ScreenController = (props: object) => {
     const { state } = useContext(Context_SC210)
     // コンテキストからscreenIdを取得する
     const { componentId } = state.screenControllerInfo
-    console.log("SC210_V01_ScreenController------------------------------")
-    console.log("state", state)
-    console.log("SC210_V01_ScreenController_componentId:", componentId)
     // screenIdの値に応じて画面を切り替える
     switch (componentId) {
         case CONST_SC210.COMPONENT_ID.V03:

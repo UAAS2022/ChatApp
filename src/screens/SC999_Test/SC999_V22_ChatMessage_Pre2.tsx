@@ -46,7 +46,7 @@ import { T110_ChatMessage } from "../../common/C020_FirebaseUtil_Types"
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
     let errFlg = true
-    // console.log("checkchatMessageInfo", chatMessageInfo)
+    // //console.log("checkchatMessageInfo", chatMessageInfo)
     // if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
     //     Alert.alert('エラー', 'トークIDを入力してください。')
     //     errFlg = false
@@ -80,20 +80,20 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
     // const onChangeTalkId = (value: string) => {
     //     const newState = { ...chatMessageInfo, talkId: value }
     //     setChatMessageInfo(newState)
-    //     console.log("talkId", newState.talkId)
+    //     //console.log("talkId", newState.talkId)
     // }
     // // ユーザID
     // const onChangeUserId = (value: string) => {
     //     const newState = { ...chatMessageInfo, sendUserId: value }
     //     setChatMessageInfo(newState)
-    //     console.log("sendUserId", newState.sendUserId)
+    //     //console.log("sendUserId", newState.sendUserId)
     // }
 
     //チャットメッセージ
     const onChangeChatMessage = (value: string) => {
         const newState = { ...chatMessageInfo, message: value }
         setChatMessageInfo(newState)
-        // console.log("message", newState.message)
+        // //console.log("message", newState.message)
     }
 
     // --------------------------------------------------------------
@@ -101,7 +101,7 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const registChatMessage = async (chatMessageInfo: SC999_ChatMessageInfo) => {
-        // console.log("chatMessageInfo", chatMessageInfo)
+        // //console.log("chatMessageInfo", chatMessageInfo)
         if (check(chatMessageInfo)) {
             // サービスパラメータの取得
             let talkId = TALKID
@@ -134,7 +134,7 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
     //チャットメッセージ取得イベントハンドラ（メッセージ表示エリアの情報を取得する）
     // --------------------------------------------------------------
     const getChatMessageList = async () => {
-        // console.log("getChatMessageList開始！=========================================================");
+        // //console.log("getChatMessageList開始！=========================================================");
 
         // Firebaseからデータを取得する
         const resultObj = await s351_SelectChatMessageList_New(TALKID)
@@ -163,16 +163,16 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
         //     }
         // }
         // // dispatch(UPDATE_V19(newState))
-        // console.log("dbObj_newTalkList----------------------------------------------------------------");
-        // console.log(dbObj_newChatMessageInfoList);
-        // console.log("dbObj_newTalkList----------------------------------------------------------------");
-        // console.log("new_TalkInfoList----------------------------------------------------------------");
-        // console.log(new_ChatMessageInfoList);
-        // console.log("new_TalkInfoList----------------------------------------------------------------");
-        // console.log("state----------------------------------------------------------------");
-        // console.log(state.sC999_V19_Info);
-        // console.log("state----------------------------------------------------------------");
-        // console.log("getChatMessageList終了！=========================================================");
+        // //console.log("dbObj_newTalkList----------------------------------------------------------------");
+        // //console.log(dbObj_newChatMessageInfoList);
+        // //console.log("dbObj_newTalkList----------------------------------------------------------------");
+        // //console.log("new_TalkInfoList----------------------------------------------------------------");
+        // //console.log(new_ChatMessageInfoList);
+        // //console.log("new_TalkInfoList----------------------------------------------------------------");
+        // //console.log("state----------------------------------------------------------------");
+        // //console.log(state.sC999_V19_Info);
+        // //console.log("state----------------------------------------------------------------");
+        // //console.log("getChatMessageList終了！=========================================================");
     }
     // --------------------------------------------------------------
 
@@ -187,7 +187,7 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
             snapshot.docChanges().forEach((change) => {
                 // メッセージが追加された場合
                 if (change.type === "added") {
-                    console.log("New Message: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    //console.log("New Message: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     // 取得処理実行
                     // getChatMessageList()
                     // 変更ドキュメントを取得
@@ -202,7 +202,7 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
                     newChatMessageInfo.sendDateTime = newDoc.SendDateTime
                     // リストに追加メッセージを格納する(unshift:先頭に追加、push：最後尾に追加)
                     newChatMessageInfoList.unshift(newChatMessageInfo)
-                    console.log(newChatMessageInfo.seq, newChatMessageInfo.message);
+                    //console.log(newChatMessageInfo.seq, newChatMessageInfo.message);
                     // ステートの更新
                     setChatMessageInfoList(newChatMessageInfoList)
                     // サブスクの終了
@@ -210,11 +210,11 @@ export const SC999_V22_ChatMessage_Pre2 = () => {
                 }
                 // メッセージが修正された場合
                 else if (change.type === "modified") {
-                    console.log("Modified Message: ");
+                    //console.log("Modified Message: ");
                 }
                 // メッセージが削除された場合
                 else if (change.type === "removed") {
-                    console.log("Removed Message: ");
+                    //console.log("Removed Message: ");
                 }
             });
         });

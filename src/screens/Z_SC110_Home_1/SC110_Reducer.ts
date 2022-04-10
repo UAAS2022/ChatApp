@@ -24,8 +24,8 @@ export const reducer = (state: S010_Context, action: SC000_Action) => {
             newState = { ...state, ...payload }
             break
     }
-    console.log("SC110_Reducer,reducer.action:", action,)
-    console.log("SC110_Reducer,reducer.state:", state,)
-    console.log("SC110_Reducer,reducer.newState:", newState)
+    //console.log("SC110_Reducer,reducer.action:", action,)
+    //console.log("SC110_Reducer,reducer.state:", state,)
+    //console.log("SC110_Reducer,reducer.newState:", newState)
     return newState
 }

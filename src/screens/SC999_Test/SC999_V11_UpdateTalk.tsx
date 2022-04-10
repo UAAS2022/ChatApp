@@ -22,7 +22,7 @@ import { s270_UpdateTalkUser } from "../../service/S270_UpdateTalkUser"
 // 業務エラーチェッククラス
 const check = (talkInfo: SC999_TalkUserInfo): boolean => {
     let errFlg = true
-    console.log("checktalkInfo", talkInfo)
+    //console.log("checktalkInfo", talkInfo)
     if (!c010_UaasUtil_isNotBlank(talkInfo.talkId)) {
         Alert.alert('エラー', 'トークIDを入力してください。')
         errFlg = false
@@ -44,20 +44,20 @@ export const SC999_V11_UpdateTalk = () => {
     const onChangeTalkId = (value: string) => {
         const newState = { ...talkInfo, talkId: value }
         setTalkInfo(newState)
-        console.log("talkId", newState.talkId)
+        //console.log("talkId", newState.talkId)
     }
     //ユーザID
     const onChangeUserId = (value: string) => {
         const newState = { ...talkInfo, userId: value }
         setTalkInfo(newState)
-        console.log("userId", newState.userId)
+        //console.log("userId", newState.userId)
     }
     // --------------------------------------------------------------
 
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const updateTalk = async (talkInfo: SC999_TalkUserInfo) => {
-        console.log("talkInfo", talkInfo)
+        //console.log("talkInfo", talkInfo)
         if (check(talkInfo)) {
             // サービスパラメータの取得
             const talkId = talkInfo.talkId

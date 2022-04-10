@@ -38,16 +38,16 @@ export const SC999_V09_SelectUser_List = () => {
     const [userInfoList, setUserList] = useState([{} as T999_UserInfo]);
     const [userInfoList_ScreenDisp, setUserList_ScreenDisp] = useState([[{} as T999_UserInfo]]);
 
-    console.log("userInfoList！----------------------------------------------------------------");
-    console.log(userInfoList);
-    console.log("userInfoList！----------------------------------------------------------------");
+    //console.log("userInfoList！----------------------------------------------------------------");
+    //console.log(userInfoList);
+    //console.log("userInfoList！----------------------------------------------------------------");
 
-    console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-    console.log(userInfoList_ScreenDisp);
-    console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
+    //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
+    //console.log(userInfoList_ScreenDisp);
+    //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
 
     const getUserList = async () => {
-        // console.log("getUserList開始！=========================================================");
+        // //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s150_SelectUserList_New()
         const dbObj_newuserInfoList = resultObj.userList
@@ -66,7 +66,7 @@ export const SC999_V09_SelectUser_List = () => {
             userInfo.hashtags = dbObj_userInfo.Hashtags
             return userInfo
         })
-        // console.log(new_UserInfoList);
+        // //console.log(new_UserInfoList);
         // ステートを更新する
         setUserList(new_UserInfoList)
 
@@ -93,7 +93,7 @@ export const SC999_V09_SelectUser_List = () => {
         // }
         // // ステートの更新
         // setUserList_ScreenDisp(newuserInfoList_ScreenDisp)
-        // console.log("getUserList終了！=========================================================");
+        // //console.log("getUserList終了！=========================================================");
     }
 
     const setScreenState = () => {
