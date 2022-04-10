@@ -23,7 +23,7 @@ import { s130_DeleteUser } from "../../service/S130_DeleteUser"
 // 業務エラーチェッククラス
 const check = (userInfo: T999_UserInfo): boolean => {
     let errFlg = true
-    console.log("checkuserInfo", userInfo)
+    //console.log("checkuserInfo", userInfo)
     if (!c010_UaasUtil_isNotBlank(userInfo.userId)) {
         Alert.alert('エラー', 'ユーザIDを入力してください。')
         errFlg = false
@@ -41,7 +41,7 @@ export const SC999_V07_DeleteUser = () => {
     const onChangeUserId = (value: string) => {
         const newState = { ...userInfo, userId: value }
         setUserInfo(newState)
-        console.log("userId", newState.userId)
+        //console.log("userId", newState.userId)
 
     }
     // --------------------------------------------------------------
@@ -49,7 +49,7 @@ export const SC999_V07_DeleteUser = () => {
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const deleteUser = async (userInfo: T999_UserInfo) => {
-        console.log("userInfo", userInfo)
+        //console.log("userInfo", userInfo)
         if (check(userInfo)) {
             // サービスパラメータの取得
             const userId = userInfo.userId

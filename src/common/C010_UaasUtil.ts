@@ -36,18 +36,14 @@ export const c010_isCreatedTalkUser_T101 = (talkUserInfoList_Detail: {
     talkUserInfo: T101_TalkUser,
     chatUserInfo: M050_User,
 }[], serchUserId: string): boolean => {
-    console.log("開始", "c010_isCreatedTalkUser_T101", "-------------------------------------------------------")
     // 戻り値の初期化
     let isCreatedFlg = false
     // 検証
     for (let talkUserInfo_Detail of talkUserInfoList_Detail) {
-        console.log("c010_isCreatedTalkUser_T101①：", serchUserId)
-        console.log("c010_isCreatedTalkUser_T101②：", talkUserInfo_Detail.chatUserInfo.UserId)
         if (serchUserId == talkUserInfo_Detail.chatUserInfo.UserId) {
             isCreatedFlg = true
             break
         }
     }
-    console.log("終了", "c010_isCreatedTalkUser_T101", "-------------------------------------------------------")
     return isCreatedFlg
 }

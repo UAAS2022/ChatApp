@@ -17,8 +17,8 @@ import {
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { SC998_Style } from './SC998_Style'
 
-const log = () =>{
-    console.log("あ")
+const log = () => {
+    //console.log("あ")
 }
 
 export const SC998_V02_Cmp2 = () => {

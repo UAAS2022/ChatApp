@@ -82,7 +82,7 @@ const DATA = [{
 }];
 
 export const SC210_V03_TalkList_Main = (props: object) => {
-    console.log("SC210_V01_TalkList:開始")
+    //console.log("SC210_V01_TalkList:開始")
     // ①ベースコンテキストを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // ②画面コンテキストを取得する
@@ -95,13 +95,14 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     const getTalkUserInfoList_Detail = async () => {
         // ①Firebaseからデータを取得する
         // const userId = baseState.loginUserInfo.userId
-        const userId = "xxx"
+        // const userId = "xxx"
+        const userId = baseState.loginUserInfo.userId
         const result_S302 = await s303_SelectTalkUserList_ByUserId_Detail(userId)
         const dbObj_talkUserInfoList_Detail = result_S302.talkUserInfoList_Detail
-        console.log("dbObj_talkUserInfoList_Detail.length", dbObj_talkUserInfoList_Detail.length)
+        //console.log("dbObj_talkUserInfoList_Detail.length", dbObj_talkUserInfoList_Detail.length)
         // ②データをuserInfoListステートに合わせる
         let new_talkUserInfoList_Detail = dbObj_talkUserInfoList_Detail.map((dbObj_talkUserInfo_Detail) => {
-            console.log("talkUserInfo_Detail.userInfo.userName:1")
+            //console.log("talkUserInfo_Detail.userInfo.userName:1")
             // 日付変換
             const date = dbObj_talkUserInfo_Detail.chatUserInfo.LatestLoginDatatime.toDate()
             // トーク名判断
@@ -132,7 +133,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                     profileImagePath: dbObj_talkUserInfo_Detail.chatUserInfo.ProfileImagePath,
                 }
             } as SC210_TalkUserInfo_Detail
-            console.log("talkUserInfo_Detail.userInfo.userName:", talkUserInfo_Detail.userInfo.userName)
+            //console.log("talkUserInfo_Detail.userInfo.userName:", talkUserInfo_Detail.userInfo.userName)
             return talkUserInfo_Detail
         })
         // ③更新用ステートを定義する
@@ -143,13 +144,13 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         }
         // ④ステートを更新する
         baseDispatch(SC210_UPDATE_TAlKUSER(newState))
-        console.log("baseContext------------------------------")
-        console.log(newState)
-        console.log("baseContext------------------------------")
+        //console.log("baseContext------------------------------")
+        //console.log(newState)
+        //console.log("baseContext------------------------------")
     }
 
     const updateChatScreenInfoPre = (talkInfo: SC210_TalkInfo) => {
-        console.log("updateChatScreenInfoPre:開始")
+        //console.log("updateChatScreenInfoPre:開始")
         // ステートの定義
         const newState = { ...screenState }
         // チャットスクリーンプレ情報を更新
@@ -158,8 +159,8 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         newState.chatScreenPreInfo.talkKbn = talkInfo.talkKbn
         // ステートを更新する
         screenDispatch(UPDATE_CHATSCREEN_PREINFO(newState.chatScreenPreInfo))
-        console.log("newState.talkId:", newState.chatScreenPreInfo.talkId)
-        console.log("updateChatScreenInfoPre:終了")
+        //console.log("newState.talkId:", newState.chatScreenPreInfo.talkId)
+        //console.log("updateChatScreenInfoPre:終了")
     }
 
     const disableMenuBar = () => {
@@ -170,7 +171,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     }
 
     const goToSC220 = (talkInfo: SC210_TalkInfo) => {
-        console.log("goToChat:開始")
+        //console.log("goToChat:開始")
         // ステートの定義
         const newState = { ...screenState }
         // チャットスクリーンプレ情報を更新する
@@ -189,10 +190,10 @@ export const SC210_V03_TalkList_Main = (props: object) => {
 
         // BaseComponentの画面IDを更新する
         updateBaseScreenId(CONST_SC000.SCREENID.SC220)
-        console.log("newState.componentId:", newScreenControllerInfo.componentId)
-        console.log("goToChat:終了")
+        //console.log("newState.componentId:", newScreenControllerInfo.componentId)
+        //console.log("goToChat:終了")
     }
-    console.log("SC210_V03_TalkList_Main:baseState.screenControllerInfo", baseState.screenControllerInfo)
+    //console.log("SC210_V03_TalkList_Main:baseState.screenControllerInfo", baseState.screenControllerInfo)
 
     useEffect(() => {
         getTalkUserInfoList_Detail()

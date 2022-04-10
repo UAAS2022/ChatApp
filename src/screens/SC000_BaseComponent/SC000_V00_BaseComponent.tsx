@@ -32,7 +32,7 @@ export const SC000_V00_BaseComponent = () => {
             </>
         );
     } catch (error) {
-        console.log("Error:V0000_BaseComponent:")
+        //console.log("Error:V0000_BaseComponent:")
         if (error instanceof Error) {
             sc950_V00_commonErr(error)
         }
@@ -50,7 +50,6 @@ export const useState_SC000_LayoutPattern = (screenId: string) => {
 
     const updateLayoutPattern = () => {
         // メニューバー非表示
-        console.log("カスタムフック実行_useState_SC000_LayoutPattern:", newState.screenControllerInfo)
         baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
     }
     return [updateLayoutPattern]

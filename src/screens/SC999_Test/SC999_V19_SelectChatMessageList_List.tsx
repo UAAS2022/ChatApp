@@ -38,7 +38,7 @@ const MAXROW = 4
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
     let errFlg = true
-    console.log("checkchatMessageInfo", chatMessageInfo)
+    //console.log("checkchatMessageInfo", chatMessageInfo)
     if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
         Alert.alert('エラー', 'トークIDを入力してください。')
         errFlg = false
@@ -60,11 +60,11 @@ export const SC999_V19_SelectChatMessageList_List = () => {
     const onChangeTalkId = (value: string) => {
         const newState = { ...chatMessageInfo_Input, talkId: value }
         setTalkInfo_Input(newState)
-        console.log("talkId", newState.talkId)
+        //console.log("talkId", newState.talkId)
     }
 
     const getChatMessageList = async () => {
-        console.log("getUserList開始！=========================================================");
+        //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s351_SelectChatMessageList_New(chatMessageInfo_Input.talkId)
         const dbObj_newChatMessageInfoList = resultObj.chatMessageList
@@ -88,16 +88,16 @@ export const SC999_V19_SelectChatMessageList_List = () => {
             }
         }
         dispatch(UPDATE_V19(newState))
-        console.log("dbObj_newTalkList----------------------------------------------------------------");
-        console.log(dbObj_newChatMessageInfoList);
-        console.log("dbObj_newTalkList----------------------------------------------------------------");
-        console.log("new_TalkInfoList----------------------------------------------------------------");
-        console.log(new_ChatMessageInfoList);
-        console.log("new_TalkInfoList----------------------------------------------------------------");
-        console.log("state----------------------------------------------------------------");
-        console.log(state.sC999_V19_Info);
-        console.log("state----------------------------------------------------------------");
-        console.log("getUserList終了！=========================================================");
+        //console.log("dbObj_newTalkList----------------------------------------------------------------");
+        //console.log(dbObj_newChatMessageInfoList);
+        //console.log("dbObj_newTalkList----------------------------------------------------------------");
+        //console.log("new_TalkInfoList----------------------------------------------------------------");
+        //console.log(new_ChatMessageInfoList);
+        //console.log("new_TalkInfoList----------------------------------------------------------------");
+        //console.log("state----------------------------------------------------------------");
+        //console.log(state.sC999_V19_Info);
+        //console.log("state----------------------------------------------------------------");
+        //console.log("getUserList終了！=========================================================");
     }
 
     const onGetChatMessageEvent = () => {

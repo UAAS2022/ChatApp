@@ -40,8 +40,8 @@ export const SC000_V01_MainScreenController = () => {
     try {
         const { state, dispatch } = useContext(SC000_S_Context)
         const { screenId } = state.screenControllerInfo
-        console.log("C0000_Main:screenController----------------------")
-        console.log("C0000_Main:screenId:", screenId)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
             case CONST_SC000.SCREENID.SC110:
                 return <SC110_V00_Home />
@@ -77,8 +77,8 @@ export const SC000_V01_MenuBarController = () => {
         const { state, dispatch } = useContext(SC000_S_Context)
         const { screenId } = state.screenControllerInfo
         const layoutPattern = getLayoutPattern(screenId)
-        console.log("C0000_Main:screenController----------------------")
-        console.log("C0000_Main:screenId:", screenId, ",layoutPattern:", layoutPattern)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("C0000_Main:screenId:", screenId, ",layoutPattern:", layoutPattern)
         switch (layoutPattern) {
             case 1:
                 return (
@@ -136,8 +136,8 @@ export const SC000_V01_MainScreen = () => {
         // const { screenId, layoutPattern } = state.screenControllerInfo
         const { screenId } = state.screenControllerInfo
         const layoutPattern = getLayoutPattern(screenId)
-        console.log("C0000_Main:screenController----------------------")
-        console.log("SC000_V01_MainScreen:", screenId, ",layoutPattern:", layoutPattern)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("SC000_V01_MainScreen:", screenId, ",layoutPattern:", layoutPattern)
         switch (layoutPattern) {
             case 1:
                 return (

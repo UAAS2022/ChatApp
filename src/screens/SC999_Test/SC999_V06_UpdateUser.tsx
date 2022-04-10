@@ -23,7 +23,7 @@ import { s120_UpdateUser } from "../../service/S120_UpdateUser"
 // 業務エラーチェッククラス
 const check = (userInfo: T999_UserInfo): boolean => {
     let errFlg = true
-    console.log("checkuserInfo", userInfo)
+    //console.log("checkuserInfo", userInfo)
     if (!c010_UaasUtil_isNotBlank(userInfo.userId)) {
         Alert.alert('エラー', 'ユーザIDを入力してください。')
         errFlg = false
@@ -45,20 +45,20 @@ export const SC999_V06_UpdateUser = () => {
     const onChangeUserId = (value: string) => {
         const newState = { ...userInfo, userId: value }
         setUserInfo(newState)
-        console.log("userId", newState.userId)
+        //console.log("userId", newState.userId)
 
     }
     //ユーザ名
     const onChangeUserName = (value: string) => {
         const newState = { ...userInfo, userName: value }
         setUserInfo(newState)
-        console.log("userName", newState.userName)
+        //console.log("userName", newState.userName)
     }
     //コメント
     const onChangeComment = (value: string) => {
         const newState = { ...userInfo, comment: value }
         setUserInfo(newState)
-        console.log("comment", newState.comment)
+        //console.log("comment", newState.comment)
     }
     // --------------------------------------------------------------
 
@@ -75,7 +75,7 @@ export const SC999_V06_UpdateUser = () => {
 
     const updateUser = async (userInfo: T999_UserInfo) => {
         try {
-            console.log("userInfo", userInfo)
+            //console.log("userInfo", userInfo)
             if (check(userInfo)) {
                 // サービスパラメータの取得
                 const userId = userInfo.userId

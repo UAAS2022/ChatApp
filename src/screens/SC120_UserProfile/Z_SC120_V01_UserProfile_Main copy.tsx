@@ -30,7 +30,7 @@ import { s140_SelectUser } from "../../service/S140_SelectUser"
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC120_UserProfileInfo): boolean => {
     let errFlg = true
-    // console.log("checkchatMessageInfo", chatMessageInfo)
+    // //console.log("checkchatMessageInfo", chatMessageInfo)
     // if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
     //     Alert.alert('エラー', 'トークIDを入力してください。')
     //     errFlg = false
@@ -85,9 +85,9 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         // } as SC120_UserProfileInfo
         // ③ステートを更新する
         screenDispatch(UPDATE_USERPROFILE(newState.userProfileInfo))
-        console.log("SC120_V01_UserProfile_Main---------------------------------------")
-        console.log(screenState)
-        console.log("SC120_V01_UserProfile_Main---------------------------------------")
+        //console.log("SC120_V01_UserProfile_Main---------------------------------------")
+        //console.log(screenState)
+        //console.log("SC120_V01_UserProfile_Main---------------------------------------")
     }
 
     // 初期表示処理-------------------------------------------------------------

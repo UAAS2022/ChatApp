@@ -13,6 +13,8 @@ export const s160_CreateUserPrivate = async (
     password: string,
     logUserId: string
 ) => {
+    // コンソールログ
+    console.log("s160_CreateUserPrivate")
     // ドキュメントIDを定義
     const docId = c020_MakeDocId([userId])
     // ドキュメントの中身を定義

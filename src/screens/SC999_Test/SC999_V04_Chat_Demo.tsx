@@ -40,7 +40,7 @@ import { s352_SelectChatMessageList_RealTime } from "../../service/S352_SelectCh
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
     let errFlg = true
-    // console.log("checkchatMessageInfo", chatMessageInfo)
+    // //console.log("checkchatMessageInfo", chatMessageInfo)
     // if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
     //     Alert.alert('エラー', 'トークIDを入力してください。')
     //     errFlg = false
@@ -69,7 +69,7 @@ export const SC999_V04_Chat_Demo = () => {
     const onChangeChatMessage = (value: string) => {
         const newState = { ...chatMessageInfo, message: value }
         setChatMessageInfo(newState)
-        // console.log("message", newState.message)
+        // //console.log("message", newState.message)
     }
 
     // --------------------------------------------------------------
@@ -77,7 +77,7 @@ export const SC999_V04_Chat_Demo = () => {
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const registChatMessage = async (chatMessageInfo: SC999_ChatMessageInfo) => {
-        // console.log("chatMessageInfo", chatMessageInfo)
+        // //console.log("chatMessageInfo", chatMessageInfo)
         if (check(chatMessageInfo)) {
             // サービスパラメータの取得
             let talkId = TALKID

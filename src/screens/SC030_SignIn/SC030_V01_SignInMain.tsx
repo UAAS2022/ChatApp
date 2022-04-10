@@ -11,13 +11,11 @@ import {
 import {
     StyleSheet,
 } from 'react-native'
-import { SC020_InputUserInfo } from './SC020_Types';
+import { SC030_InputUserInfo } from './SC030_Types';
 import { s110_CreateUser } from '../../service/S110_CreateUser';
-import { s111_CreateUser_withPrivate } from '../../service/S111_CreateUser_withPrivate';
-import { s160_CreateUserPrivate } from '../../service/S160_CreateUserPrivate';
 
-export const SC020_V01_SignUpMain = () => {
-    const [localState, setLocalState] = useState<SC020_InputUserInfo>({} as SC020_InputUserInfo);
+export const SC030_V01_SignUpMain = () => {
+    const [localState, setLocalState] = useState<SC030_InputUserInfo>({} as SC030_InputUserInfo);
 
     //onChangeイベントハンドラ（テキストインプットの中身が変わるたびにステートを更新する）
     // --------------------------------------------------------------
@@ -53,7 +51,6 @@ export const SC020_V01_SignUpMain = () => {
         //console.log("comment", newState.comment)
     }
 
-    // M050生成
     const createM050 = async () => {
         const userId = localState.userId
         const userName = localState.userName
@@ -75,54 +72,6 @@ export const SC020_V01_SignUpMain = () => {
             hashtags,
             logUserId)
     }
-    // M051生成
-    const createM051 = async () => {
-        // ユーザプライベート情報登録
-        const userId = localState.userId
-        const password = localState.password
-        const logUserId = localState.userId
-        await s160_CreateUserPrivate(
-            userId,
-            userId,
-            password,
-            logUserId,
-        )
-    }
-    // M050,M051生成
-    const createM050M051 = async () => {
-        const userId = localState.userId
-        const password = localState.password
-        const userName = localState.userName
-        const comment = localState.comment
-        const genderCd = localState.genderCd
-        const profileImagePath = ""
-        const age = 5
-        const areaCd = "1"
-        const hashtags = "1"
-        const logUserId = localState.userId
-        await s111_CreateUser_withPrivate(
-            userId,
-            password,
-            userName,
-            comment,
-            genderCd,
-            profileImagePath,
-            age,
-            areaCd,
-            hashtags,
-            logUserId)
-    }
-
-    // 登録イベントハンドラ
-    const onClickRegistBtn = () => {
-        // M050,M051生成
-        createM050M051()
-        // // M050生成
-        // createM050()
-        // // M051生成
-        // createM051()
-    }
-
     return (
         <>
             <Box>
@@ -209,7 +158,7 @@ export const SC020_V01_SignUpMain = () => {
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box>
                 <Box alignItems="center">
-                    <Button onPress={onClickRegistBtn}>おしてね😎</Button>
+                    <Button onPress={createM050}>おしてね😎</Button>
                 </Box>
             </Box>
         </>

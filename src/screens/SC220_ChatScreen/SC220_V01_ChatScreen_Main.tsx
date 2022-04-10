@@ -38,7 +38,7 @@ import { s352_SelectChatMessageList_RealTime } from "../../service/S352_SelectCh
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC220_ChatMessageInfo): boolean => {
     let errFlg = true
-    // console.log("checkchatMessageInfo", chatMessageInfo)
+    // //console.log("checkchatMessageInfo", chatMessageInfo)
     // if (!c010_UaasUtil_isNotBlank(chatMessageInfo.talkId)) {
     //     Alert.alert('エラー', 'トークIDを入力してください。')
     //     errFlg = false
@@ -68,13 +68,13 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
     // propsからトークIDを受け取る
     // const talkId = TALKID
     const { talkId, talkName } = props
-    console.log("SC220_V01_ChatScreen_Main_talkId:", talkId)
+    //console.log("SC220_V01_ChatScreen_Main_talkId:", talkId)
 
     //チャットメッセージ
     const onChangeChatMessage = (value: string) => {
         const newState = { ...chatMessageInfo, message: value }
         setChatMessageInfo(newState)
-        // console.log("message", newState.message)
+        // //console.log("message", newState.message)
     }
 
     // トークネーム取得
@@ -87,7 +87,7 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
     //ユーザ登録イベントハンドラ（ユーザ登録時の処理を定義する）
     // --------------------------------------------------------------
     const registChatMessage = async (chatMessageInfo: SC220_ChatMessageInfo) => {
-        // console.log("chatMessageInfo", chatMessageInfo)
+        // //console.log("chatMessageInfo", chatMessageInfo)
         if (check(chatMessageInfo)) {
             // サービスパラメータの取得
             // let talkId = TALKID
