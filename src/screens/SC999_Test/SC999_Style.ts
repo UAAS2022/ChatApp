@@ -185,8 +185,8 @@ export const SC999_Style = StyleSheet.create({
         // alignItems: 'flex-end',     //配置（上下）
         alignSelf: 'center',     //配置
         // justifyContent: 'center',   //配置（左右）???
-        marginTop: '15%',          //余白(上)
-        marginBottom: '25%',            //余白(下)
+        marginTop: '5%',          //余白(上)
+        marginBottom: '5%',            //余白(下)
         marginLeft: '3%',         //余白(左)
         marginRight: '3%',      //余白(右)
         // flexDirection: 'row',       //主軸の方向（row,row-reverse,column,column-reverse)

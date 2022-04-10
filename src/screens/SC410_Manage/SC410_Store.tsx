@@ -24,7 +24,7 @@ const DEfAULT_ScreenControllerInfo = {
 }
 
 const DEFAULT_userProfileInfo = {
-    userId: "xxx",
+    userId: "",
     userName: "",
     comment: "",
     latestLoginDatatime: "",

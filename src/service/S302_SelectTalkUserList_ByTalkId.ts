@@ -5,7 +5,6 @@ import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId } from '
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
 import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { T101_TalkUser } from '../common/C020_FirebaseUtil_Types';
-import { s140_SelectUser } from "./S140_SelectUser"
 import { s290_SelectTalkUser } from "./S290_SelectTalkUser"
 
 const SERVICE_ID = "S302"

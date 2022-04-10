@@ -57,7 +57,8 @@ export const s303_SelectTalkUserList_ByUserId_Detail = async (userId: string) =>
     }
     // ---------------------------------------------------------------------------------------------------------
     // 終了ログ
-    c060_DebugLog(SERVICE_ID, "END", [resultObj])
+    // c060_DebugLog(SERVICE_ID, "END", [resultObj])
+    c060_DebugLog(SERVICE_ID, "END", [])
     // ---------------------------------------------------------------------------------------------------------
     return resultObj
 }
