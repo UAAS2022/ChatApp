@@ -3,6 +3,7 @@ import { collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs,
 import { query, where, orderBy, limit } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId, c020_CheckUnique, c020_CreateSecId } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
+import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { S000_SeqId, T100_Talk } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S210"
@@ -12,6 +13,10 @@ export const s210_CreateTalk = async (
     talkKbn: string,
     logUserId: string
 ) => {
+    // ---------------------------------------------------------------------------------------------------------
+    // 開始ログ
+    c060_DebugLog(SERVICE_ID, "START", [])
+    // ---------------------------------------------------------------------------------------------------------
     // エラーフラグを初期化
     let errFlg = "0"
     // ①トークIDを採番------------------------------------------------------------------------
@@ -46,5 +51,9 @@ export const s210_CreateTalk = async (
             talkId: docId
         }
     }
+    // ---------------------------------------------------------------------------------------------------------
+    // 終了ログ
+    c060_DebugLog(SERVICE_ID, "END", [resultObj])
+    // ---------------------------------------------------------------------------------------------------------
     return resultObj
 }

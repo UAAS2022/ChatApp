@@ -3,6 +3,7 @@ import { collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs,
 import { query, where, orderBy, limit, } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId, c020_UpdateDocId, c020_CreateSecId } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
+import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { T110_ChatMessage } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S310"
@@ -14,6 +15,8 @@ export const s310_CreateChatMessage = async (
     message: string,
     logUserId: string
 ) => {
+    // 開始ログ
+    c060_DebugLog(SERVICE_ID, "START", [])
     // エラーフラグを初期化
     let errFlg = "0"
 
@@ -80,5 +83,9 @@ export const s310_CreateChatMessage = async (
         errFlg: errFlg,
         result_FB2: result_FB_2,
     }
+    // ---------------------------------------------------------------------------------------------------------
+    // 終了ログ
+    c060_DebugLog(SERVICE_ID, "END", [resultObj])
+    // ---------------------------------------------------------------------------------------------------------
     return resultObj
 }

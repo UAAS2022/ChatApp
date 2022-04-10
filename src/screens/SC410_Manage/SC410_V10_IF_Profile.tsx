@@ -10,6 +10,7 @@ import {
     Text,
     Image,
 } from 'react-native';
+import { SC000_S_Context } from '../../screens/SC000_BaseComponent/SC000_Store'
 import { SC410_V05_ManageHeader } from './SC410_V05_ManageHeader';
 import { SC410_Style } from './SC410_Style';
 import { SC410_S_Context } from './SC410_Store'
@@ -21,12 +22,15 @@ import { SC120_Style } from '../SC120_UserProfile/SC120_Style';
 
 const USERID = "DAHYUN"
 export const SC410_V10_IF_Profile = (props: any) => {
+    // ①ScreenContextを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // ②ScreenContextを取得する
     const { state: screenState, dispatch: screenDispatch } = useContext(SC410_S_Context)
     // ③ローカルステートを定義する
 
     // ④propsからデータを取得する
-    const userId = USERID
+    // const userId = USERID
+    const userId = baseState.loginUserInfo.userId
 
     // ユーザプロフィール情報取得イベントハンドラ
     const getUserProfileInfo = async () => {

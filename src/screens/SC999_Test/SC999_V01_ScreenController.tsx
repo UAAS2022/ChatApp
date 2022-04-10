@@ -35,6 +35,7 @@ import { SC999_V20_ChatMessage_Pre1 } from "./SC999_V20_ChatMessage_Pre1"
 import { SC999_V21_Login_Demo } from "./SC999_V21_Login_Demo"
 import { SC999_V22_ChatMessage_Pre2 } from "./SC999_V22_ChatMessage_Pre2"
 import { SC999_V23_ChatMessage_Pre3 } from "./SC999_V23_ChatMessage_Pre3"
+import { SC999_V24_AnyTest } from "./SC999_V24_AnyTest"
 
 // スクリーンコンポーネント
 export const SC999_V01_ScreenController = () => {
@@ -81,6 +82,8 @@ export const SC999_V01_ScreenController = () => {
             return <SC999_V22_ChatMessage_Pre2 />
         case SC999_COMPONENT_ID.SC999_V23:
             return <SC999_V23_ChatMessage_Pre3 />
+        case SC999_COMPONENT_ID.SC999_V24:
+            return <SC999_V24_AnyTest />
         default:
             return <SC999_V02_Default />
     }

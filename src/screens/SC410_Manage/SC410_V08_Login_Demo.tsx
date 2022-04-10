@@ -107,16 +107,6 @@ export const SC410_V08_Login_Demo = () => {
             const loginUserInfo = (await result_SC140).userInfo
             // 2.2.コンテキストに格納する
             // 2.2.1.新しいステートを定義する
-            // let newBaseState_loginUserInfo = { ...baseState.loginUserInfo }
-            // newBaseState_loginUserInfo.userId = loginUserInfo.UserId
-            // newBaseState_loginUserInfo.userName = loginUserInfo.UserName
-            // newBaseState_loginUserInfo.comment = loginUserInfo.Comment
-            // newBaseState_loginUserInfo.latestLoginDatatime = loginUserInfo.LatestLoginDatatime.toDate()
-            // newBaseState_loginUserInfo.profileImagePath = loginUserInfo.ProfileImagePath
-            // newBaseState_loginUserInfo.genderCd = loginUserInfo.GenderCd
-            // newBaseState_loginUserInfo.age = loginUserInfo.Age
-            // newBaseState_loginUserInfo.areaCd = loginUserInfo.AreaCd
-            // newBaseState_loginUserInfo.hashtag = loginUserInfo.Hashtags
             let newBaseState = { ...baseState }
             newBaseState.loginUserInfo.userId = loginUserInfo.UserId
             newBaseState.loginUserInfo.userName = loginUserInfo.UserName
@@ -129,10 +119,18 @@ export const SC410_V08_Login_Demo = () => {
             newBaseState.loginUserInfo.hashtag = loginUserInfo.Hashtags
             // 2.2.2.dispatchする
             baseDispatch(SC000_UPDATE_LOGIN_USER(newBaseState.loginUserInfo))
-            // ログ出力
-            console.log("SC410_V08_Login_Demo loginUserInfo---------------------------------------------")
-            console.log(baseState.loginUserInfo)
-            console.log("SC410_V08_Login_Demo loginUserInfo---------------------------------------------")
+            // テスト用
+            //ダイアログ
+            Alert.alert("成功",
+                "ログイン処理に成功しました。",
+                [{ text: 'OK', onPress: () => { } }]
+            )
+        } else {
+            //ダイアログ
+            Alert.alert("エラー",
+                "ログイン処理に失敗しました。",
+                [{ text: 'OK', onPress: () => { } }]
+            )
         }
 
     }
