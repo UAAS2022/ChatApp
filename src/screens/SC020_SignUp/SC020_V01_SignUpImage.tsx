@@ -10,17 +10,24 @@ import {
     Spacer,
     Avatar,
     AlertStatus,
-} from '@chakra-/react';
+
+    Button
+} from "@chakra-ui/react";
+import { ref, uploadBytes } from 'firebase/storage';
+import {
+    // Button,
+    Alert,
+} from 'react-native'
 import Resizer from 'react-image-file-resizer';
-import { db, storage } from '../../firebase';
-import FormButton from '../atom/FormButton';
+import { SG_FIREBASE, DB_FIREBASE } from '../../common/C020_FirebaseUtil';
+// import FormButton from '../atom/FormButton'; reactのブットンで代用してみる
 
 type Props = {
     valueAvatar: string | undefined;
     userId: string;
 };
 
-const EditAvatar: VFC<Props> = memo(({ valueAvatar, userId }) => {
+export const EditAvatar: VFC<Props> = memo(({ valueAvatar, userId }) => {
     const [avatar, setAvatar] = useState<string>('');
     const [filename, setFilename] = useState<string>();
     const toast = useToast();
@@ -41,34 +48,42 @@ const EditAvatar: VFC<Props> = memo(({ valueAvatar, userId }) => {
             );
         });
 
-    const onSubmitAvatar = async () => {
-        let toastTitle = 'アイコンを更新しました';
-        let toastStatus: AlertStatus = 'success';
-        try {
-            // deta_url形式でアップロード
-            await storage.ref(`avatars/${userId}`).putString(avatar, 'data_url');
-            // アップしたurlを受け取ってfirestoreに保存
-            const url = (await storage
-                .ref('avatars')
-                .child(userId)
-                .getDownloadURL()) as string;
-            await db.collection('users').doc(userId).update({ avatar: url });
-        } catch (error) {
-            toastTitle = 'アップロードに失敗しました';
-            toastStatus = 'error';
-        } finally {
-            // アップロードの結果をトーストで表示
-            setAvatar('');
-            setFilename('');
-            toast({
-                title: toastTitle,
-                status: toastStatus,
-                position: 'top',
-                duration: 9000,
-                isClosable: true,
-            });
-        }
-    };
+    // const onSubmitAvatar = async () => {
+    //     let toastTitle = 'アイコンを更新しました';
+    //     let toastStatus: AlertStatus = 'success';
+    //     try {
+    //         // deta_url形式でアップロード
+    //         await SG_FIREBASE.ref(`avatars/${userId}`).putString(avatar, 'data_url');
+    //         // アップしたurlを受け取ってfirestoreに保存
+    //         const url = (await SG_FIREBASE
+    //             .ref('avatars')
+    //             .child(userId)
+    //             .getDownloadURL()) as string;
+    //         await DB_FIREBASE.collection('users').doc(userId).update({ avatar: url });
+    //     } catch (error) {
+    //         toastTitle = 'アップロードに失敗しました';
+    //         toastStatus = 'error';
+    //     } finally {
+    //         // アップロードの結果をトーストで表示
+    //         setAvatar('');
+    //         setFilename('');
+    //         toast({
+    //             title: toastTitle,
+    //             status: toastStatus,
+    //             position: 'top',
+    //             duration: 9000,
+    //             isClosable: true,
+    //         });
+    //     }
+    // };
+
+    const onSubmitAvatar = () => {
+        Alert.alert("エラー",
+            "ログイン処理に失敗しました。",
+            [{ text: 'OK', onPress: () => { } }]
+        )
+    }
+
 
     const onChangeAvatar = async (e: React.ChangeEvent<HTMLInputElement>) => {
         // ファイル名表示用
@@ -141,13 +156,13 @@ const EditAvatar: VFC<Props> = memo(({ valueAvatar, userId }) => {
 
                         <Spacer />
                         <Box display="inline-block">
-                            <FormButton
+                            <Button
                                 onClick={onSubmitAvatar}
                                 display="inline-block"
                                 isDisabled={!filename}
                             >
                                 更新する
-                            </FormButton>
+                            </Button>
                         </Box>
                     </Flex>
                 </FormControl>
