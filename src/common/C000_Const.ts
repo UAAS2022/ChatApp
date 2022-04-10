@@ -12,6 +12,7 @@ export const CONST_SC000 = {
         SC310: "SC310",
         SC320: "SC320",
         SC410: "SC420",
+        SC430: "SC430",
         SC950: "SC950",
         SC998: "SC998",
         SC999: "SC999",
