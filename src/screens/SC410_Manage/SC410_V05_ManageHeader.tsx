@@ -69,18 +69,18 @@ export const SC410_V05_ManageHeader = (props: object) => {
     // ---------------------------------------------------------------------------------------------------------
 
     return (
+        <>
+            <View style={SC410_Style.v08_ProfileHeader} >
 
-        <View style={SC410_Style.v08_ProfileHeader} >
 
+                <Button style={SC410_Style.v05_BackBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC}>
+                    戻る
+                </Button>
+                <Button style={SC410_Style.v09_HensyuBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC2}>
+                    編集
+                </Button>
 
-            <Button style={SC410_Style.v05_BackBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC}>
-                戻る
-            </Button>
-            <Button style={SC410_Style.v09_HensyuBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC2}>
-                編集
-            </Button>
-
-        </View>
-
+            </View>
+        </>
     )
 }

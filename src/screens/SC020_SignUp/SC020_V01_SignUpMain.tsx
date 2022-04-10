@@ -208,6 +208,19 @@ export const SC020_V01_SignUpMain = () => {
                         value={localState.comment}
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box>
+                {/* <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    fontSize: "md",
+                    fontWeight: "medium",
+                    color: "warmGray.50",
+                    letterSpacing: "lg"
+                }}>
+                    写真
+                </Box> */}
+                {/* <Box alignItems="flex-start">
+                    <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
+                        value={localState.comment}
+                        onChangeText={(value) => { onChangeComment(value) }} />
+                </Box> */}
                 <Box alignItems="center">
                     <Button onPress={onClickRegistBtn}>おしてね😎</Button>
                 </Box>
