@@ -10,7 +10,6 @@ export type SC410_Provider = {
 
 // 画面ごとのcontextを定義する
 // ==============================================================
-// S999_Contextで、ほぼ固定
 export type SC410_Context = {
     screenControllerInfo: SC410_ScreenController,
     screenInfo_SC420:SC420_ScreenInfo
