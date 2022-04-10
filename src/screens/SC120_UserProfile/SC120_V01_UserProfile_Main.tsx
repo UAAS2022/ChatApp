@@ -30,6 +30,7 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { dateToString } from "../../common/C050_DateUtil"
 import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
 import { CONST_SC000 } from "../../common/C000_Const"
+import { c060_DebugLog } from "../../common/C060_LogUtil"
 import { useState_SC000_ScreenController } from "../SC000_BaseComponent/SC000_V00_BaseComponent"
 import { SC120_Style } from "./SC120_Style"
 import type { SC120_Context, SC120_UserProfileInfo, } from './SC120_Types'
@@ -43,7 +44,7 @@ import { s260_CreateTalkUser } from "../../service/S260_CreateTalkUser"
 import { s301_SelectTalkUserList_ByUserId } from "../../service/S301_SelectTalkUserList_ByUserId"
 import { s303_SelectTalkUserList_ByUserId_Detail } from "../../service/S303_SelectTalkUserList_ByUserId_Detail"
 
-
+const SCREEN_ID = "SC120"
 
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC120_UserProfileInfo): boolean => {
@@ -123,6 +124,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
     }
 
     const onClickStartChat = async () => {
+        c060_DebugLog(SCREEN_ID, "START", [], "onClickStartChat")
         // 1. Firebaseにデータを登録する
         // すでに登録済みかどうかをチェックし、未登録の場合のみ登録する。
         // const result_S301 = await s301_SelectTalkUserList_ByUserId(loginUserId)
@@ -137,6 +139,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
 
     // 1. Firebaseにデータを登録する
     const createTalkInfo = async () => {
+        c060_DebugLog(SCREEN_ID, "START", [], "createTalkInfo")
         // 1. トーク情報を登録する
         const result_S210 = await s210_CreateTalk("", "1", loginUserId)
         // 2. トークユーザ情報を登録する
@@ -151,6 +154,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
 
     // 2. 画面遷移する
     const gotoSC210 = () => {
+        c060_DebugLog(SCREEN_ID, "START", [], "gotoSC210")
         // 2.1.画面IDを更新する
         // BaseComponentの画面IDを更新する
         updateBaseScreenId(CONST_SC000.SCREENID.SC210)

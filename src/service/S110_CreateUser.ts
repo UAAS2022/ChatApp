@@ -3,6 +3,7 @@ import { collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs,
 import { query, where, orderBy, limit } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId, c020_CheckUnique } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
+import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { M050_User } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S110"
@@ -18,8 +19,10 @@ export const s110_CreateUser = async (
     hashtags: string,
     logUserId: string
 ) => {
-    // コンソールログ
-    console.log("s110_CreateUser")
+    // ---------------------------------------------------------------------------------------------------------
+    // 開始ログ
+    c060_DebugLog(SERVICE_ID, "START", [])
+    // ---------------------------------------------------------------------------------------------------------
     // エラーフラグを初期化
     let errFlg = "0"
     // ドキュメントIDを定義
@@ -60,5 +63,9 @@ export const s110_CreateUser = async (
             userId: userId
         }
     }
+    // ---------------------------------------------------------------------------------------------------------
+    // 終了ログ
+    c060_DebugLog(SERVICE_ID, "END", [resultObj])
+    // ---------------------------------------------------------------------------------------------------------
     return resultObj
 }

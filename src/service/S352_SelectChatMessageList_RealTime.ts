@@ -4,6 +4,7 @@ import { query, where, orderBy, limit } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
 import type { T110_ChatMessage } from '../common/C020_FirebaseUtil_Types';
+import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { SC999_ChatMessageInfo } from "../screens/SC999_Test/SC999_Types"
 
 const SERVICE_ID = "S352"
@@ -12,6 +13,9 @@ export const s352_SelectChatMessageList_RealTime = async (
     talkId: string,
     setChatMessageInfoList: (value: React.SetStateAction<SC999_ChatMessageInfo[]>) => void
 ) => {
+    // 開始ログ
+    c060_DebugLog(SERVICE_ID, "START", [])
+    // チャットメーセージ情報リストを初期化
     const newChatMessageInfoList = [] as SC999_ChatMessageInfo[];
     // クエリを定義
     const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T110_ChatMessage), where("TalkId", "==", talkId), orderBy("Seq", "asc"), limit(1000))
@@ -51,4 +55,8 @@ export const s352_SelectChatMessageList_RealTime = async (
             // }
         });
     });
+    // ---------------------------------------------------------------------------------------------------------
+    // 終了ログ
+    c060_DebugLog(SERVICE_ID, "END", [])
+    // ---------------------------------------------------------------------------------------------------------
 };

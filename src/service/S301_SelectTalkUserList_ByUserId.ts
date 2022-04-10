@@ -3,13 +3,16 @@ import { collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs,
 import { query, where, orderBy, limit } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
+import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { T101_TalkUser, M050_User, T100_Talk, } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S301"
 
 export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
-    //console.log("s303_SelectTalkUserList_ByUserId_Simple：開始------------------------------")
-    //console.log("userId", userId)
+    // ---------------------------------------------------------------------------------------------------------
+    // 開始ログ
+    c060_DebugLog(SERVICE_ID, "START", [])
+    // ---------------------------------------------------------------------------------------------------------
     // 戻り値用のリストを定義
     let talkUserList = [] as T101_TalkUser[]
     // クエリを定義
@@ -29,7 +32,9 @@ export const s301_SelectTalkUserList_ByUserId = async (userId: string) => {
     const resultObj = {
         talkUserList: talkUserList
     }
-    //console.log("resultObj.talkUserInfoList_Detail.length:", resultObj.talkUserList.length)
-    //console.log("s303_SelectTalkUserList_ByUserId_Simple：終了------------------------------")
+    // ---------------------------------------------------------------------------------------------------------
+    // 終了ログ
+    c060_DebugLog(SERVICE_ID, "END", [resultObj])
+    // ---------------------------------------------------------------------------------------------------------
     return resultObj
 }
