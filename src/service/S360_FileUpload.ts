@@ -20,17 +20,14 @@ export const s360_FileUpload = async (
     // エラーフラグを初期化
     let errFlg = "0"
     // ファイルのリファレンスを取得する
-    const storageRef = ref(SG_FIREBASE);
+    const storageRef = ref(SG_FIREBASE, userId + "/mountains.jpg");
     // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, file).then((snapshot) => {
+    await uploadBytes(storageRef, file).then((snapshot) => {
         console.log('Uploaded a blob or file!');
     });
     // 返却処理
     const resultObj = {
         errFlg: errFlg,
-        returnInfo: {
-            userId: userId
-        }
     }
     // ---------------------------------------------------------------------------------------------------------
     // 終了ログ
