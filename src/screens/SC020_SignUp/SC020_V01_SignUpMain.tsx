@@ -10,12 +10,14 @@ import {
 } from "native-base"
 import {
     StyleSheet,
+    Image
 
 } from 'react-native'
 import { SC020_InputUserInfo } from './SC020_Types';
 import { s110_CreateUser } from '../../service/S110_CreateUser';
 import { s111_CreateUser_withPrivate } from '../../service/S111_CreateUser_withPrivate';
 import { s160_CreateUserPrivate } from '../../service/S160_CreateUserPrivate';
+import * as ImagePicker from 'expo-image-picker';
 
 export const SC020_V01_SignUpMain = () => {
     const [localState, setLocalState] = useState<SC020_InputUserInfo>({} as SC020_InputUserInfo);
@@ -123,10 +125,27 @@ export const SC020_V01_SignUpMain = () => {
         // // M051生成
         // createM051()
     }
+    const [image, setImage] = useState("https://instagrammernewsimg.s3.ap-northeast-1-ntt.wasabisys.com/CAWoZoPlcx7");
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        if (!result.cancelled) {
+            setImage(result.uri);
+        }
+    };
 
     return (
         <>
             <Box>
+                <Button style={{ width: 150, height: 150 }} onPress={pickImage} >
+                    <Image source={{ uri: image }} style={{ width: 150, height: 150 }} />
+                </Button>
                 <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",
                     fontWeight: "medium",
