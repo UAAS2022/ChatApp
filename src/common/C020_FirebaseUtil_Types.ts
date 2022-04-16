@@ -92,4 +92,5 @@ export type S000_SeqId = {
     _CrtServiceId: string,
     _CrtDatetime: Timestamp,
 }
+
 // --------------------------------------------------------------
