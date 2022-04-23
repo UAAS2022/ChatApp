@@ -22,6 +22,7 @@ export const s110_CreateUser = async (
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
     c060_DebugLog(SERVICE_ID, "START", [])
+    console.log(userId, userName, comment, profileImagePath, genderCd, age, areaCd, hashtags, logUserId)
     // ---------------------------------------------------------------------------------------------------------
     // エラーフラグを初期化
     let errFlg = "0"

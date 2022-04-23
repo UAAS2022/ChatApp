@@ -47,9 +47,6 @@ export const SC410_V03_TopArea = (props: object) => {
     return (
         <>
             <Image source={require(Path)} resizeMode='contain' style={SC410_Style.v00_murata} />
-
         </>
-
-
     )
 }
