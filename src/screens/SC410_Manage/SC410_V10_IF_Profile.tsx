@@ -18,11 +18,12 @@ import { s140_SelectUser } from "../../service/S140_SelectUser"
 import { dateToString } from "../../common/C050_DateUtil"
 import { UPDATE_USERPROFILE } from "../SC120_UserProfile/SC120_Action"
 import { SC120_Style } from '../SC120_UserProfile/SC120_Style';
+import { s370_FileDownload } from '../../service/S370_FileDownload';
 
 
 const USERID = "DAHYUN"
 export const SC410_V10_IF_Profile = (props: any) => {
-    // ①ScreenContextを取得する
+    // ①BaseContextを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // ②ScreenContextを取得する
     const { state: screenState, dispatch: screenDispatch } = useContext(SC410_S_Context)
@@ -36,13 +37,18 @@ export const SC410_V10_IF_Profile = (props: any) => {
     const getUserProfileInfo = async () => {
         // ①Firebaseからデータを取得する
         const result_S140 = await s140_SelectUser(userId)
+        // 画像パスを変換する
+        const result_S370 = await s370_FileDownload(result_S140.userInfo.ProfileImagePath)
+        const filePath = result_S370.fileUrl
+        console.log("プロフィール画像パス", filePath)
         // ②データをuserInfoListステートに合わせる
         const newState = { ...screenState }
+        // ローカルステートに格納する
         newState.screenInfo_SC420.userProfileInfo.userId = result_S140.userInfo.UserId
         newState.screenInfo_SC420.userProfileInfo.userName = result_S140.userInfo.UserName
         newState.screenInfo_SC420.userProfileInfo.comment = result_S140.userInfo.Comment
         newState.screenInfo_SC420.userProfileInfo.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD")
-        newState.screenInfo_SC420.userProfileInfo.profileImagePath = result_S140.userInfo.ProfileImagePath
+        newState.screenInfo_SC420.userProfileInfo.profileImagePath = filePath
         newState.screenInfo_SC420.userProfileInfo.genderCd = result_S140.userInfo.GenderCd
         newState.screenInfo_SC420.userProfileInfo.age = result_S140.userInfo.Age
         newState.screenInfo_SC420.userProfileInfo.areaCd = result_S140.userInfo.AreaCd
