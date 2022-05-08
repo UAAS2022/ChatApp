@@ -11,7 +11,6 @@ import {
 import {
     StyleSheet,
     Image
-
 } from 'react-native'
 import { SC020_InputUserInfo } from './SC020_Types';
 import { s110_CreateUser } from '../../service/S110_CreateUser';

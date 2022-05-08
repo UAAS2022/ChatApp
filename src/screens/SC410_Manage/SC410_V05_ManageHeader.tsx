@@ -4,21 +4,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import {
     // View,
     Button,
-    Stack,
-    Icon,
-    Modal,
-    Center,
-    NativeBaseProvider,
-    Heading,
-    Flex,
-    Divider,
-    Box,
-    HStack,
-    Avatar,
-    VStack,
-    Text,
-    Spacer,
-    SectionList,
 } from "native-base"
 import {
     StyleSheet,
@@ -76,7 +61,7 @@ export const SC410_V05_ManageHeader = (props: object) => {
                 <Button style={SC410_Style.v05_BackBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC}>
                     戻る
                 </Button>
-                <Button style={SC410_Style.v09_HensyuBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC2}>
+                <Button style={SC410_Style.v09_HensyuBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC}>
                     編集
                 </Button>
 
