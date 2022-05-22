@@ -16,56 +16,71 @@ import { SC020_InputUserInfo } from './SC020_Types';
 import { s110_CreateUser } from '../../service/S110_CreateUser';
 import { s111_CreateUser_withPrivate } from '../../service/S111_CreateUser_withPrivate';
 import { s160_CreateUserPrivate } from '../../service/S160_CreateUserPrivate';
+import { s361_ProfileImageUpload } from '../../service/S361_ProfileImageUpload';
+import { s410_FbAuthLogin } from '../../service/S410_FbAuthLogin';
 import * as ImagePicker from 'expo-image-picker';
 
+const Default_LocalState_UserInfo = {
+    userId: "",
+    password: "",
+    userName: "",
+    comment: "",
+    profileImagePath: "",
+    genderCd: "",
+    age: 0,
+    areaCd: "",
+}
+
 export const SC020_V01_SignUpMain = () => {
-    const [localState, setLocalState] = useState<SC020_InputUserInfo>({} as SC020_InputUserInfo);
+    //  ②ローカルステートを定義
+    const [localState_UserInfo, setLocalState_UserInfo] = useState<SC020_InputUserInfo>(Default_LocalState_UserInfo as SC020_InputUserInfo);
+    const [localState_ImagePath, setLocalState_ImageUri] = useState("https://instagrammernewsimg.s3.ap-northeast-1-ntt.wasabisys.com/CAWoZoPlcx7");
 
     //onChangeイベントハンドラ（テキストインプットの中身が変わるたびにステートを更新する）
     // --------------------------------------------------------------
     //ユーザID
     const onChangeUserId = (value: string) => {
-        const newState = { ...localState, userId: value }
-        setLocalState(newState)
+        const newState = { ...localState_UserInfo, userId: value }
+        setLocalState_UserInfo(newState)
         //console.log("userId", newState.userId)
 
     }
     //パスワード
     const onChangePassword = (value: string) => {
-        const newState = { ...localState, password: value }
-        setLocalState(newState)
+        const newState = { ...localState_UserInfo, password: value }
+        setLocalState_UserInfo(newState)
         //console.log("password", newState.password)
     }
     //ユーザ名
     const onChangeUserName = (value: string) => {
-        const newState = { ...localState, userName: value }
-        setLocalState(newState)
+        const newState = { ...localState_UserInfo, userName: value }
+        setLocalState_UserInfo(newState)
         //console.log("userName", newState.userName)
     }
     //雌雄
     const onChangegenderCd = (value: string) => {
-        const newState = { ...localState, genderCd: value }
-        setLocalState(newState)
+        const newState = { ...localState_UserInfo, genderCd: value }
+        setLocalState_UserInfo(newState)
         //console.log("genderCd", newState.genderCd)
     }
     //コメント
     const onChangeComment = (value: string) => {
-        const newState = { ...localState, comment: value }
-        setLocalState(newState)
+        const newState = { ...localState_UserInfo, comment: value }
+        setLocalState_UserInfo(newState)
         //console.log("comment", newState.comment)
     }
 
     // M050生成
     const createM050 = async () => {
-        const userId = localState.userId
-        const userName = localState.userName
-        const comment = localState.comment
-        const genderCd = localState.genderCd
+        const userId = localState_UserInfo.userId
+        const userName = localState_UserInfo.userName
+        const comment = localState_UserInfo.comment
+        const genderCd = localState_UserInfo.genderCd
         const profileImagePath = ""
         const age = 5
         const areaCd = "1"
         const hashtags = "1"
-        const logUserId = localState.userId
+        const logUserId = localState_UserInfo.userId
         await s110_CreateUser(
             userId,
             userName,
@@ -80,9 +95,9 @@ export const SC020_V01_SignUpMain = () => {
     // M051生成
     const createM051 = async () => {
         // ユーザプライベート情報登録
-        const userId = localState.userId
-        const password = localState.password
-        const logUserId = localState.userId
+        const userId = localState_UserInfo.userId
+        const password = localState_UserInfo.password
+        const logUserId = localState_UserInfo.userId
         await s160_CreateUserPrivate(
             userId,
             userId,
@@ -92,39 +107,65 @@ export const SC020_V01_SignUpMain = () => {
     }
     // M050,M051生成
     const createM050M051 = async () => {
-        const userId = localState.userId
-        const password = localState.password
-        const userName = localState.userName
-        const comment = localState.comment
-        const genderCd = localState.genderCd
-        const profileImagePath = ""
+        const userId = localState_UserInfo.userId
+        const password = localState_UserInfo.password
+        const userName = localState_UserInfo.userName
+        const comment = localState_UserInfo.comment
+        const genderCd = localState_UserInfo.genderCd
+        const profileImagePath = "100_User/" + userId + "/" + "profile.png"
         const age = 5
         const areaCd = "1"
         const hashtags = "1"
-        const logUserId = localState.userId
-        await s111_CreateUser_withPrivate(
+        const logUserId = localState_UserInfo.userId
+        console.log(localState_UserInfo)
+        const result_S111 = await s111_CreateUser_withPrivate(
             userId,
             password,
             userName,
             comment,
-            genderCd,
             profileImagePath,
+            genderCd,
             age,
             areaCd,
             hashtags,
             logUserId)
+        return result_S111.errFlg
+    }
+
+    // 画像アップロード
+    const uploadProfileImage = () => {
+        // ローカルStateから情報を取得する
+        const userId = localState_UserInfo.userId
+        // プロフィール画像をアップロードする
+        s361_ProfileImageUpload(userId, localState_ImagePath)
+    }
+
+    // Firebaseユーザ追加
+    const createFbAuthUser = async () => {
+        // 認証情報を取得する
+        const userId = localState_UserInfo.userId
+        const password = localState_UserInfo.password
+        // Firebaseにユーザ登録する
+        await s410_FbAuthLogin(userId, password)
     }
 
     // 登録イベントハンドラ
-    const onClickRegistBtn = () => {
+    const onClickRegistBtn = async () => {
+        let errFlg = "0"
+        // テスト
+        createFbAuthUser()
         // M050,M051生成
-        createM050M051()
+        errFlg = await createM050M051()
+        // ユーザ作成に成功したら、画像をアップロードする
+        if (errFlg === "0") {
+            uploadProfileImage()
+        }
         // // M050生成
         // createM050()
         // // M051生成
         // createM051()
     }
-    const [image, setImage] = useState("https://instagrammernewsimg.s3.ap-northeast-1-ntt.wasabisys.com/CAWoZoPlcx7");
+    // const [imagePath, setImagePath] = useState("https://instagrammernewsimg.s3.ap-northeast-1-ntt.wasabisys.com/CAWoZoPlcx7");
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -135,7 +176,7 @@ export const SC020_V01_SignUpMain = () => {
         });
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setLocalState_ImageUri(result.uri);
         }
     };
 
@@ -143,7 +184,7 @@ export const SC020_V01_SignUpMain = () => {
         <>
             <Box>
                 <Button style={{ width: 150, height: 150 }} onPress={pickImage} >
-                    <Image source={{ uri: image }} style={{ width: 150, height: 150 }} />
+                    <Image source={{ uri: localState_ImagePath }} style={{ width: 150, height: 150 }} />
                 </Button>
                 <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",
@@ -157,7 +198,7 @@ export const SC020_V01_SignUpMain = () => {
                     <Input w={{
                         base: "75%",
                         md: "25%"
-                    }} placeholder="ユーザーID" value={localState.userId}
+                    }} placeholder="ユーザーID" value={localState_UserInfo.userId}
                         onChangeText={(value) => { onChangeUserId(value) }} />
                     <Box alignSelf="flex-start" bg="primary.500" _text={{
                         fontSize: "md",
@@ -171,7 +212,7 @@ export const SC020_V01_SignUpMain = () => {
                         base: "75%",
                         md: "25%"
                     }} placeholder="パスワード"
-                        value={localState.password}
+                        value={localState_UserInfo.password}
                         onChangeText={(value) => { onChangePassword(value) }} />
                 </Stack>
                 {/* 名前BOX */}
@@ -185,7 +226,7 @@ export const SC020_V01_SignUpMain = () => {
                 </Box>
                 <Box alignItems="flex-start">
                     <Input mx="0" placeholder="ニックネーム" w="75%" maxWidth="300px"
-                        value={localState.userName}
+                        value={localState_UserInfo.userName}
                         onChangeText={(value) => { onChangeUserName(value) }} />
                 </Box>
                 {/* 性別BOX */}
@@ -199,11 +240,11 @@ export const SC020_V01_SignUpMain = () => {
                 </Box>
                 {/* <Box alignItems="flex-start">
                     <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
-                        value={localState.genderCd}
+                        value={localState_UserInfo.genderCd}
                         onChangeText={(value) => { onChangegenderCd(value) }} />
                 </Box> */}
                 <Box alignItems="flex-start">
-                    <Select selectedValue={localState.genderCd} minWidth="200" accessibilityLabel="♂ or ♀" placeholder="♂ or ♀"
+                    <Select selectedValue={localState_UserInfo.genderCd} minWidth="200" accessibilityLabel="♂ or ♀" placeholder="♂ or ♀"
                         _selectedItem={{
                             bg: "teal.600",
                             endIcon: <CheckIcon size="5" />
@@ -224,7 +265,7 @@ export const SC020_V01_SignUpMain = () => {
                 </Box>
                 <Box alignItems="flex-start">
                     <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
-                        value={localState.comment}
+                        value={localState_UserInfo.comment}
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box>
                 {/* <Box alignSelf="flex-start" bg="primary.500" _text={{
@@ -237,7 +278,7 @@ export const SC020_V01_SignUpMain = () => {
                 </Box> */}
                 {/* <Box alignItems="flex-start">
                     <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
-                        value={localState.comment}
+                        value={localState_UserInfo.comment}
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box> */}
                 <Box alignItems="center">

@@ -10,9 +10,11 @@ import {
     Flex,
     Divider,
     Input,
+    // Image,
+    Box,
 } from "native-base"
 import {
-    Button as Button_Def,
+    Button as SimpleBtn,
     StyleSheet,
     TextInput,
     SafeAreaView,
@@ -26,10 +28,12 @@ import {
     NativeScrollEvent,
     NativeSyntheticEvent,
     NativeModules,
+    Image,
 } from 'react-native';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
 import { SC999_Style } from "./SC999_Style"
+import { SC410_Style } from "../SC410_Manage/SC410_Style"
 import type { SC999_ChatMessageInfo, SC999_V20_MessageItem } from './SC999_Types'
 import { CONST_SC999_V20 } from "./SC999_Const"
 import { c010_UaasUtil_isNotBlank, c010_UaasUtil_isNotEmpty } from '../../common/C010_UaasUtil'
@@ -40,7 +44,9 @@ import { s351_SelectChatMessageList_New } from "../../service/S351_SelectChatMes
 import { s352_SelectChatMessageList_RealTime } from "../../service/S352_SelectChatMessageList_RealTime"
 import { launchImageLibrary, launchCamera } from "react-native-image-picker";
 import { MediaType } from "react-native-image-picker";
-import { s360_FileUpload } from "../../service/S360_FileUpload"
+import { s361_ProfileImageUpload } from "../../service/S361_ProfileImageUpload"
+import { s370_FileDownload } from '../../service/S370_FileDownload';
+import * as ImagePicker from 'expo-image-picker';
 
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC999_ChatMessageInfo): boolean => {
@@ -93,6 +99,7 @@ export const SC999_V24_AnyTest = () => {
                 <SC999_V24_ImagePicker2 />
                 <App />
                 <SC999_V24_Upload2Firebase />
+                <SC999_V24_Upload2Firebase2 />
             </ScrollView >
         </>
     )
@@ -243,17 +250,19 @@ const SC999_V24_Upload2Firebase = () => {
     // アップロード
     const userId = baseState.loginUserInfo.userId
     // File定義
-    const imageFile: File = require("../../static/img" + "/murata_unko.jpeg")
+    const Path = "../../static/img" + "/murata_unko.jpeg"
+    const imageFile: File = require(Path)
     // 実行関数定義
     const onPressUpload = async () => {
-        await s360_FileUpload(userId, imageFile)
-
+        await s361_ProfileImageUpload(userId, Path)
+        // await s360_FileUpload(userId, Path)
     }
     return (
         <>
+            {/* <Image source={require(Path)} resizeMode='contain' /> */}
             <View >
                 <Button size="md" variant="outline" onPress={onPressUpload}>
-                    onPressUpload
+                    SC999_V24_Upload2Firebase
                 </Button>
             </View>
         </>
@@ -261,4 +270,51 @@ const SC999_V24_Upload2Firebase = () => {
 }
 
 
+// ----------------------------------------------------------------------
+const SC999_V24_Upload2Firebase2 = () => {
+    // ①ベースコンテキストを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
+    // ②ローカルステートを取得する
+    const [imagePath, setImage] = useState("https://instagrammernewsimg.s3.ap-northeast-1-ntt.wasabisys.com/CAWoZoPlcx7");
+    // アップロード
+    const userId = baseState.loginUserInfo.userId
+    // File定義
+    const Path = "../../static/img" + "/murata_unko.jpeg"
+    const imageFile: File = require(Path)
+    // 実行関数定義
+    const onPressUpload = async () => {
+        await s361_ProfileImageUpload(userId, imagePath)
+        // await s360_FileUpload(userId, image)
+    }
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        if (!result.cancelled) {
+            console.log(result);
+            setImage(result.uri);
+        }
+    };
+
+    return (
+        <>
+            <Box>
+                <Button style={{ width: 140, height: 150 }} onPress={pickImage} >
+                    <Image source={{ uri: imagePath }} style={{ width: 150, height: 150 }} />
+                </Button>
+            </Box>
+            <View >
+                <Button size="md" variant="outline" onPress={onPressUpload}>
+                    SC999_V24_Upload2Firebase2
+                </Button>
+            </View>
+        </>
+    );
+};
 // ----------------------------------------------------------------------

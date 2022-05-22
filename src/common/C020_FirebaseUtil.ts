@@ -29,6 +29,7 @@ export const FIREBASE_COLLECTIONS = {
     T101_TalkUser: "T999_T101_TalkUser",
     T110_ChatMessage: "T999_T110_ChatMessage",
     M050_User: "T999_M050_User",
+    // M050_User: "T999_M050_User02",
     M051_UserPrivate: "T999_M051_UserPrivate",
     S110_ChatMessageId: "T999_S110_ChatMessageId",
     S100_TalkId: "T999_S100_TalkId",
