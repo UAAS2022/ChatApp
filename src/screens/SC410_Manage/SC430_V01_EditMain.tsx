@@ -12,7 +12,7 @@ import {
     StyleSheet,
 } from 'react-native'
 import { SC420_ScreenInfo } from './SC410_Types';
-import { s110_CreateUser } from '../../service/S110_CreateUser';
+import { s120_UpdateUser } from '../../service/S120_UpdateUser';
 
 export const SC430_V01_EditMain = () => {
     const [localState, setLocalState] = useState<SC420_ScreenInfo>({} as SC420_ScreenInfo);
@@ -20,18 +20,18 @@ export const SC430_V01_EditMain = () => {
     //onChangeイベントハンドラ（テキストインプットの中身が変わるたびにステートを更新する）
     // --------------------------------------------------------------
     //ユーザID
-    // const onChangeUserId = (value: string) => {
-    //     const newState = { ...localState, userId: value }
-    //     setLocalState(newState)
-    //     console.log("userId", newState.userId)
+    const onChangeUserId = (value: string) => {
+        const newState = { ...localState, userId: value }
+        setLocalState(newState)
+        console.log("userId", newState.userId)
 
-    // }
+    }
     // パスワード
-    // const onChangePassword = (value: string) => {
-    //     const newState = { ...localState, password: value }
-    //     setLocalState(newState)
-    //     console.log("password", newState.password)
-    // }
+    const onChangePassword = (value: string) => {
+        const newState = { ...localState, password: value }
+        setLocalState(newState)
+        console.log("password", newState.password)
+    }
     //ユーザ名
     const onChangeUserName = (value: string) => {
         const newState = { ...localState, userName: value }
@@ -39,11 +39,11 @@ export const SC430_V01_EditMain = () => {
         console.log("userName", newState.userName)
     }
     //雌雄
-    // const onChangegenderCd = (value: string) => {
-    //     const newState = { ...localState, genderCd: value }
-    //     setLocalState(newState)
-    //     console.log("genderCd", newState.genderCd)
-    // }
+    const onChangegenderCd = (value: string) => {
+        const newState = { ...localState, genderCd: value }
+        setLocalState(newState)
+        console.log("genderCd", newState.genderCd)
+    }
     //コメント
     const onChangeComment = (value: string) => {
         const newState = { ...localState, comment: value }
@@ -51,7 +51,7 @@ export const SC430_V01_EditMain = () => {
         console.log("comment", newState.comment)
     }
 
-    const createM050 = async () => {
+    const editM050 = async () => {
         const userId = localState.userProfileInfo.userId
         const userName = localState.userProfileInfo.userName
         const comment = localState.userProfileInfo.comment
@@ -61,7 +61,7 @@ export const SC430_V01_EditMain = () => {
         const areaCd = "1"
         const hashtags = "1"
         const logUserId = localState.userProfileInfo.userId
-        await s110_CreateUser(
+        await s120_UpdateUser(
             userId,
             userName,
             comment,
@@ -70,7 +70,9 @@ export const SC430_V01_EditMain = () => {
             age,
             areaCd,
             hashtags,
-            logUserId)
+            logUserId
+        )
+
     }
     return (
         <>
@@ -158,7 +160,7 @@ export const SC430_V01_EditMain = () => {
                     onChangeText={(value) => { onChangeComment(value) }} />
             </Box>
             <Box alignItems="center">
-                <Button onPress={createM050}>おしてね😎</Button>
+                <Button onPress={editM050}>PUSH</Button>
             </Box>
 
         </>

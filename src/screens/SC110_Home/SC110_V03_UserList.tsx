@@ -35,7 +35,7 @@ import { CHANGE_SCREEN, UPDATE_PREINFO_120 } from './SC110_Action'
 import { Context_SC110 } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
-
+import { s370_FileDownload } from '../../service/S370_FileDownload';
 
 export const SC110_V03_UserList = () => {
 
@@ -57,21 +57,45 @@ export const SC110_V03_UserList = () => {
         const resultObj = await s150_SelectUserList_New()
         const dbObj_newuserInfoList = resultObj.userList
 
+
         // データをuserInfoListステートに合わせる
-        const new_UserInfoList = dbObj_newuserInfoList.map((dbObj_userInfo) => {
+        // const new_UserInfoList = dbObj_newuserInfoList.map(async (dbObj_userInfo) => {
+        //     const userInfo = {} as SC000_UserInfo
+        //     userInfo.userId = dbObj_userInfo.UserId
+        //     userInfo.userName = dbObj_userInfo.UserName
+        //     userInfo.comment = dbObj_userInfo.Comment
+        //     // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
+        //     const result_S370 = await s370_FileDownload(userInfo.profileImagePath)
+        //     userInfo.profileImagePath = result_S370.fileUrl
+
+        //     // userInfo.profileImagePath = dbObj_userInfo.profileImagePath
+        //     userInfo.genderCd = dbObj_userInfo.GenderCd
+        //     userInfo.age = dbObj_userInfo.Age
+        //     userInfo.areaCd = dbObj_userInfo.AreaCd
+        //     userInfo.hashtag = dbObj_userInfo.Hashtags
+        //     return userInfo
+        // })
+
+        // データをuserInfoListステートに合わせる
+        const new_UserInfoList = []
+        for (let dbObj_userInfo of dbObj_newuserInfoList) {
             const userInfo = {} as SC000_UserInfo
             userInfo.userId = dbObj_userInfo.UserId
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
+            console.log(dbObj_userInfo)
             // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
-            userInfo.profileImagePath = dbObj_userInfo.ProfileImagePath
+            const result_S370 = await s370_FileDownload(dbObj_userInfo.ProfileImagePath)
+            userInfo.profileImagePath = result_S370.fileUrl
+
+            // userInfo.profileImagePath = dbObj_userInfo.profileImagePath
             userInfo.genderCd = dbObj_userInfo.GenderCd
             userInfo.age = dbObj_userInfo.Age
             userInfo.areaCd = dbObj_userInfo.AreaCd
             userInfo.hashtag = dbObj_userInfo.Hashtags
-            return userInfo
-        })
-
+            // LISTに詰める
+            new_UserInfoList.push(userInfo)
+        }
         // //console.log("getUserList終了！=========================================================");
 
         // 画面に表示する用
@@ -180,6 +204,7 @@ export const SC110_V03_UserList = () => {
 
                                     {/* map処理2：列のループ (デフォルトは4だが、1以上の好きな値をCONST.tsで設定可能)*/}
                                     {userInfoList_ScreenDisp_ROW.map((userInfo: SC000_UserInfo, index) => {
+
                                         return (
 
                                             <Center style={SC110_Style.userInfoBox} size="40" bg="primary.100"

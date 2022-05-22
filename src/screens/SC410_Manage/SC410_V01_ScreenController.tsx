@@ -13,6 +13,8 @@ import { SC410_V10_IF_SC020 } from './SC410_V10_IF_SC020';
 import { SC410_V10_IF_Profile } from './SC410_V10_IF_Profile';
 import { SC020_V01_SignUpMain } from '../SC020_SignUp/SC020_V01_SignUpMain';
 import { SC410_V05_ManageHeader } from './SC410_V05_ManageHeader';
+import { SC430_V01_EditMain } from './SC430_V01_EditMain';
+import { SC430_EditProfile } from './SC430_V00_Edit_Profile';
 
 const Path = "../../static/img" + "/murata_unko.jpeg"
 
@@ -26,7 +28,7 @@ export const SC410_V01_ScreenController = (props: object) => {
         case CONST_SC000.SCREENID.SC410:
             return <SC410_V02_Manage_Main />
         case CONST_SC000.SCREENID.SC430:
-            return <><SC410_V05_ManageHeader /><SC020_V01_SignUpMain /></>
+            return <><SC410_V05_ManageHeader /><SC430_EditProfile /></>
         case CONST_SC000.SCREENID.SC998:
             return <SC410_V06_IF_SC998 />
         case CONST_SC000.SCREENID.SC999:
