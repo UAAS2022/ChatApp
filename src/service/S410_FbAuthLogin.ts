@@ -24,24 +24,26 @@ export const s410_FbAuthLogin = async (
     const auth = getAuth();
     console.log("auth", auth)
     console.log("----------------------------------")
-    const result = await createUserWithEmailAndPassword(auth, email, password)
-    console.log("result", result)
+    // const result = await createUserWithEmailAndPassword(auth, email, password)
+    // console.log("result", result)
 
-    await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            console.log("ZZZZZZZZ")
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-        });
-
-    console.log("AAAAAAAAA")
-
+    // await createUserWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //         // Signed in
+    //         const user = userCredential.user;
+    //         // ...
+    //     })
+    //     .catch((error) => {
+    //         console.log("ZZZZZZZZ")
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
+    //         // ..
+    //     });
+    console.log("AAAAAAAAA", auth, email + "@gmail.com", password)
+    const userCredential = await createUserWithEmailAndPassword(auth, email + "@gmail.com", password)
+    console.log("BBBBBBBBBB", userCredential)
+    const user = userCredential.user
+    console.log("CCCCCCCCCC", user)
     // 返却処理
     const resultObj = {
         errFlg: errFlg,

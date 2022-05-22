@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo, useContext, useEffect } from 'react';
 import {
     Select,
     Stack,
@@ -6,17 +6,22 @@ import {
     Input,
     Button,
     Center,
-    CheckIcon
+    CheckIcon,
+    Divider,
 } from "native-base"
 import {
     StyleSheet,
-    Image
+    Image,
+    View,
+    Text,
 } from 'react-native'
 import { SC020_InputUserInfo } from './SC020_Types';
+import { CONST_SC030 } from "../../common/C000_Const"
 import { s110_CreateUser } from '../../service/S110_CreateUser';
 import { s111_CreateUser_withPrivate } from '../../service/S111_CreateUser_withPrivate';
 import { s160_CreateUserPrivate } from '../../service/S160_CreateUserPrivate';
 import { s361_ProfileImageUpload } from '../../service/S361_ProfileImageUpload';
+import { s370_FileDownload } from '../../service/S370_FileDownload';
 import { s410_FbAuthLogin } from '../../service/S410_FbAuthLogin';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -34,7 +39,17 @@ const Default_LocalState_UserInfo = {
 export const SC020_V01_SignUpMain = () => {
     //  ②ローカルステートを定義
     const [localState_UserInfo, setLocalState_UserInfo] = useState<SC020_InputUserInfo>(Default_LocalState_UserInfo as SC020_InputUserInfo);
-    const [localState_ImagePath, setLocalState_ImageUri] = useState("https://instagrammernewsimg.s3.ap-northeast-1-ntt.wasabisys.com/CAWoZoPlcx7");
+    const [localState_ImagePath, setLocalState_ImageUri] = useState("");
+    // const [localState_ImagePath, setLocalState_ImageUri] = useState("../../static/img/murata_unko.jpeg");
+
+    // 初期表示処理の関数を定義する
+    const initMain = async () => {
+        // デフォルトの画像パスを取得してstateに入れる
+        const result_S370 = await s370_FileDownload(CONST_SC030.DefaultProfileImagePath)
+        const defaultProfileImagePath = result_S370.fileUrl
+        console.log("AAAAAAAAAAAAAAA")
+        setLocalState_ImageUri(defaultProfileImagePath)
+    }
 
     //onChangeイベントハンドラ（テキストインプットの中身が変わるたびにステートを更新する）
     // --------------------------------------------------------------
@@ -153,7 +168,7 @@ export const SC020_V01_SignUpMain = () => {
     const onClickRegistBtn = async () => {
         let errFlg = "0"
         // テスト
-        createFbAuthUser()
+        await createFbAuthUser()
         // M050,M051生成
         errFlg = await createM050M051()
         // ユーザ作成に成功したら、画像をアップロードする
@@ -176,9 +191,18 @@ export const SC020_V01_SignUpMain = () => {
         });
 
         if (!result.cancelled) {
+            console.log("result.uri", result.uri)
             setLocalState_ImageUri(result.uri);
         }
     };
+
+    // 初期表示処理-------------------------------------------------------------
+    //
+    useEffect(() => {
+        // getChatMessageList()
+        initMain()
+    }, []);
+    // -----------------------------------------------------------------------
 
     return (
         <>
@@ -186,6 +210,7 @@ export const SC020_V01_SignUpMain = () => {
                 <Button style={{ width: 150, height: 150 }} onPress={pickImage} >
                     <Image source={{ uri: localState_ImagePath }} style={{ width: 150, height: 150 }} />
                 </Button>
+                <Text>{"\n"}</Text>
                 <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",
                     fontWeight: "medium",

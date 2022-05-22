@@ -10,7 +10,8 @@ import { S000_SeqId } from "./C020_FirebaseUtil_Types"
 
 // firebaseへの接続情報
 const firebaseConfig = {
-    apiKey: 'AIzaSyCEwOdcgltaDYsUw8EtpqYesBLasQpQoBM',
+    // apiKey: 'AIzaSyCEwOdcgltaDYsUw8EtpqYesBLasQpQoBM',
+    apiKey: 'AIzaSyC5Og98oDmRqrjHxhU9yF-LholipbJlams',
     authDomain: "uaas-chatproject-pre.firebaseapp.com",
     projectId: "uaas-chatproject-pre",
     storageBucket: "uaas-chatproject-pre.appspot.com",
@@ -23,6 +24,10 @@ if (getApps().length < 1) {
     initializeApp(firebaseConfig);
 }
 
+export const DB_FIREBASE = getFirestore();
+export const SG_FIREBASE = getStorage();
+
+// Firestoreのコレクションを定義
 export const FIREBASE_COLLECTIONS = {
     T999_V04_FB_SampleMessage: "T999_V04_FB_SampleMessage",
     T100_Talk: "T999_T100_Talk",
@@ -35,10 +40,6 @@ export const FIREBASE_COLLECTIONS = {
     S100_TalkId: "T999_S100_TalkId",
     T999_M050_User: "T999_M050_USER",
 }
-
-export const DB_FIREBASE = getFirestore();
-export const SG_FIREBASE = getStorage();
-
 
 // ドキュメントIDを作る関数
 export const c020_MakeDocId = (strList: string[]) => {
