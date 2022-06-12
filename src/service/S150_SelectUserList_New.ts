@@ -16,7 +16,7 @@ export const s150_SelectUserList_New = async () => {
     // 戻り値用のリストを定義
     let userList = [] as any[]
     // クエリを定義
-    const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.M050_User), orderBy("LatestLoginDatatime", 'desc'), limit(100))
+    const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.M050_User), orderBy("LatestLoginDatatime", 'desc'), limit(8))
     // クエリを実行し、FirebaseからquerySnapshotを取得
     const querySnapshot = await getDocs(query_FB);
     // querySnapshotからdocのデータを取り出し、戻り値用のリストに追加する
