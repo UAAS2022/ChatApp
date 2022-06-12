@@ -83,9 +83,14 @@ export const SC110_V03_UserList = () => {
             userInfo.userId = dbObj_userInfo.UserId
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
-            console.log(dbObj_userInfo)
+            console.log(dbObj_userInfo.UserName)
             // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
+            const date = new Date().getTime()
+            // console.log(Math.floor(date / 1000) % 60)
             const result_S370 = await s370_FileDownload(dbObj_userInfo.ProfileImagePath)
+            const date2 = new Date().getTime()
+            // console.log(Math.floor(date2 / 1000) % 60)
+            console.log(date - date2)
             userInfo.profileImagePath = result_S370.fileUrl
 
             // userInfo.profileImagePath = dbObj_userInfo.profileImagePath

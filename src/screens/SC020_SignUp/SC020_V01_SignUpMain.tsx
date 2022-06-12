@@ -14,9 +14,10 @@ import {
     Image,
     View,
     Text,
+    ScrollView,
 } from 'react-native'
 import { SC020_InputUserInfo } from './SC020_Types';
-import { CONST_SC030 } from "../../common/C000_Const"
+import { CONST_SC030, CONST_SC000 } from "../../common/C000_Const"
 import { s110_CreateUser } from '../../service/S110_CreateUser';
 import { s111_CreateUser_withPrivate } from '../../service/S111_CreateUser_withPrivate';
 import { s160_CreateUserPrivate } from '../../service/S160_CreateUserPrivate';
@@ -24,6 +25,8 @@ import { s361_ProfileImageUpload } from '../../service/S361_ProfileImageUpload';
 import { s370_FileDownload } from '../../service/S370_FileDownload';
 import { s410_FbAuthLogin } from '../../service/S410_FbAuthLogin';
 import * as ImagePicker from 'expo-image-picker';
+import { useState_SC000_ScreenController } from '../SC000_BaseComponent/SC000_V00_BaseComponent'
+
 
 const Default_LocalState_UserInfo = {
     userId: "",
@@ -41,6 +44,9 @@ export const SC020_V01_SignUpMain = () => {
     const [localState_UserInfo, setLocalState_UserInfo] = useState<SC020_InputUserInfo>(Default_LocalState_UserInfo as SC020_InputUserInfo);
     const [localState_ImagePath, setLocalState_ImageUri] = useState("");
     // const [localState_ImagePath, setLocalState_ImageUri] = useState("../../static/img/murata_unko.jpeg");
+
+    //スクリーン更新用。
+    const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     // 初期表示処理の関数を定義する
     const initMain = async () => {
@@ -75,6 +81,12 @@ export const SC020_V01_SignUpMain = () => {
     //雌雄
     const onChangegenderCd = (value: string) => {
         const newState = { ...localState_UserInfo, genderCd: value }
+        setLocalState_UserInfo(newState)
+        //console.log("genderCd", newState.genderCd)
+    }
+    //雌雄
+    const onChangeAreaCd = (value: string) => {
+        const newState = { ...localState_UserInfo, areaCd: value }
         setLocalState_UserInfo(newState)
         //console.log("genderCd", newState.genderCd)
     }
@@ -174,6 +186,8 @@ export const SC020_V01_SignUpMain = () => {
         // ユーザ作成に成功したら、画像をアップロードする
         if (errFlg === "0") {
             uploadProfileImage()
+
+            updateBaseScreenId(CONST_SC000.SCREENID.SC110)
         }
         // // M050生成
         // createM050()
@@ -206,94 +220,125 @@ export const SC020_V01_SignUpMain = () => {
 
     return (
         <>
-            <Box>
-                <Button style={{ width: 150, height: 150 }} onPress={pickImage} >
-                    <Image source={{ uri: localState_ImagePath }} style={{ width: 150, height: 150 }} />
-                </Button>
-                <Text>{"\n"}</Text>
-                <Box alignSelf="flex-start" bg="primary.500" _text={{
-                    fontSize: "md",
-                    fontWeight: "medium",
-                    color: "warmGray.50",
-                    letterSpacing: "lg"
-                }}>
-                    ユーザーID
-                </Box>
-                <Stack space={0} w="100%" alignItems="flex-start">
-                    <Input w={{
-                        base: "75%",
-                        md: "25%"
-                    }} placeholder="ユーザーID" value={localState_UserInfo.userId}
-                        onChangeText={(value) => { onChangeUserId(value) }} />
+            <ScrollView>
+                <Box>
+                    <Button style={{ width: 150, height: 150 }} onPress={pickImage} >
+                        <Image source={{ uri: localState_ImagePath }} style={{ width: 150, height: 150 }} />
+                    </Button>
+                    <Text>{"\n"}</Text>
                     <Box alignSelf="flex-start" bg="primary.500" _text={{
                         fontSize: "md",
                         fontWeight: "medium",
                         color: "warmGray.50",
                         letterSpacing: "lg"
                     }}>
-                        パスワード
+                        ユーザーID
                     </Box>
-                    <Input w={{
-                        base: "75%",
-                        md: "25%"
-                    }} placeholder="パスワード"
-                        value={localState_UserInfo.password}
-                        onChangeText={(value) => { onChangePassword(value) }} />
-                </Stack>
-                {/* 名前BOX */}
-                <Box alignSelf="flex-start" bg="primary.500" _text={{
-                    fontSize: "md",
-                    fontWeight: "medium",
-                    color: "warmGray.50",
-                    letterSpacing: "lg"
-                }}>
-                    ニックネーム
-                </Box>
-                <Box alignItems="flex-start">
-                    <Input mx="0" placeholder="ニックネーム" w="75%" maxWidth="300px"
-                        value={localState_UserInfo.userName}
-                        onChangeText={(value) => { onChangeUserName(value) }} />
-                </Box>
-                {/* 性別BOX */}
-                <Box alignSelf="flex-start" bg="primary.500" _text={{
-                    fontSize: "md",
-                    fontWeight: "medium",
-                    color: "warmGray.50",
-                    letterSpacing: "lg"
-                }}>
-                    性別
-                </Box>
-                {/* <Box alignItems="flex-start">
+                    <Stack space={0} w="100%" alignItems="flex-start">
+                        <Input w={{
+                            base: "75%",
+                            md: "25%"
+                        }} placeholder="ユーザーID" value={localState_UserInfo.userId}
+                            onChangeText={(value) => { onChangeUserId(value) }} />
+                        <Box alignSelf="flex-start" bg="primary.500" _text={{
+                            fontSize: "md",
+                            fontWeight: "medium",
+                            color: "warmGray.50",
+                            letterSpacing: "lg"
+                        }}>
+                            パスワード
+                        </Box>
+                        <Input w={{
+                            base: "75%",
+                            md: "25%"
+                        }} placeholder="パスワード(６文字以上)"
+                            value={localState_UserInfo.password}
+                            onChangeText={(value) => { onChangePassword(value) }} />
+                    </Stack>
+                    {/* 名前BOX */}
+                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        fontSize: "md",
+                        fontWeight: "medium",
+                        color: "warmGray.50",
+                        letterSpacing: "lg"
+                    }}>
+                        ニックネーム
+                    </Box>
+                    <Box alignItems="flex-start">
+                        <Input mx="0" placeholder="ニックネーム" w="75%" maxWidth="300px"
+                            value={localState_UserInfo.userName}
+                            onChangeText={(value) => { onChangeUserName(value) }} />
+                    </Box>
+                    {/* 性別BOX */}
+                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        fontSize: "md",
+                        fontWeight: "medium",
+                        color: "warmGray.50",
+                        letterSpacing: "lg"
+                    }}>
+                        性別
+                    </Box>
+                    {/* <Box alignItems="flex-start">
                     <Input mx="3" placeholder="Input" w="75%" maxWidth="300px"
                         value={localState_UserInfo.genderCd}
                         onChangeText={(value) => { onChangegenderCd(value) }} />
                 </Box> */}
-                <Box alignItems="flex-start">
-                    <Select selectedValue={localState_UserInfo.genderCd} minWidth="200" accessibilityLabel="♂ or ♀" placeholder="♂ or ♀"
-                        _selectedItem={{
-                            bg: "teal.600",
-                            endIcon: <CheckIcon size="5" />
-                        }} mt={1} onValueChange={itemValue => onChangegenderCd(itemValue)}>
-                        <Select.Item label="♂" value="1" />
-                        <Select.Item label="♀" value="2" />
+                    <Box alignItems="flex-start">
+                        <Select selectedValue={localState_UserInfo.genderCd} minWidth="200" accessibilityLabel="♂ or ♀" placeholder="♂ or ♀"
+                            _selectedItem={{
+                                bg: "teal.600",
+                                endIcon: <CheckIcon size="5" />
+                            }} mt={1} onValueChange={itemValue => onChangegenderCd(itemValue)}>
+                            <Select.Item label="♂" value="1" />
+                            <Select.Item label="♀" value="2" />
 
-                    </Select>
-                </Box>
-                {/* コメント */}
-                <Box alignSelf="flex-start" bg="primary.500" _text={{
-                    fontSize: "md",
-                    fontWeight: "medium",
-                    color: "warmGray.50",
-                    letterSpacing: "lg"
-                }}>
-                    コメント
-                </Box>
-                <Box alignItems="flex-start">
-                    <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
-                        value={localState_UserInfo.comment}
-                        onChangeText={(value) => { onChangeComment(value) }} />
-                </Box>
-                {/* <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        </Select>
+                    </Box>
+                    {/* 地域 */}
+                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        fontSize: "md",
+                        fontWeight: "medium",
+                        color: "warmGray.50",
+                        letterSpacing: "lg"
+                    }}>
+                        地域
+                    </Box>
+                    <Box alignItems="flex-start">
+                        <Select selectedValue={localState_UserInfo.areaCd} minWidth="200" placeholder="地域"
+                            _selectedItem={{
+                                bg: "teal.600",
+                                endIcon: <CheckIcon size="5" />
+                            }} mt={1} onValueChange={itemValue => onChangeAreaCd(itemValue)}>
+                            <Select.Item label="北海道" value="北海道" />
+                            <Select.Item label="東北地方" value="東北地方" />
+                            <Select.Item label="北関東" value="北関東" />
+                            <Select.Item label="南関東" value="南関東" />
+                            <Select.Item label="中部" value="中部" />
+                            <Select.Item label="北陸" value="北陸" />
+                            <Select.Item label="関西" value="関西" />
+                            <Select.Item label="四国" value="四国" />
+                            <Select.Item label="中国" value="中国" />
+                            <Select.Item label="九州" value="九州" />
+                            <Select.Item label="沖縄" value="沖縄" />
+                            <Select.Item label="その他" value="その他" />
+                        </Select>
+                    </Box>
+
+                    {/* コメント */}
+                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                        fontSize: "md",
+                        fontWeight: "medium",
+                        color: "warmGray.50",
+                        letterSpacing: "lg"
+                    }}>
+                        コメント
+                    </Box>
+                    <Box alignItems="flex-start">
+                        <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
+                            value={localState_UserInfo.comment}
+                            onChangeText={(value) => { onChangeComment(value) }} />
+                    </Box>
+                    {/* <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",
                     fontWeight: "medium",
                     color: "warmGray.50",
@@ -301,15 +346,16 @@ export const SC020_V01_SignUpMain = () => {
                 }}>
                     写真
                 </Box> */}
-                {/* <Box alignItems="flex-start">
+                    {/* <Box alignItems="flex-start">
                     <Input mx="0" placeholder="入力してね" w="75%" maxWidth="300px"
                         value={localState_UserInfo.comment}
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box> */}
-                <Box alignItems="center">
-                    <Button onPress={onClickRegistBtn}>おしてね😎</Button>
+                    <Box alignItems="center">
+                        <Button onPress={onClickRegistBtn} >おしてね😎</Button>
+                    </Box>
                 </Box>
-            </Box>
+            </ScrollView>
         </>
     )
 }

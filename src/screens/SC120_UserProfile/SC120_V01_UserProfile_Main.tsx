@@ -43,6 +43,7 @@ import { s210_CreateTalk } from "../../service/S210_CreateTalk"
 import { s260_CreateTalkUser } from "../../service/S260_CreateTalkUser"
 import { s301_SelectTalkUserList_ByUserId } from "../../service/S301_SelectTalkUserList_ByUserId"
 import { s303_SelectTalkUserList_ByUserId_Detail } from "../../service/S303_SelectTalkUserList_ByUserId_Detail"
+import { s370_FileDownload } from '../../service/S370_FileDownload';
 
 const SCREEN_ID = "SC120"
 
@@ -91,7 +92,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.userProfileInfo.userName = result_S140.userInfo.UserName
         newState.userProfileInfo.comment = result_S140.userInfo.Comment
         newState.userProfileInfo.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD")
-        newState.userProfileInfo.profileImagePath = result_S140.userInfo.ProfileImagePath
+        newState.userProfileInfo.profileImagePath = (result_S140.userInfo.ProfileImagePath)
         newState.userProfileInfo.genderCd = result_S140.userInfo.GenderCd
         newState.userProfileInfo.age = result_S140.userInfo.Age
         newState.userProfileInfo.areaCd = result_S140.userInfo.AreaCd
@@ -110,7 +111,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.userName = result_S140.userInfo.UserName
         newState.comment = result_S140.userInfo.Comment
         newState.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD hh:mm")
-        newState.profileImagePath = result_S140.userInfo.ProfileImagePath
+        newState.profileImagePath = (await s370_FileDownload(result_S140.userInfo.ProfileImagePath)).fileUrl
         newState.genderCd = result_S140.userInfo.GenderCd
         newState.age = result_S140.userInfo.Age
         newState.areaCd = result_S140.userInfo.AreaCd
@@ -164,7 +165,6 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         // getUserProfileInfo_bk()
     }, []);
     // -----------------------------------------------------------------------
-
     return (
         <>
             {/* <Center w="100%" h="50%"  >
