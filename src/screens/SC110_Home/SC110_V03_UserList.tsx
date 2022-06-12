@@ -54,7 +54,7 @@ export const SC110_V03_UserList = () => {
     const getUserList = async () => {
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s150_SelectUserList_New()
+        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW)
         const dbObj_newuserInfoList = resultObj.userList
 
 
@@ -105,7 +105,7 @@ export const SC110_V03_UserList = () => {
             // 一時配列にオブジェクトを格納する
             tmpList.push(userInfo)
             // 配列長判定
-            if (tmpList.length >= CONST_SC110.MAXROW) {
+            if (tmpList.length >= CONST_SC110.MAXCOL) {
                 // 配列長が最大の場合
 
                 // 行配列を格納して
