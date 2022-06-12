@@ -31,9 +31,7 @@ import { UPDATE_USERLIST } from './SC110_Action'
 import { SC110_S_Context } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
-
-
-const MAXROW = 4
+import { CONST_SC000, CONST_SC110 } from "../../common/C000_Const"
 
 export const SC110_V01_UserList = () => {
 
@@ -47,7 +45,7 @@ export const SC110_V01_UserList = () => {
     const getUserList = async () => {
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s150_SelectUserList_New()
+        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW)
         const dbObj_newuserInfoList = resultObj.userList
 
         // データをuserInfoListステートに合わせる
@@ -74,7 +72,7 @@ export const SC110_V01_UserList = () => {
             // 一時配列にオブジェクトを格納する
             tmpList.push(userInfo)
             // 配列長判定
-            if (tmpList.length >= MAXROW) {
+            if (tmpList.length >= CONST_SC110.MAXCOL) {
                 // 配列長が最大の場合
 
                 // 行配列を格納して

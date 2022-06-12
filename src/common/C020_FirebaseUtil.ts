@@ -2,9 +2,24 @@
 // import 'firebase/app';
 // import 'firebase/firestore';
 import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs, Timestamp, QueryConstraint } from 'firebase/firestore';
-import { query, where, orderBy, limit, } from 'firebase/firestore';
+import {
+    getFirestore
+    , collection
+    , doc, addDoc
+    , setDoc, updateDoc
+    , deleteDoc, getDoc
+    , getDocs, Timestamp
+    , QueryConstraint
+    , query
+    , where
+    , orderBy
+    , limit,
+} from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import {
+    getFunctions
+    , httpsCallable
+} from 'firebase/functions';
 import { C000_FIREBASE_INFO } from './C000_Const';
 import { S000_SeqId } from "./C020_FirebaseUtil_Types"
 
@@ -24,9 +39,14 @@ if (getApps().length < 1) {
     initializeApp(firebaseConfig);
 }
 
+export const APP_FIREBASE = getApps()
 export const DB_FIREBASE = getFirestore();
 export const SG_FIREBASE = getStorage();
+export const FC_FIREBASE = getFunctions();
 
+
+// 1. FirestoreUtill
+// ========================================================================================================================
 // Firestoreのコレクションを定義
 export const FIREBASE_COLLECTIONS = {
     T999_V04_FB_SampleMessage: "T999_V04_FB_SampleMessage",
@@ -178,3 +198,20 @@ export const c020_CreateSecId = async (firebaseCollection: string, logUserId: st
     }
     return resultObj
 }
+// ========================================================================================================================
+
+
+// 2. StorageUtill
+// ========================================================================================================================
+
+// ========================================================================================================================
+
+// 3. FunctionsUtill
+// ========================================================================================================================
+export const c020_HttpsCallable = (endPoint: string) => {
+    // httpリクエストを発行
+    const anyFunction: any = httpsCallable(FC_FIREBASE, endPoint);
+    return anyFunction
+}
+
+// ========================================================================================================================

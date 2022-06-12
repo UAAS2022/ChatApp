@@ -46,6 +46,7 @@ import { launchImageLibrary, launchCamera } from "react-native-image-picker";
 import { MediaType } from "react-native-image-picker";
 import { s361_ProfileImageUpload } from "../../service/S361_ProfileImageUpload"
 import { s370_FileDownload } from '../../service/S370_FileDownload';
+import { s999_TsuneTestService } from '../../service/S999_TsuneTestService';
 import * as ImagePicker from 'expo-image-picker';
 
 // 業務エラーチェッククラス
@@ -79,6 +80,8 @@ const DEFAULT_OPTIONS = {
     includeExtra: false,
 };
 
+// メインコンポーネント
+// ====================================================================================================
 export const SC999_V24_AnyTest = () => {
     // ①ベースコンテキストを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
@@ -94,6 +97,7 @@ export const SC999_V24_AnyTest = () => {
         <>
             <Text>テスト24</Text>
             <ScrollView >
+                <SC999_V24_S999_Test />
                 <SC999_V24_InputFile />
                 <SC999_V24_ImagePicker />
                 <SC999_V24_ImagePicker2 />
@@ -104,7 +108,9 @@ export const SC999_V24_AnyTest = () => {
         </>
     )
 }
+// ====================================================================================================
 
+// サブコンポーネントたち
 // ----------------------------------------------------------------------
 const SC999_V24_InputFile = () => {
     const onChangeAvatar = () => {
@@ -116,6 +122,7 @@ const SC999_V24_InputFile = () => {
     }
     return (
         <>
+            <Text>{"\n"}</Text>
             <Input
                 display="none"
                 type="file"
@@ -147,6 +154,7 @@ const SC999_V24_ImagePicker = () => {
     }
     return (
         <>
+            <Text>{"\n"}</Text>
             <View >
                 <Button size="md" variant="outline" onPress={onPressEvent}>
                     イメージ
@@ -183,6 +191,7 @@ const SC999_V24_ImagePicker2 = () => {
     }
     return (
         <>
+            <Text>{"\n"}</Text>
             <View >
                 <Button size="md" variant="outline" onPress={showPicker}>
                     イメージピッカー2(launchCamera)
@@ -234,6 +243,7 @@ export default class App extends Component<Props> {
     render() {
         return (
             <>
+                <Text>{"\n"}</Text>
                 <View >
                     <Button size="md" variant="outline" onPress={this.showPicker}>
                         イメージピッカー3(launchImageLibrary)
@@ -259,6 +269,7 @@ const SC999_V24_Upload2Firebase = () => {
     }
     return (
         <>
+            <Text>{"\n"}</Text>
             {/* <Image source={require(Path)} resizeMode='contain' /> */}
             <View >
                 <Button size="md" variant="outline" onPress={onPressUpload}>
@@ -304,6 +315,7 @@ const SC999_V24_Upload2Firebase2 = () => {
 
     return (
         <>
+            <Text>{"\n"}</Text>
             <Box>
                 <Button style={{ width: 140, height: 150 }} onPress={pickImage} >
                     <Image source={{ uri: imagePath }} style={{ width: 150, height: 150 }} />
@@ -318,3 +330,20 @@ const SC999_V24_Upload2Firebase2 = () => {
     );
 };
 // ----------------------------------------------------------------------
+const SC999_V24_S999_Test = () => {
+    const [state, setState] = useState<any>()
+    const onClick = async () => {
+        const resultObj_S999 = await s999_TsuneTestService()
+        setState(resultObj_S999)
+    }
+    return (
+        <>
+            <Text>{"\n"}</Text>
+            <Button size="md" variant="outline" onPress={onClick}>
+                SC999_V24_S999_Test
+            </Button>
+        </>
+    )
+}
+// ----------------------------------------------------------------------
+

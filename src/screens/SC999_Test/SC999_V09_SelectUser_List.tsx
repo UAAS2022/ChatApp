@@ -49,7 +49,7 @@ export const SC999_V09_SelectUser_List = () => {
     const getUserList = async () => {
         // //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s150_SelectUserList_New()
+        const resultObj = await s150_SelectUserList_New(10)
         const dbObj_newuserInfoList = resultObj.userList
 
         // データをuserInfoListステートに合わせる
