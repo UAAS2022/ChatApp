@@ -26,6 +26,7 @@ import { c010_UaasUtil_isNotBlank, c010_UaasUtil_isNotEmpty } from '../../common
 import { UPDATE_USERPROFILE } from "./SC120_Action"
 import { Context_SC120 } from "./SC120_Store"
 import { s140_SelectUser } from "../../service/S140_SelectUser"
+import { s370_FileDownload } from '../../service/S370_FileDownload';
 
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC120_UserProfileInfo): boolean => {
@@ -84,6 +85,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         //     hashtag: result_S140.userInfo.Hashtags,
         // } as SC120_UserProfileInfo
         // ③ステートを更新する
+
         screenDispatch(UPDATE_USERPROFILE(newState.userProfileInfo))
         //console.log("SC120_V01_UserProfile_Main---------------------------------------")
         //console.log(screenState)
@@ -97,10 +99,10 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         getUserProfileInfo()
     }, []);
     // -----------------------------------------------------------------------
-
     return (
         <>
             <Center w="100%" h="50%"  >
+
                 <Image style={SC120_Style.v06_Profile} source={{
                     uri: screenState.userProfileInfo.profileImagePath
                 }} />
