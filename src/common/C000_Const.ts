@@ -30,6 +30,7 @@ export const CONST_COMMON = {
 export const CONST_SC000 = {
     // 画面ID
     SCREENID: {
+        SC010: "SC010",
         SC020: "SC020",
         SC110: "SC110",
         SC120: "SC120",

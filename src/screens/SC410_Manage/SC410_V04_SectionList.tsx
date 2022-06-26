@@ -112,6 +112,14 @@ export const SC410_V04_SectionList = (props: object) => {
         newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999_V30)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
+    const onClickSwitch_SC010 = () => {
+        // newStateを初期化
+        let newState = { ...state }
+        // 取得したstateの値を更新する
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC010
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC010)
+        dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
+    }
     // ---------------------------------------------------------------------------------------------------------
 
     return (
@@ -125,7 +133,7 @@ export const SC410_V04_SectionList = (props: object) => {
                 <Button h="16" w="98%" margin="0.5%" bg={"violet.100"} ><>↑①と②で状態が保存されるか否かの違いがある。</><>②のが操作性良さそう。</></Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC999_V21} >煩悩まみれのスーパー強欲獅子児チャット</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC020} >登録画面</Button>
-                <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>
+                <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} onPress={onClickSwitch_SC010}>初期画面</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>
                 <Button h="12" w="98%" margin="0.5%" bg={"violet.100"} >ダミー</Button>

@@ -34,6 +34,8 @@ import { SC310_V00_Board } from '../SC310_Board/SC310_V00_Board'
 import { SC410_V00_Manage } from '../SC410_Manage/SC410_V00_Manage'
 import { SC998_V00_Nabe } from '../SC998_Nabe/SC998_V00_Nabe'
 import { SC999_V00_Test } from '../SC999_Test/SC999_V00_Test'
+import { SC020_V00_SignUp } from '../SC020_SignUp/SC020_V00_SignUp';
+import { SC010_V00_Init } from '../SC010_Init/SC010_V00_Init';
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
 export const SC000_V01_MainScreenController = () => {
@@ -43,6 +45,10 @@ export const SC000_V01_MainScreenController = () => {
         //console.log("C0000_Main:screenController----------------------")
         //console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
+            case CONST_SC000.SCREENID.SC010:
+                return <SC010_V00_Init />
+            case CONST_SC000.SCREENID.SC020:
+                return <SC020_V00_SignUp />
             case CONST_SC000.SCREENID.SC110:
                 return <SC110_V00_Home />
             case CONST_SC000.SCREENID.SC120:
