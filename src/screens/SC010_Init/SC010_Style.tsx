@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 // import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 // ↑特定の端末だとフォントや要素が大きすぎる/小さすぎるといった問題を解決できるライブラリ
 
-export const SC010_V20_Style = StyleSheet.create({
+export const SC010_Style = StyleSheet.create({
     // v01_userInfoBox: {
     //     height: '10%',               //縦幅
     //     width: '100%',              //横幅

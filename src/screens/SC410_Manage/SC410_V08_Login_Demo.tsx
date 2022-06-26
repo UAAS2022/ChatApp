@@ -66,8 +66,8 @@ export const SC410_V08_Login_Demo = () => {
         // newStateを初期化
         let newState = { ...screenState }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999_V04
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC999_V04.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC999.SCREENID)
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
 

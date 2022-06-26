@@ -26,8 +26,8 @@ export const SC010_V10_InitHeader = (props: object) => {
         // 取得したstateの値を更新する
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC410
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC410)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC410.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC410.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     // ---------------------------------------------------------------------------------------------------------
@@ -35,8 +35,6 @@ export const SC010_V10_InitHeader = (props: object) => {
     return (
         <>
             <View style={SC410_Style.v08_ProfileHeader} >
-
-
                 <Button style={SC410_Style.v05_BackBtn} size="sm" variant="outline" colorScheme="primary" onPress={onClickSwitch_SC410_SC}>
                     戻る
                 </Button>

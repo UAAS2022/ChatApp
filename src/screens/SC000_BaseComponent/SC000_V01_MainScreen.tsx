@@ -28,14 +28,15 @@ import { SC000_Style } from "./SC000_Style"
 import { getLayoutPattern } from "../SC000_BaseComponent/SC000_V03_MenuBtn"
 import { SC000_V04_MenuBar } from "../SC000_BaseComponent/SC000_V04_MenuBar"
 import { CONST_SC000 } from "../../common/C000_Const"
+import { SC010_V00_Init } from '../SC010_Init/SC010_V00_Init';
+import { SC020_V00_SignUp } from '../SC020_SignUp/SC020_V00_SignUp';
+import { SC030_V00_SignIn } from '../SC030_SignIn/SC030_V00_SignIn';
 import { SC110_V00_Home } from '../SC110_Home/SC110_V00_Home'
 import { SC210_V00_TalkList } from '../SC210_TalkList/SC210_V00_TalkList'
 import { SC310_V00_Board } from '../SC310_Board/SC310_V00_Board'
 import { SC410_V00_Manage } from '../SC410_Manage/SC410_V00_Manage'
 import { SC998_V00_Nabe } from '../SC998_Nabe/SC998_V00_Nabe'
 import { SC999_V00_Test } from '../SC999_Test/SC999_V00_Test'
-import { SC020_V00_SignUp } from '../SC020_SignUp/SC020_V00_SignUp';
-import { SC010_V00_Init } from '../SC010_Init/SC010_V00_Init';
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
 export const SC000_V01_MainScreenController = () => {
@@ -45,25 +46,27 @@ export const SC000_V01_MainScreenController = () => {
         //console.log("C0000_Main:screenController----------------------")
         //console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
-            case CONST_SC000.SCREENID.SC010:
+            case CONST_SC000.SCREENINFO.SC010.SCREENID:
                 return <SC010_V00_Init />
-            case CONST_SC000.SCREENID.SC020:
+            case CONST_SC000.SCREENINFO.SC020.SCREENID:
                 return <SC020_V00_SignUp />
-            case CONST_SC000.SCREENID.SC110:
+            case CONST_SC000.SCREENINFO.SC030.SCREENID:
+                return <SC030_V00_SignIn />
+            case CONST_SC000.SCREENINFO.SC110.SCREENID:
                 return <SC110_V00_Home />
-            case CONST_SC000.SCREENID.SC120:
+            case CONST_SC000.SCREENINFO.SC120.SCREENID:
                 return <SC110_V00_Home />
-            case CONST_SC000.SCREENID.SC210:
+            case CONST_SC000.SCREENINFO.SC210.SCREENID:
                 return <SC210_V00_TalkList />
-            case CONST_SC000.SCREENID.SC220:
+            case CONST_SC000.SCREENINFO.SC220.SCREENID:
                 return <SC210_V00_TalkList />
-            case CONST_SC000.SCREENID.SC310:
+            case CONST_SC000.SCREENINFO.SC310.SCREENID:
                 return <SC310_V00_Board />
-            case CONST_SC000.SCREENID.SC410:
+            case CONST_SC000.SCREENINFO.SC410.SCREENID:
                 return <SC410_V00_Manage />
-            case CONST_SC000.SCREENID.SC998:
+            case CONST_SC000.SCREENINFO.SC998.SCREENID:
                 return <SC998_V00_Nabe />
-            case CONST_SC000.SCREENID.SC999:
+            case CONST_SC000.SCREENINFO.SC999.SCREENID:
                 return <SC999_V00_Test />
             default:
                 return <SC110_V00_Home />

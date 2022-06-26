@@ -88,7 +88,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     // ②画面コンテキストを取得する
     const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC210)
     // ④カスタムフック呼び出し
-    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC210)
+    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC210)
     const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     // Firebaseからデータを取得する関数
@@ -165,7 +165,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
 
     const disableMenuBar = () => {
         const newState = { ...baseState }
-        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC220)
         // メニューバー非表示
         baseDispatch(SC000_UPDATE_LAYOUTPATTERN(newState.screenControllerInfo))
     }
@@ -179,17 +179,17 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         // 画面遷移情報を更新
         const newScreenControllerInfo = {
             componentId: CONST_SC210.COMPONENT_ID.V04,
-            layoutPattern: getLayoutPattern(CONST_SC000.SCREENID.SC220),
+            layoutPattern: getLayoutPattern(CONST_SC000.SCREENINFO.SC220.SCREENID),
         }
         newState.screenControllerInfo.componentId = CONST_SC210.COMPONENT_ID.V04
-        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC220)
         // // メニューバー非表示
-        // useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
+        // useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC220)
         // トーク画面の内容をチャット画面に切り替える
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
 
         // BaseComponentの画面IDを更新する
-        updateBaseScreenId(CONST_SC000.SCREENID.SC220)
+        updateBaseScreenId(CONST_SC000.SCREENINFO.SC220.SCREENID)
         //console.log("newState.componentId:", newScreenControllerInfo.componentId)
         //console.log("goToChat:終了")
     }
@@ -231,7 +231,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                         <TouchableOpacity onPress={() => {
                             goToSC220(item.talkInfo)
                             // updateLayoutPattern()
-                            // useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC220)
+                            // useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC220)
                         }}>
                             <Box borderBottomWidth="1"
                                 _dark={{ borderColor: "gray.600" }}

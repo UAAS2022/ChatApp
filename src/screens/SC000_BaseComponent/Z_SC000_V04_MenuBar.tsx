@@ -35,12 +35,12 @@ export const SC000_V04_MenuBar = (props: object) => {
     const { state } = useContext(SC000_S_Context)
     const { screenId, layoutPattern } = state.screenControllerInfo
     // メニューボタンを定義
-    const menuBtn1: SC000_ScreenChangeBtnInfo = { buttonId: "HOME", buttonName: "HOME", nextScreenId: CONST_SC000.SCREENID.SC110 }
-    const menuBtn2: SC000_ScreenChangeBtnInfo = { buttonId: "TalkList", buttonName: "Talk", nextScreenId: CONST_SC000.SCREENID.SC210 }
-    const menuBtn3: SC000_ScreenChangeBtnInfo = { buttonId: "Boad", buttonName: "Boad", nextScreenId: CONST_SC000.SCREENID.SC310 }
-    const menuBtn4: SC000_ScreenChangeBtnInfo = { buttonId: "Manage", buttonName: "Manage", nextScreenId: CONST_SC000.SCREENID.SC410, }
-    const menuBtn998: SC000_ScreenChangeBtnInfo = { buttonId: "Nabe", buttonName: "Nabe", nextScreenId: CONST_SC000.SCREENID.SC998, }
-    const menuBtn999: SC000_ScreenChangeBtnInfo = { buttonId: "Test", buttonName: "Test", nextScreenId: CONST_SC000.SCREENID.SC999, }
+    const menuBtn1: SC000_ScreenChangeBtnInfo = { buttonId: "HOME", buttonName: "HOME", nextScreenId: CONST_SC000.SCREENINFO.SC110.SCREENID }
+    const menuBtn2: SC000_ScreenChangeBtnInfo = { buttonId: "TalkList", buttonName: "Talk", nextScreenId: CONST_SC000.SCREENINFO.SC210.SCREENID }
+    const menuBtn3: SC000_ScreenChangeBtnInfo = { buttonId: "Boad", buttonName: "Boad", nextScreenId: CONST_SC000.SCREENINFO.SC310.SCREENID }
+    const menuBtn4: SC000_ScreenChangeBtnInfo = { buttonId: "Manage", buttonName: "Manage", nextScreenId: CONST_SC000.SCREENINFO.SC410.SCREENID, }
+    const menuBtn998: SC000_ScreenChangeBtnInfo = { buttonId: "Nabe", buttonName: "Nabe", nextScreenId: CONST_SC000.SCREENINFO.SC998.SCREENID, }
+    const menuBtn999: SC000_ScreenChangeBtnInfo = { buttonId: "Test", buttonName: "Test", nextScreenId: CONST_SC000.SCREENINFO.SC999.SCREENID, }
     switch (layoutPattern) {
         case 1:
             return (
