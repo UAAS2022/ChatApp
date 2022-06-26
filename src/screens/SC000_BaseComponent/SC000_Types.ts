@@ -40,7 +40,7 @@ export type SC000_LoginUserInfo = {
     userId: string,
     userName: string,
     comment: string,
-    latestLoginDatatime: Date,
+    LatestLoginDatetime: Date,
     profileImagePath: string,
     genderCd: string,
     age: number,
@@ -83,7 +83,7 @@ export type SC210_UserInfo = {
     _0_DocId: string,
     userId: string,
     userName: string,
-    latestLoginDatatime: string,
+    LatestLoginDatetime: string,
     profileImagePath: string,
 }
 // --------------------------------------------------------------
@@ -101,7 +101,7 @@ export type SC000_UserInfo = {
     userId: string,
     userName: string,
     comment: string,
-    latestLoginDatatime: Date,
+    LatestLoginDatetime: Date,
     profileImagePath: string,
     genderCd: string,
     age: number,

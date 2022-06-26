@@ -104,7 +104,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         let new_talkUserInfoList_Detail = dbObj_talkUserInfoList_Detail.map((dbObj_talkUserInfo_Detail) => {
             //console.log("talkUserInfo_Detail.userInfo.userName:1")
             // 日付変換
-            const date = dbObj_talkUserInfo_Detail.chatUserInfo.LatestLoginDatatime.toDate()
+            const date = dbObj_talkUserInfo_Detail.chatUserInfo.LatestLoginDatetime.toDate()
             // トーク名判断
             let talkName = ""
             const talkKbn = String(dbObj_talkUserInfo_Detail.talkInfo.TalkKbn)
@@ -129,7 +129,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                     _0_DocId: dbObj_talkUserInfo_Detail.chatUserInfo.UserId,
                     userId: dbObj_talkUserInfo_Detail.chatUserInfo.UserId,
                     userName: dbObj_talkUserInfo_Detail.chatUserInfo.UserName,
-                    latestLoginDatatime: dateToString(date, "MM/DD"),
+                    LatestLoginDatetime: dateToString(date, "MM/DD"),
                     profileImagePath: dbObj_talkUserInfo_Detail.chatUserInfo.ProfileImagePath,
                 }
             } as SC210_TalkUserInfo_Detail
@@ -260,7 +260,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                                         }}
                                         color="coolGray.800"
                                         alignSelf="flex-start">
-                                        {String(item.userInfo.latestLoginDatatime)}
+                                        {String(item.userInfo.LatestLoginDatetime)}
                                     </Text>
                                 </HStack>
                             </Box>

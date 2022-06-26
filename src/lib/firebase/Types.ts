@@ -13,7 +13,7 @@ export type T999_M050_USER = {
     UserId: string,
     UserName: string,
     Comment: string,
-    LatestLoginDatatime: Timestamp,
+    LatestLoginDatetime: Timestamp,
     ProfileImagePath: string,
     GenderCd: string,
     Age: number,

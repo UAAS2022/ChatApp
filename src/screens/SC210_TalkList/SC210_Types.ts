@@ -37,7 +37,7 @@ export type SC210_UserInfo = {
     _0_DocId: string,
     userId: string,
     userName: string,
-    latestLoginDatatime: String,
+    LatestLoginDatetime: String,
     profileImagePath: string,
 }
 

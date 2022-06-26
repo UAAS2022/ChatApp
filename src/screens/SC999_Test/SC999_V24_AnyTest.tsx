@@ -333,7 +333,9 @@ const SC999_V24_Upload2Firebase2 = () => {
 const SC999_V24_S999_Test = () => {
     const [state, setState] = useState<any>()
     const onClick = async () => {
-        const resultObj_S999 = await s999_TsuneTestService()
+        const paramObj = {}
+        const processKbnList = [0]
+        const resultObj_S999 = await s999_TsuneTestService(paramObj, processKbnList)
         setState(resultObj_S999)
     }
     return (

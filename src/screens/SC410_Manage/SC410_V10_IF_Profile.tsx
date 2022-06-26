@@ -47,7 +47,7 @@ export const SC410_V10_IF_Profile = (props: any) => {
         newState.screenInfo_SC420.userProfileInfo.userId = result_S140.userInfo.UserId
         newState.screenInfo_SC420.userProfileInfo.userName = result_S140.userInfo.UserName
         newState.screenInfo_SC420.userProfileInfo.comment = result_S140.userInfo.Comment
-        newState.screenInfo_SC420.userProfileInfo.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD")
+        newState.screenInfo_SC420.userProfileInfo.LatestLoginDatetime = dateToString(result_S140.userInfo.LatestLoginDatetime.toDate(), "MM/DD")
         newState.screenInfo_SC420.userProfileInfo.profileImagePath = filePath
         newState.screenInfo_SC420.userProfileInfo.genderCd = result_S140.userInfo.GenderCd
         newState.screenInfo_SC420.userProfileInfo.age = result_S140.userInfo.Age

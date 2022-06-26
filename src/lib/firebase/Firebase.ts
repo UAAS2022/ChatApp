@@ -33,7 +33,7 @@ export const storage = getStorage();
 export const selectUser_List = async () => {
     let userList = [] as any[]
     // const querySnapshot = await getDocs(collection(db_Firebase, "T999_M050_USER"));
-    const fb_collection = query(collection(db_Firebase, "T999_M050_USER"), orderBy("LatestLoginDatatime", 'desc'), limit(100))
+    const fb_collection = query(collection(db_Firebase, "T999_M050_USER"), orderBy("LatestLoginDatetime", 'desc'), limit(100))
     const querySnapshot = await getDocs(fb_collection);
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots

@@ -6,17 +6,10 @@ import { C000_FIREBASE_INFO } from '../common/C000_Const';
 import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { M050_User } from '../common/C020_FirebaseUtil_Types';
 
-const SERVICE_ID = "S120"
+const SERVICE_ID = "S121"
 
-export const s120_UpdateUser = async (
+export const s121_UpdateUser_LoginDatetime = async (
     userId: string,
-    userName: string,
-    comment: string,
-    profileImagePath: string,
-    genderCd: string,
-    age: number,
-    areaCd: string,
-    hashtags: string,
     logUserId: string
 ) => {
     // ---------------------------------------------------------------------------------------------------------
@@ -28,14 +21,14 @@ export const s120_UpdateUser = async (
     // ドキュメントの中身を定義
     const newUserInfo = {
         // UserId: userId,
-        UserName: userName,
-        Comment: comment,
+        // UserName: userName,
+        // Comment: comment,
         LatestLoginDatetime: Timestamp.now(),
-        ProfileImagePath: profileImagePath,
-        GenderCd: genderCd,
-        Age: age,
-        AreaCd: areaCd,
-        Hashtags: hashtags,
+        // ProfileImagePath: profileImagePath,
+        // GenderCd: genderCd,
+        // Age: age,
+        // AreaCd: areaCd,
+        // Hashtags: hashtags,
         // _CrtUserId: logUserId,
         // _CrtServiceId: SERVICE_ID,
         // _CrtDatetime: Timestamp.now(),

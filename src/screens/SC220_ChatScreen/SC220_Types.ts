@@ -29,7 +29,7 @@ import type { Timestamp } from 'firebase/firestore';
 //     userId: string,
 //     userName: string,
 //     comment: string,
-//     latestLoginDatatime: Timestamp | Date,
+//     LatestLoginDatetime: Timestamp | Date,
 //     profileImagePath: string,
 //     genderCd: string,
 //     age: number,
@@ -46,7 +46,7 @@ import type { Timestamp } from 'firebase/firestore';
 //     _0_DocId: string,
 //     userId: string,
 //     userName: string,
-//     latestLoginDatatime: Date,
+//     LatestLoginDatetime: Date,
 //     profileImagePath: string,
 // }
 

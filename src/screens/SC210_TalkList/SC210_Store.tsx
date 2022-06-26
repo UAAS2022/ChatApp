@@ -30,7 +30,7 @@ const DEFAULT_TalkInfoList = [{
         // _0_DocId: "",
         // userId: "",
         // userName: "",
-        // latestLoginDatatime: new Date(),
+        // LatestLoginDatetime: new Date(),
         // profileImagePath: "",
     } as SC210_UserInfo,
 }]

@@ -27,7 +27,7 @@ const DEFAULT_userProfileInfo = {
     userId: "",
     userName: "",
     comment: "",
-    latestLoginDatatime: "",
+    LatestLoginDatetime: "",
     profileImagePath: "",
     genderCd: "",
     age: 2,

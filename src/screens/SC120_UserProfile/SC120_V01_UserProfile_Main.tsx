@@ -91,7 +91,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.userProfileInfo.userId = result_S140.userInfo.UserId
         newState.userProfileInfo.userName = result_S140.userInfo.UserName
         newState.userProfileInfo.comment = result_S140.userInfo.Comment
-        newState.userProfileInfo.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD")
+        newState.userProfileInfo.LatestLoginDatetime = dateToString(result_S140.userInfo.LatestLoginDatetime.toDate(), "MM/DD")
         newState.userProfileInfo.profileImagePath = (result_S140.userInfo.ProfileImagePath)
         newState.userProfileInfo.genderCd = result_S140.userInfo.GenderCd
         newState.userProfileInfo.age = result_S140.userInfo.Age
@@ -110,7 +110,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.userId = result_S140.userInfo.UserId
         newState.userName = result_S140.userInfo.UserName
         newState.comment = result_S140.userInfo.Comment
-        newState.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD hh:mm")
+        newState.LatestLoginDatetime = dateToString(result_S140.userInfo.LatestLoginDatetime.toDate(), "MM/DD hh:mm")
         newState.profileImagePath = (await s370_FileDownload(result_S140.userInfo.ProfileImagePath)).fileUrl
         newState.genderCd = result_S140.userInfo.GenderCd
         newState.age = result_S140.userInfo.Age
@@ -176,7 +176,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
                 <Text>名前：{screenState.userProfileInfo.userName}</Text>
                 <Text>性別：{screenState.userProfileInfo.genderCd}</Text>
                 <Text>地域：{screenState.userProfileInfo.areaCd}</Text>
-                <Text>最終ログイン日時：{screenState.userProfileInfo.latestLoginDatatime}</Text>
+                <Text>最終ログイン日時：{screenState.userProfileInfo.LatestLoginDatetime}</Text>
                 <Text>コメント：{screenState.userProfileInfo.comment}</Text>
             </View>
             <Divider /> */}
@@ -189,7 +189,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
                 <Text>名前：{localState_UserProfileInfo.userName}</Text>
                 <Text>性別：{localState_UserProfileInfo.genderCd}</Text>
                 <Text>地域：{localState_UserProfileInfo.areaCd}</Text>
-                <Text>最終ログイン日時：{localState_UserProfileInfo.latestLoginDatatime}</Text>
+                <Text>最終ログイン日時：{localState_UserProfileInfo.LatestLoginDatetime}</Text>
                 <Text>コメント：{localState_UserProfileInfo.comment}</Text>
             </View>
             <Button size="sm" style={SC120_Style.regularBtn} onPress={() => { onClickStartChat() }}>チャットを始める</Button>

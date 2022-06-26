@@ -34,7 +34,7 @@ export type T999_UserInfo = {
     userId: string,
     userName: string,
     comment: string,
-    latestLoginDatatime: Timestamp | Date,
+    LatestLoginDatetime: Timestamp | Date,
     profileImagePath: string,
     genderCd: string,
     age: number,
@@ -51,7 +51,7 @@ export type SC999_V14_UserInfo = {
     _0_DocId: string,
     userId: string,
     userName: string,
-    latestLoginDatatime: Date,
+    LatestLoginDatetime: Date,
     profileImagePath: string,
 }
 

@@ -14,7 +14,7 @@ export type M050_User = {
     UserId: string,
     UserName: string,
     Comment: string,
-    LatestLoginDatatime: Timestamp,
+    LatestLoginDatetime: Timestamp,
     ProfileImagePath: string,
     GenderCd: string,
     Age: number,

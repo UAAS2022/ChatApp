@@ -77,7 +77,7 @@ export const SC999_V14_SelectTalk_List = () => {
                 _0_DocId: dbObj_talkInfo.chatUserInfo._0_DocId,
                 userId: dbObj_talkInfo.chatUserInfo.UserId,
                 userName: dbObj_talkInfo.chatUserInfo.UserName,
-                latestLoginDatatime: dbObj_talkInfo.chatUserInfo.LatestLoginDatatime.toDate(),
+                LatestLoginDatetime: dbObj_talkInfo.chatUserInfo.LatestLoginDatetime.toDate(),
                 profileImagePath: dbObj_talkInfo.chatUserInfo.ProfileImagePath
             }
             return talkInfo
