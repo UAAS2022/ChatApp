@@ -39,7 +39,9 @@ import { SC410_S_Provider } from './SC410_Store'
 import { SC410_Style } from "./SC410_Style"
 // import { SC000_Img, murata_unko } from "../../common/C000_Const"
 import { SC410_V01_ScreenController } from "./SC410_V01_ScreenController"
+// import {
 
+//   } from 'react-native-admob'
 
 const Path = "../../static/img" + "/murata_unko.jpeg"
 
