@@ -21,7 +21,7 @@ export type SC120_UserProfileInfo = {
     userId: string,
     userName: string,
     comment: string,
-    latestLoginDatatime: string,
+    LatestLoginDatetime: string,
     profileImagePath: string,
     genderCd: string,
     age: number,
@@ -48,7 +48,7 @@ export type SC120_UserProfileInfo = {
 //     _0_DocId: string,
 //     userId: string,
 //     userName: string,
-//     latestLoginDatatime: String,
+//     LatestLoginDatetime: String,
 //     profileImagePath: string,
 // }
 

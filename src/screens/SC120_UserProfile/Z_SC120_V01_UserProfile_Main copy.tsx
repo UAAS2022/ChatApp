@@ -65,7 +65,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         newState.userProfileInfo.userId = result_S140.userInfo.UserId
         newState.userProfileInfo.userName = result_S140.userInfo.UserName
         newState.userProfileInfo.comment = result_S140.userInfo.Comment
-        newState.userProfileInfo.latestLoginDatatime = dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD")
+        newState.userProfileInfo.LatestLoginDatetime = dateToString(result_S140.userInfo.LatestLoginDatetime.toDate(), "MM/DD")
         newState.userProfileInfo.profileImagePath = result_S140.userInfo.ProfileImagePath
         newState.userProfileInfo.genderCd = result_S140.userInfo.GenderCd
         newState.userProfileInfo.age = result_S140.userInfo.Age
@@ -77,7 +77,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         //     userId: result_S140.userInfo.UserId,
         //     userName: result_S140.userInfo.UserName,
         //     comment: result_S140.userInfo.Comment,
-        //     latestLoginDatatime: dateToString(result_S140.userInfo.LatestLoginDatatime.toDate(), "MM/DD"),
+        //     LatestLoginDatetime: dateToString(result_S140.userInfo.LatestLoginDatetime.toDate(), "MM/DD"),
         //     profileImagePath: result_S140.userInfo.ProfileImagePath,
         //     genderCd: result_S140.userInfo.GenderCd,
         //     age: result_S140.userInfo.Age,
@@ -111,7 +111,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
                 <Text>名前：{screenState.userProfileInfo.userName}</Text>
                 <Text>性別：{screenState.userProfileInfo.genderCd}</Text>
                 <Text>地域：{screenState.userProfileInfo.areaCd}</Text>
-                <Text>最終ログイン日時：{screenState.userProfileInfo.latestLoginDatatime}</Text>
+                <Text>最終ログイン日時：{screenState.userProfileInfo.LatestLoginDatetime}</Text>
                 <Text>コメント：{screenState.userProfileInfo.comment}</Text>
             </View>
         </>

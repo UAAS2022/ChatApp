@@ -34,6 +34,7 @@ import { SC110_Style } from "./SC110_Style"
 import { CHANGE_SCREEN, UPDATE_PREINFO_120 } from './SC110_Action'
 import { Context_SC110 } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
+import { s121_UpdateUser_LoginDatetime } from "../../service/S121_UpdateUser_LoginDatetime"
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 import { s370_FileDownload } from '../../service/S370_FileDownload';
 
@@ -51,30 +52,20 @@ export const SC110_V03_UserList = () => {
     // const userInfoList = state.baseContext_SC110.userInfoList_ScreenDisp
     const userInfoList_ScreenDisp = baseState.baseContext_SC110.userInfoList_ScreenDisp
 
+    const updateDisp = async () => {
+        await updateLatestLoginDatetime()
+        await getUserList()
+    }
+
+    const updateLatestLoginDatetime = async () => {
+        await s121_UpdateUser_LoginDatetime(baseState.loginUserInfo.userId, baseState.loginUserInfo.userId)
+    }
+
     const getUserList = async () => {
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
         const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW)
         const dbObj_newuserInfoList = resultObj.userList
-
-
-        // データをuserInfoListステートに合わせる
-        // const new_UserInfoList = dbObj_newuserInfoList.map(async (dbObj_userInfo) => {
-        //     const userInfo = {} as SC000_UserInfo
-        //     userInfo.userId = dbObj_userInfo.UserId
-        //     userInfo.userName = dbObj_userInfo.UserName
-        //     userInfo.comment = dbObj_userInfo.Comment
-        //     // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
-        //     const result_S370 = await s370_FileDownload(userInfo.profileImagePath)
-        //     userInfo.profileImagePath = result_S370.fileUrl
-
-        //     // userInfo.profileImagePath = dbObj_userInfo.profileImagePath
-        //     userInfo.genderCd = dbObj_userInfo.GenderCd
-        //     userInfo.age = dbObj_userInfo.Age
-        //     userInfo.areaCd = dbObj_userInfo.AreaCd
-        //     userInfo.hashtag = dbObj_userInfo.Hashtags
-        //     return userInfo
-        // })
 
         // データをuserInfoListステートに合わせる
         const new_UserInfoList = []
@@ -84,7 +75,7 @@ export const SC110_V03_UserList = () => {
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
             console.log(dbObj_userInfo.UserName)
-            // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
+            // userInfo.LatestLoginDatetime = dbObj_userInfo.LatestLoginDatetime
             const date = new Date().getTime()
             // console.log(Math.floor(date / 1000) % 60)
             const result_S370 = await s370_FileDownload(dbObj_userInfo.ProfileImagePath)
@@ -120,9 +111,6 @@ export const SC110_V03_UserList = () => {
             }
 
         }
-        const log = () => {
-            //console.log("耳耳耳っ耳耳耳耳ミッミッ耳いいミッみm")
-        }
         // 最後のループのtempListを追加する
         if (tmpList.length !== 0) {
             new_UserInfoList_ScreenDisp.push([...tmpList])
@@ -134,18 +122,13 @@ export const SC110_V03_UserList = () => {
             }
         }
         baseDispatch(SC110_UPDATE_USERLIST(newState))
-
-        //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-        //console.log(userInfoList_ScreenDisp);
-        //console.log("userInfoList_ScreenDisp----------------------------------------------------------------");
-        //console.log("getUserList終了！=========================================================");
     }
 
     //最上部でさらに下すワイプすることで発火するイベントを定義 （下にぐってスクロールさせて更新する仕組み）
     const onUpScrollEvent = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
         //スクロール最上部のさらに上までスクロールされた場合だけ実行する
         if (e.nativeEvent.contentOffset.y < 0) {
-            getUserList()
+            updateDisp()
         }
     }
 
@@ -179,8 +162,7 @@ export const SC110_V03_UserList = () => {
     // 初期表示処理-------------------------------------------------------------
     //　裏持ちのユーザ情報リストのステートを更新
     useEffect(() => {
-        // signin();
-        getUserList()
+        updateDisp()
     }, []);
     // -----------------------------------------------------------------------
     return (

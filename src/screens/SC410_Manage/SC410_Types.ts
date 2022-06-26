@@ -12,7 +12,7 @@ export type SC410_Provider = {
 // ==============================================================
 export type SC410_Context = {
     screenControllerInfo: SC410_ScreenController,
-    screenInfo_SC420:SC420_ScreenInfo
+    screenInfo_SC420: SC420_ScreenInfo
 
 }
 
@@ -27,14 +27,14 @@ export type SC410_ScreenController = {
 // --------------------------------------------------------------
 // 画面ごとのコンテキスト内の情報をここに定義していく
 export type SC420_ScreenInfo = {
-    userProfileInfo:SC410_UserProfileInfo
+    userProfileInfo: SC410_UserProfileInfo
 }
 // ユーザプロフィール情報
 export type SC410_UserProfileInfo = {
     userId: string,
     userName: string,
     comment: string,
-    latestLoginDatatime: string,
+    LatestLoginDatetime: string,
     profileImagePath: string,
     genderCd: string,
     age: number,

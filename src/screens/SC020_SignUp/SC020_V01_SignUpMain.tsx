@@ -53,7 +53,6 @@ export const SC020_V01_SignUpMain = () => {
         // デフォルトの画像パスを取得してstateに入れる
         const result_S370 = await s370_FileDownload(CONST_SC030.DefaultProfileImagePath)
         const defaultProfileImagePath = result_S370.fileUrl
-        console.log("AAAAAAAAAAAAAAA")
         setLocalState_ImageUri(defaultProfileImagePath)
     }
 
@@ -177,7 +176,7 @@ export const SC020_V01_SignUpMain = () => {
     }
 
     // 登録イベントハンドラ
-    const onClickRegistBtn = async () => {
+    const onClickSinUpBtn = async () => {
         let errFlg = "0"
         // テスト
         await createFbAuthUser()
@@ -185,8 +184,9 @@ export const SC020_V01_SignUpMain = () => {
         errFlg = await createM050M051()
         // ユーザ作成に成功したら、画像をアップロードする
         if (errFlg === "0") {
+            // 画像をアップロードする
             uploadProfileImage()
-
+            // ホーム画面に遷移する
             updateBaseScreenId(CONST_SC000.SCREENID.SC110)
         }
         // // M050生成
@@ -352,7 +352,7 @@ export const SC020_V01_SignUpMain = () => {
                         onChangeText={(value) => { onChangeComment(value) }} />
                 </Box> */}
                     <Box alignItems="center">
-                        <Button onPress={onClickRegistBtn} >おしてね😎</Button>
+                        <Button onPress={onClickSinUpBtn} >おしてね😎</Button>
                     </Box>
                 </Box>
             </ScrollView>

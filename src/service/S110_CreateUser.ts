@@ -34,7 +34,7 @@ export const s110_CreateUser = async (
         UserId: userId,
         UserName: userName,
         Comment: comment,
-        LatestLoginDatatime: Timestamp.now(),
+        LatestLoginDatetime: Timestamp.now(),
         ProfileImagePath: profileImagePath,
         GenderCd: genderCd,
         Age: age,

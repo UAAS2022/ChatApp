@@ -8,11 +8,15 @@ import { C000_FIREBASE_INFO } from '../common/C000_Const';
 import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { M050_User } from '../common/C020_FirebaseUtil_Types';
 import { c020_HttpsCallable } from "../common/C020_FirebaseUtil_Test";
+import { s151_SelectUserList_ALL } from './S151_SelectUserList_ALL';
+import { s121_UpdateUser_LoginDatetime } from './S121_UpdateUser_LoginDatetime';
 
 
 const SERVICE_ID = "S999"
 
 export const s999_TsuneTestService = async (
+    paramObj: any,
+    processKbnList: number[]
 ) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
@@ -21,14 +25,45 @@ export const s999_TsuneTestService = async (
     // エラーフラグを初期化
     let errFlg = "0"
 
-    // ---------------------------------------------------------------------------------------------------------
-    const param = { text: "aaa" }
-    const resultData_S999_01 = await c020_HttpsCallable("addMessage", param)
-    const resultData_S999_02 = await c020_HttpsCallable("getUser", param)
+    // (仮)処理区分を取得する
+    const processKbn = processKbnList[0]
 
-    // const data = result.data;
+    // resultの初期化
+    let resultData_S999_01 = {}
+    let resultData_S999_02 = {}
 
-    // ---------------------------------------------------------------------------------------------------------
+    switch (processKbn) {
+        // ---------------------------------------------------------------------------------------------------------
+        case 1:
+            const param = { text: "aaa" }
+            const resultData_S999_01_01 = await c020_HttpsCallable("addMessage", param)
+            const resultData_S999_01_02 = await c020_HttpsCallable("getUser", param)
+            resultData_S999_01 = {
+                resultData_S999_01_01: resultData_S999_01_01,
+                resultData_S999_01_02: resultData_S999_01_02,
+            }
+        // ---------------------------------------------------------------------------------------------------------
+        case 2:
+            // 全ユーザに対してパッチを当てる
+            // 1.全ユーザ情報を取得する
+            const resultObj_S151 = await s151_SelectUserList_ALL()
+            const userList_ALL = resultObj_S151.userList
+            // 2.更新する
+            for (let userInfo of userList_ALL) {
+                console.log("ユーザID：", userInfo.UserId)
+                // ユーザIDを取得する
+                const userId = userInfo.UserId
+                // データを更新する
+                await s121_UpdateUser_LoginDatetime(userId, userId)
+            }
+            resultData_S999_02 = {
+            }
+        // ---------------------------------------------------------------------------------------------------------
+        default:
+            console.log("processKbnが不正です")
+        // ---------------------------------------------------------------------------------------------------------
+    }
+
 
     // 返却処理
     const resultObj = {

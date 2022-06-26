@@ -26,7 +26,7 @@ export const s303_SelectTalkUserList_ByUserId_Detail = async (userId: string) =>
     // クエリを定義
     let query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T101_TalkUser))
     query_FB = query(query_FB, where("UserId", "==", userId))
-    // query_FB = query(query_FB, orderBy("LatestLoginDatatime", 'desc'))
+    // query_FB = query(query_FB, orderBy("LatestLoginDatetime", 'desc'))
     // クエリを実行し、FirebaseからquerySnapshotを取得
     const querySnapshot = await getDocs(query_FB);
     // querySnapshotからdocのデータを取り出し、リストに追加する

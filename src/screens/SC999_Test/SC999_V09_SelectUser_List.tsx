@@ -58,7 +58,7 @@ export const SC999_V09_SelectUser_List = () => {
             userInfo.userId = dbObj_userInfo.UserId
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
-            // userInfo.latestLoginDatatime = dbObj_userInfo.LatestLoginDatatime
+            // userInfo.LatestLoginDatetime = dbObj_userInfo.LatestLoginDatetime
             // userInfo.profileImagePath = dbObj_userInfo.ProfileImagePath
             userInfo.genderCd = dbObj_userInfo.GenderCd
             userInfo.age = dbObj_userInfo.Age
