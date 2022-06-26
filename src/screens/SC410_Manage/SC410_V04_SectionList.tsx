@@ -54,16 +54,16 @@ export const SC410_V04_SectionList = (props: object) => {
         // newStateを初期化
         let newState = { ...baseState }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC998
-        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC998)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC998.SCREENID
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC998)
         baseDispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC999_BA = () => {
         // newStateを初期化
         let newState = { ...baseState }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999
-        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC999.SCREENID
+        // newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC999)
         baseDispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
     // ---------------------------------------------------------------------------------------------------------
@@ -76,48 +76,48 @@ export const SC410_V04_SectionList = (props: object) => {
         // newStateを初期化
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC998
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC998)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC998.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC998.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC999_SC = () => {
         // newStateを初期化
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC999.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC999.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC999_V21 = () => {
         // newStateを初期化
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999_V21
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC999_V21.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC999.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC020 = () => {
         // newStateを初期化
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC020
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC020)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC020.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC020.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC998_Jim = () => {
         // newStateを初期化
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC999_V30
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC999_V30)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC999_V30.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC999_V30.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC010 = () => {
         // newStateを初期化
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC010
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC010)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC010.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC010.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     // ---------------------------------------------------------------------------------------------------------

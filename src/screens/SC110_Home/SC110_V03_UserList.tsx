@@ -45,7 +45,7 @@ export const SC110_V03_UserList = () => {
     // ②画面コンテキストを取得する
     const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC110)
     // ④カスタムフック呼び出し
-    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENID.SC210)
+    // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC210)
     const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     // 表示用と保持用のリストをそれぞれ取得
@@ -155,7 +155,7 @@ export const SC110_V03_UserList = () => {
         // トーク画面の内容をチャット画面に切り替える
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
         // BaseComponentの画面IDを更新する
-        updateBaseScreenId(CONST_SC000.SCREENID.SC120)
+        updateBaseScreenId(CONST_SC000.SCREENINFO.SC120.SCREENID)
         //console.log("goToChat:終了")
     }
 

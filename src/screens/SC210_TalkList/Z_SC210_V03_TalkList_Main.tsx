@@ -155,10 +155,10 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         // 画面遷移情報を更新
         const newScreenControllerInfo = {
             componentId: CONST_SC210.COMPONENT_ID.V04,
-            layoutPattern: getLayoutPattern(CONST_SC000.SCREENID.SC220),
+            layoutPattern: getLayoutPattern(CONST_SC000.SCREENINFO.SC220.SCREENID),
         }
         newState.screenControllerInfo.componentId = CONST_SC210.COMPONENT_ID.V04
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC220)
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC220.SCREENID)
         // チャット画面に遷移する
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
         //console.log("newState.componentId:", newScreenControllerInfo.componentId)

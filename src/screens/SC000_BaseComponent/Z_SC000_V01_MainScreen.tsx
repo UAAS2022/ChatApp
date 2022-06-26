@@ -44,17 +44,17 @@ export const SC000_V01_MainScreenController = () => {
         //console.log("C0000_Main:screenController----------------------")
         //console.log("C0000_Main:screenId:", screenId)
         switch (screenId) {
-            case CONST_SC000.SCREENID.SC110:
+            case CONST_SC000.SCREENINFO.SC110.SCREENID:
                 return <SC110_V00_Home />
-            case CONST_SC000.SCREENID.SC210:
+            case CONST_SC000.SCREENINFO.SC210.SCREENID:
                 return <SC210_V00_TalkList />
-            case CONST_SC000.SCREENID.SC310:
+            case CONST_SC000.SCREENINFO.SC310.SCREENID:
                 return <SC310_V00_Board />
-            case CONST_SC000.SCREENID.SC410:
+            case CONST_SC000.SCREENINFO.SC410.SCREENID:
                 return <SC410_V00_Manage />
-            case CONST_SC000.SCREENID.SC998:
+            case CONST_SC000.SCREENINFO.SC998.SCREENID:
                 return <SC998_V00_Nabe />
-            case CONST_SC000.SCREENID.SC999:
+            case CONST_SC000.SCREENINFO.SC999.SCREENID:
                 return <SC999_V00_Test />
             default:
                 return <SC110_V00_Home />

@@ -30,7 +30,7 @@ import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_E
 import { SC030_V01_SignInMain } from './SC030_V01_SignInMain';
 // 各画面のメインコンポーネント（V00系）をプロバイダーで囲む
 
-export const SC030_V00_SignUp = () => {
+export const SC030_V00_SignIn = () => {
     try {
         return (
             <>

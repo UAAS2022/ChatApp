@@ -62,22 +62,22 @@ export const CC0020_MenuBtn = (props: any) => {
 export const getLayoutPattern = (screenId: string): number => {
     let layoutPattern = 1
     switch (screenId) {
-        case CONST_SC000.SCREENID.SC020:
+        case CONST_SC000.SCREENINFO.SC020.SCREENID:
             layoutPattern = 0
             break;
-        case CONST_SC000.SCREENID.SC110:
+        case CONST_SC000.SCREENINFO.SC110.SCREENID:
             layoutPattern = 1
             break;
-        case CONST_SC000.SCREENID.SC210:
+        case CONST_SC000.SCREENINFO.SC210.SCREENID:
             layoutPattern = 1
             break;
-        case CONST_SC000.SCREENID.SC220:
+        case CONST_SC000.SCREENINFO.SC220.SCREENID:
             layoutPattern = 2
             break;
-        case CONST_SC000.SCREENID.SC310:
+        case CONST_SC000.SCREENINFO.SC310.SCREENID:
             layoutPattern = 1
             break;
-        case CONST_SC000.SCREENID.SC410:
+        case CONST_SC000.SCREENINFO.SC410.SCREENID:
             layoutPattern = 1
             break;
     }

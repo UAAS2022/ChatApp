@@ -187,7 +187,7 @@ export const SC020_V01_SignUpMain = () => {
             // 画像をアップロードする
             uploadProfileImage()
             // ホーム画面に遷移する
-            updateBaseScreenId(CONST_SC000.SCREENID.SC110)
+            updateBaseScreenId(CONST_SC000.SCREENINFO.SC110.SCREENID)
         }
         // // M050生成
         // createM050()

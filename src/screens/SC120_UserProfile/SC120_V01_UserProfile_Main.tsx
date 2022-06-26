@@ -154,7 +154,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         c060_DebugLog(SCREEN_ID, "START", [], "gotoSC210")
         // 2.1.画面IDを更新する
         // BaseComponentの画面IDを更新する
-        updateBaseScreenId(CONST_SC000.SCREENID.SC210)
+        updateBaseScreenId(CONST_SC000.SCREENINFO.SC210.SCREENID)
     }
 
 

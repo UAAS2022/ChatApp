@@ -39,16 +39,16 @@ export const SC410_V05_ManageHeader = (props: object) => {
         // 取得したstateの値を更新する
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC410
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC410)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC410.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC410.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     const onClickSwitch_SC410_SC2 = () => {
         // 取得したstateの値を更新する
         let newState = { ...state }
         // 取得したstateの値を更新する
-        newState.screenControllerInfo.screenId = CONST_SC000.SCREENID.SC430
-        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENID.SC430)
+        newState.screenControllerInfo.screenId = CONST_SC000.SCREENINFO.SC430.SCREENID
+        newState.screenControllerInfo.layoutPattern = getLayoutPattern(CONST_SC000.SCREENINFO.SC430.SCREENID)
         dispatch(CHANGE_SCREEN(newState.screenControllerInfo))
     }
     // ---------------------------------------------------------------------------------------------------------

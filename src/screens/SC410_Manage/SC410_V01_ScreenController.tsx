@@ -27,23 +27,23 @@ export const SC410_V01_ScreenController = (props: object) => {
     const { screenId } = state.screenControllerInfo
     // screenIdの値に応じて画面を切り替える
     switch (screenId) {
-        case CONST_SC000.SCREENID.SC410:
+        case CONST_SC000.SCREENINFO.SC410.SCREENID:
             return <SC410_V02_Manage_Main />
-        case CONST_SC000.SCREENID.SC430:
+        case CONST_SC000.SCREENINFO.SC430.SCREENID:
             return <><SC410_V05_ManageHeader /><SC430_EditProfile /></>
-        case CONST_SC000.SCREENID.SC998:
+        case CONST_SC000.SCREENINFO.SC998.SCREENID:
             return <SC410_V06_IF_SC998 />
-        case CONST_SC000.SCREENID.SC999:
+        case CONST_SC000.SCREENINFO.SC999.SCREENID:
             return <SC410_V07_IF_SC999 />
-        case CONST_SC000.SCREENID.SC999_V21:
+        case CONST_SC000.SCREENINFO.SC999_V21.SCREENID:
             return <SC410_V08_Login_Demo />
-        case CONST_SC000.SCREENID.SC999_V04:
+        case CONST_SC000.SCREENINFO.SC999_V04.SCREENID:
             return <SC410_V09_IF_SC999_V04 />
-        case CONST_SC000.SCREENID.SC020:
+        case CONST_SC000.SCREENINFO.SC020.SCREENID:
             return <SC410_V10_IF_SC020 />
-        case CONST_SC000.SCREENID.SC999_V30:
+        case CONST_SC000.SCREENINFO.SC999_V30.SCREENID:
             return <SC410_V10_IF_Profile />
-        case CONST_SC000.SCREENID.SC010:
+        case CONST_SC000.SCREENINFO.SC010.SCREENID:
             return <><SC010_V10_InitHeader /><SC010_V00_Init /></>
         default:
             return <SC410_V02_Manage_Main />
