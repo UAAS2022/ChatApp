@@ -37,7 +37,7 @@ export const SC010_V00_Init = (props: object) => {
         updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC020)
     }
     const onClickSwitch_SC012 = () => {
-        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC110)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC030)
     }
 
     return (
