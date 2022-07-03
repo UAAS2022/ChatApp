@@ -26,6 +26,8 @@ import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil';
 import { SC000_UPDATE_LOGIN_USER } from '../SC000_BaseComponent/SC000_Action';
 import { SC410_S_Context } from '../SC410_Manage/SC410_Store';
 import { s140_SelectUser } from '../../service/S140_SelectUser';
+import { useState_SC000_ScreenController } from '../SC000_BaseComponent/SC000_V00_BaseComponent';
+import { CONST_SC000 } from '../../common/C000_Const';
 
 export const SC030_V01_SignInMain = () => {
     // ①ベースコンテキストを取得する
@@ -34,6 +36,8 @@ export const SC030_V01_SignInMain = () => {
     const { state: screenState, dispatch: screenDispatch } = useContext(SC410_S_Context)
     // ③ローカルステートからコンテキストを取得する
     const [localState, setLocalState] = useState<SC030_InputUserInfo>({} as SC030_InputUserInfo);
+    // ④スクリーン更新用
+    const [updateBaseScreenId] = useState_SC000_ScreenController()
 
     // ログイン情報の入力イベントハンドラ-------------------------------------------------------
     //ユーザID
@@ -87,7 +91,11 @@ export const SC030_V01_SignInMain = () => {
             //ダイアログ
             Alert.alert("成功",
                 "ログイン処理に成功しました。",
-                [{ text: 'OK', onPress: () => { } }]
+                [{
+                    text: 'OK', onPress: () => {
+                        updateBaseScreenId(CONST_SC000.SCREENINFO.SC110.SCREENID)
+                    }
+                }]
             )
         } else {
             //ダイアログ
@@ -141,7 +149,7 @@ export const SC030_V01_SignInMain = () => {
                         base: "75%",
                         md: "25%",
                     }}
-                        color="white"
+                        color="black"
                         placeholder="ユーザーID" value={localState.userId}
                         onChangeText={(value) => { onChangeUserId(value) }} />
                     <Box alignSelf="flex-start" bg="primary.500" _text={{
@@ -156,7 +164,7 @@ export const SC030_V01_SignInMain = () => {
                         base: "75%",
                         md: "25%"
                     }} placeholder="パスワード"
-                        color="white"
+                        color="black"
                         value={localState.password}
                         onChangeText={(value) => { onChangePassword(value) }} />
                 </Stack>

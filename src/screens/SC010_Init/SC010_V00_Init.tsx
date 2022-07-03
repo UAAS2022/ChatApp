@@ -37,7 +37,7 @@ export const SC010_V00_Init = (props: object) => {
         updateBaseScreenId(CONST_SC000.SCREENINFO.SC020.SCREENID)
     }
     const onClickSwitch_SC012 = () => {
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC110.SCREENID)
+        updateBaseScreenId(CONST_SC000.SCREENINFO.SC030.SCREENID)
     }
 
     return (
