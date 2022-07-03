@@ -37,7 +37,7 @@ export const SC030_V01_SignInMain = () => {
     // ③ローカルステートからコンテキストを取得する
     const [localState, setLocalState] = useState<SC030_InputUserInfo>({} as SC030_InputUserInfo);
     // ④スクリーン更新用
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
     // ログイン情報の入力イベントハンドラ-------------------------------------------------------
     //ユーザID
@@ -93,7 +93,7 @@ export const SC030_V01_SignInMain = () => {
                 "ログイン処理に成功しました。",
                 [{
                     text: 'OK', onPress: () => {
-                        updateBaseScreenId(CONST_SC000.SCREENINFO.SC110.SCREENID)
+                        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC110)
                     }
                 }]
             )
