@@ -31,13 +31,13 @@ import { useState_SC000_ScreenController } from '../SC000_BaseComponent/SC000_V0
 
 export const SC010_V00_Init = (props: object) => {
 
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
     const onClickSwitch_SC011 = () => {
         // newStateを初期化
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC020.SCREENID)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC020)
     }
     const onClickSwitch_SC012 = () => {
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC110.SCREENID)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC110)
     }
 
     return (

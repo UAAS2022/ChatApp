@@ -46,7 +46,7 @@ export const SC020_V01_SignUpMain = () => {
     // const [localState_ImagePath, setLocalState_ImageUri] = useState("../../static/img/murata_unko.jpeg");
 
     //スクリーン更新用。
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
     // 初期表示処理の関数を定義する
     const initMain = async () => {
@@ -187,7 +187,7 @@ export const SC020_V01_SignUpMain = () => {
             // 画像をアップロードする
             uploadProfileImage()
             // ホーム画面に遷移する
-            updateBaseScreenId(CONST_SC000.SCREENINFO.SC110.SCREENID)
+            updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC110)
         }
         // // M050生成
         // createM050()

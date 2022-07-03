@@ -58,6 +58,13 @@ export const SC000_Style = StyleSheet.create({
         marginRight: 0,             //余白(右)
         backgroundColor: '#fff',    //背景色
     },
+    v01_Hooter: {
+        height: '8%',               //縦幅
+        width: '100%',              //横幅
+    },
+    v01_Hooter_DisplayNone: {
+        display: "none",            //表示・非表示
+    },
     v03_MenuBtnView: {
         height: '90%',              //縦幅
         width: '25%',              //横幅
@@ -83,8 +90,8 @@ export const SC000_Style = StyleSheet.create({
         // backgroundColor: '#fff0f5',    //背景色
     },
     v04_MenuBar: {
-        height: '8%',               //縦幅
-        width: '100%',              //横幅
+        // height: '100%',               //縦幅
+        // width: '100%',              //横幅
         alignItems: 'flex-end',     //配置（上下）
         justifyContent: 'center',   //配置（左右）
         marginTop: '1%',          //余白(上)

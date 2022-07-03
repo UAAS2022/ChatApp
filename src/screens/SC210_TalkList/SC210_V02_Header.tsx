@@ -55,7 +55,7 @@ export const SC210_V02_Header = (props: any) => {
 
     // ④カスタムフック呼び出し
     // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC210)
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
     // CS210への遷移関数
     const onClickSwitch_SC210_SC = () => {
@@ -69,7 +69,7 @@ export const SC210_V02_Header = (props: any) => {
         // ステートを更新
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
         // BaseContextの画面情報更新
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC210.SCREENID)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC210)
         //console.log("SC210_V02_Header_newState.screenControllerInfo", newState.screenControllerInfo)
     }
     // ---------------------------------------------------------------------------------------------------------

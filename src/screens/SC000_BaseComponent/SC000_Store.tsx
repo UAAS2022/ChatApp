@@ -12,8 +12,10 @@ export const SC000_S_Context = createContext<SC000_Provider>({} as SC000_Provide
 // 各要素の初期値を定義
 const DEfAULT_ScreenControllerInfo = {
     screenId: "SC010",
-    layoutPattern: 1,
-    infoObj: {}
+    headerKbn: "0",
+    footerKbn: "0"
+    // layoutPattern: 1,ß
+    // infoObj: {}
 }
 const DEfAULT_LoginUserInfo = {} as SC000_LoginUserInfo
 const DEfAULT_ErrorInfo = {
