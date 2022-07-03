@@ -89,7 +89,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC210)
     // ④カスタムフック呼び出し
     // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC210)
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
     // Firebaseからデータを取得する関数
     const getTalkUserInfoList_Detail = async () => {
@@ -189,7 +189,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
 
         // BaseComponentの画面IDを更新する
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC220.SCREENID)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC220)
         //console.log("newState.componentId:", newScreenControllerInfo.componentId)
         //console.log("goToChat:終了")
     }

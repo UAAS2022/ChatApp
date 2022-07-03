@@ -46,7 +46,7 @@ export const SC110_V03_UserList = () => {
     const { state: screenState, dispatch: screenDispatch } = useContext(Context_SC110)
     // ④カスタムフック呼び出し
     // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC210)
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
     // 表示用と保持用のリストをそれぞれ取得
     // const userInfoList = state.baseContext_SC110.userInfoList_ScreenDisp
@@ -155,7 +155,7 @@ export const SC110_V03_UserList = () => {
         // トーク画面の内容をチャット画面に切り替える
         screenDispatch(CHANGE_SCREEN(newState.screenControllerInfo))
         // BaseComponentの画面IDを更新する
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC120.SCREENID)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC120)
         //console.log("goToChat:終了")
     }
 
@@ -175,6 +175,7 @@ export const SC110_V03_UserList = () => {
                 <CC0010_ScreenTitle >Home画面</CC0010_ScreenTitle>
             </View>
             <Divider />
+
             <ScrollView onMomentumScrollBegin={onUpScrollEvent}>
                 <Flex direction="column" mb="2.5" mt="1.5" _text={{
                     color: "coolGray.800"

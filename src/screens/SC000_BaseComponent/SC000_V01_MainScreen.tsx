@@ -39,6 +39,45 @@ import { SC998_V00_Nabe } from '../SC998_Nabe/SC998_V00_Nabe'
 import { SC999_V00_Test } from '../SC999_Test/SC999_V00_Test'
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 
+export const SC000_V01_MainScreen = () => {
+    const { state } = useContext(SC000_S_Context)
+    const { screenId, headerKbn, footerKbn } = state.screenControllerInfo
+    // パターン１：ヘッダ非表示、フッタ非表示
+    if (headerKbn == "0" && footerKbn == "0") {
+        return (
+            <>
+                <SafeAreaView>
+                    <View style={SC000_Style.v01_MainScreen_NoMenu}>
+                        <SC000_V01_MainScreenController />
+                    </View>
+                </SafeAreaView>
+            </>
+        )
+    }
+    // パターン２：ヘッダ表示、フッタ表示
+    else if (headerKbn == "0" && footerKbn != "0") {
+        return (
+            <>
+                <SafeAreaView>
+                    <View style={SC000_Style.v01_MainScreen}>
+                        <SC000_V01_MainScreenController />
+                    </View>
+                    <View style={SC000_Style.v01_Hooter}>
+                        <SC000_V01_HooterController />
+                    </View>
+                </SafeAreaView>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <Text>不正なレイアウトパターンです。ヘッダ区分は「0」のみ許容してます。</Text>
+            </>
+        )
+    }
+}
+
 export const SC000_V01_MainScreenController = () => {
     try {
         const { state, dispatch } = useContext(SC000_S_Context)
@@ -80,28 +119,74 @@ export const SC000_V01_MainScreenController = () => {
     }
 }
 
-// ↓参照なし（不要コンポーネント？）
-export const SC000_V01_MenuBarController = () => {
+// ↓参照なし
+export const SC000_V01_HeaderController = () => {
     try {
         const { state, dispatch } = useContext(SC000_S_Context)
-        const { screenId } = state.screenControllerInfo
-        const layoutPattern = getLayoutPattern(screenId)
+        const { headerKbn } = state.screenControllerInfo
+        // const layoutPattern = getLayoutPattern(screenId)
         //console.log("C0000_Main:screenController----------------------")
         //console.log("C0000_Main:screenId:", screenId, ",layoutPattern:", layoutPattern)
-        switch (layoutPattern) {
-            case 1:
+        switch (headerKbn) {
+            case "0":
                 return (
                     <>
                         <Divider />
                         <SC000_V04_MenuBar />
                     </>
                 )
-            case 2:
-                return (<></>)
+            case "1":
+                return (
+                    <>
+                        <Divider />
+                        <SC000_V04_MenuBar />
+                    </>
+                )
             default:
                 return (
                     <>
                         <Divider />
+                        <Text>Default</Text>
+                        <SC000_V04_MenuBar />
+                    </>
+                )
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            sc950_V00_commonErr(error)
+        }
+        // throw(error)
+        return (<SC950_V00_Error />)
+    }
+}
+
+export const SC000_V01_HooterController = () => {
+    try {
+        const { state, dispatch } = useContext(SC000_S_Context)
+        const { footerKbn, } = state.screenControllerInfo
+        // const layoutPattern = getLayoutPattern(screenId)
+        //console.log("C0000_Main:screenController----------------------")
+        //console.log("C0000_Main:screenId:", screenId, ",layoutPattern:", layoutPattern)
+        switch (footerKbn) {
+            case "0":
+                return (
+                    <>
+                        <Divider />
+                        <SC000_V04_MenuBar />
+                    </>
+                )
+            case "1":
+                return (
+                    <>
+                        <Divider />
+                        <SC000_V04_MenuBar />
+                    </>
+                )
+            default:
+                return (
+                    <>
+                        <Divider />
+                        <Text>Default</Text>
                         <SC000_V04_MenuBar />
                     </>
                 )
@@ -139,7 +224,8 @@ export const SC000_V01_MenuBarController = () => {
 //     }
 // }
 
-export const SC000_V01_MainScreen = () => {
+// ↓参照なし（不要コンポーネント？）
+export const SC000_V01_MainScreen_bk = () => {
     try {
         const { state } = useContext(SC000_S_Context)
         // const { screenId, layoutPattern } = state.screenControllerInfo
@@ -172,7 +258,7 @@ export const SC000_V01_MainScreen = () => {
                 return (
                     <>
                         <SafeAreaView>
-                            <Text>case def</Text>
+                            <Text>Default</Text>
                             <View style={SC000_Style.v01_MainScreen}>
                                 <SC000_V01_MainScreenController />
                             </View>
