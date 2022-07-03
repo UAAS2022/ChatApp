@@ -19,6 +19,7 @@ import { SC000_V01_MainScreen } from './SC000_V01_MainScreen'
 import { SC000_Style } from "./SC000_Style"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
 import { SC000_UPDATE_LAYOUTPATTERN } from "./SC000_Action"
+import { SC000_ScreenController } from "./SC000_Types"
 
 export const SC000_V00_BaseComponent = () => {
     try {
@@ -61,10 +62,17 @@ export const useState_SC000_ScreenController = () => {
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // newState.screenControllerInfo.layoutPattern = getLayoutPattern(screenId)
 
-    const updateBaseScreenId = (screenId: string) => {
+    // 画面遷移を実現する関数
+    const updateScreenControllerInfo = (screenControllerInfo: {
+        SCREENID: string,
+        HEADERKBN: string,
+        FOOTERKBN: string,
+    }) => {
         const newState = { ...baseState }
-        newState.screenControllerInfo.screenId = screenId
+        newState.screenControllerInfo.screenId = screenControllerInfo.SCREENID
+        newState.screenControllerInfo.headerKbn = screenControllerInfo.HEADERKBN
+        newState.screenControllerInfo.footerKbn = screenControllerInfo.FOOTERKBN
         baseDispatch(SC000_CHANGE_SCREEN(newState.screenControllerInfo))
     }
-    return [updateBaseScreenId]
+    return [updateScreenControllerInfo]
 }

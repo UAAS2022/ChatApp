@@ -32,6 +32,8 @@ export type SC000_Context = {
 // スクリーンコントローラ
 export type SC000_ScreenController = {
     screenId: string,
+    headerKbn: string,
+    footerKbn: string,
     // layoutPattern: number,
     // infoObj: any,
 }

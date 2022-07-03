@@ -79,7 +79,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
     const loginUserId = loginUserInfo.userId
     // const loginUserId = baseState.loginUserInfo.userId
     // ⑥ベースコンテキストのHookから情報を取得する
-    const [updateBaseScreenId] = useState_SC000_ScreenController()
+    const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
 
     // ユーザプロフィール情報取得イベントハンドラ
@@ -154,7 +154,7 @@ export const SC120_V01_UserProfile_Main = (props: any) => {
         c060_DebugLog(SCREEN_ID, "START", [], "gotoSC210")
         // 2.1.画面IDを更新する
         // BaseComponentの画面IDを更新する
-        updateBaseScreenId(CONST_SC000.SCREENINFO.SC210.SCREENID)
+        updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC210)
     }
 
 
