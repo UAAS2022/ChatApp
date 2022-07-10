@@ -64,7 +64,7 @@ export const SC110_V03_UserList = () => {
     const getUserList = async () => {
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW)
+        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW, baseState.loginUserInfo.userId)
         const dbObj_newuserInfoList = resultObj.userList
 
         // データをuserInfoListステートに合わせる

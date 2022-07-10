@@ -28,13 +28,15 @@ import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { SC110_Style } from "./SC110_Style"
 import type { SC110_Context, SC110_UserInfo } from './SC110_Types'
 import { UPDATE_USERLIST } from './SC110_Action'
+import { SC000_S_Context } from "../SC000_BaseComponent/SC000_Store"
 import { SC110_S_Context } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 import { CONST_SC000, CONST_SC110 } from "../../common/C000_Const"
 
 export const SC110_V01_UserList = () => {
-
+    // ①ベースコンテキストを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // コンテキストからステートとdispatchを取得
     const { state, dispatch } = useContext(SC110_S_Context);
 
@@ -45,7 +47,7 @@ export const SC110_V01_UserList = () => {
     const getUserList = async () => {
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW)
+        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW, baseState.loginUserInfo.userId)
         const dbObj_newuserInfoList = resultObj.userList
 
         // データをuserInfoListステートに合わせる

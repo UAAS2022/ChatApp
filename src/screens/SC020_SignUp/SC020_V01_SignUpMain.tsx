@@ -26,7 +26,7 @@ import { s370_FileDownload } from '../../service/S370_FileDownload';
 import { s410_FbAuthLogin } from '../../service/S410_FbAuthLogin';
 import * as ImagePicker from 'expo-image-picker';
 import { useState_SC000_ScreenController } from '../SC000_BaseComponent/SC000_V00_BaseComponent'
-
+import { useLogin } from '../SC030_SignIn/SC030_V01_SignInMain';
 
 const Default_LocalState_UserInfo = {
     userId: "",
@@ -44,6 +44,8 @@ export const SC020_V01_SignUpMain = () => {
     const [localState_UserInfo, setLocalState_UserInfo] = useState<SC020_InputUserInfo>(Default_LocalState_UserInfo as SC020_InputUserInfo);
     const [localState_ImagePath, setLocalState_ImageUri] = useState("");
     // const [localState_ImagePath, setLocalState_ImageUri] = useState("../../static/img/murata_unko.jpeg");
+    //  ④カスタムフックを取得する
+    const [{ doLogin, setLoginUserInfo }] = useLogin()
 
     //スクリーン更新用。
     const [updateScreenControllerInfo] = useState_SC000_ScreenController()
@@ -186,6 +188,11 @@ export const SC020_V01_SignUpMain = () => {
         if (errFlg === "0") {
             // 画像をアップロードする
             uploadProfileImage()
+            // ログイン処理を実行する
+            // 1. ユーザIDとパスワードからログインする
+            const loginUserId = await doLogin(localState_UserInfo.userId, localState_UserInfo.password)
+            // 2.1 ユーザ情報を取得する
+            await setLoginUserInfo(loginUserId)
             // ホーム画面に遷移する
             updateScreenControllerInfo(CONST_SC000.SCREENINFO.SC110)
         }

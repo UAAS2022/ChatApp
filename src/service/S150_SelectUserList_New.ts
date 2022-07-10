@@ -8,7 +8,7 @@ import type { M050_User } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S150"
 
-export const s150_SelectUserList_New = async (limitNo: number) => {
+export const s150_SelectUserList_New = async (limitNo: number, logUserId: string) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
     c060_DebugLog(SERVICE_ID, "START", [])
@@ -16,12 +16,20 @@ export const s150_SelectUserList_New = async (limitNo: number) => {
     // 戻り値用のリストを定義
     let userList = [] as any[]
     // クエリを定義
-    const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.M050_User), orderBy("LatestLoginDatetime", 'desc'), limit(limitNo))
+    const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.M050_User),
+        // where("UserId", "!=", logUserId),   //これつけると変なエラーが出てしまう（Firebaseのルール上アウトらしい）。
+        orderBy("LatestLoginDatetime", 'desc'),
+        limit(limitNo)
+    )
     // クエリを実行し、FirebaseからquerySnapshotを取得
     const querySnapshot = await getDocs(query_FB);
     // querySnapshotからdocのデータを取り出し、戻り値用のリストに追加する
     querySnapshot.forEach((doc) => {
-        userList.push(doc.data() as M050_User)
+        const userInfo = doc.data() as M050_User
+        // ログインユーザでない場合のみリストに追加する。
+        if (userInfo.UserId != logUserId) {
+            userList.push(doc.data() as M050_User)
+        }
     });
     // 戻り値を定義
     const resultObj = {

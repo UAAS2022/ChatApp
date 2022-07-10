@@ -36,19 +36,22 @@ export const s303_SelectTalkUserList_ByUserId_Detail = async (userId: string) =>
         // ①トークIDに紐づくユーザIDを取得（条件：自分以外）
         // トークごとのユーザIDを取得する（自分自身を除く）
         const result_s302 = await s302_SelectTalkUserList_ByTalkId(tmpTalkId, "1", userId)
-        const chatUserId = result_s302.talkUserList[0].UserId
-        //console.log("①トークIDに紐づくユーザIDを取得予定（条件：自分以外）:", chatUserId)
-        // ②ユーザIDに紐づくユーザ情報を取得
-        const result_s140 = await s140_SelectUser(chatUserId)
-        const tmpChatUserInfo = result_s140.userInfo
-        //console.log("②ユーザIDに紐づくユーザ情報を取得:", tmpChatUserInfo.UserId)
-        // ③オブジェクトをまとめてプッシュ
-        const talkInfo_Detail = {
-            talkInfo: talkInfo,
-            talkUserInfo: talkUserInfo,
-            chatUserInfo: tmpChatUserInfo,
+        // 取得ありの場合のみ後続処理を実施する。
+        if (result_s302.talkUserList.length > 0) {
+            const chatUserId = result_s302.talkUserList[0].UserId
+            //console.log("①トークIDに紐づくユーザIDを取得予定（条件：自分以外）:", chatUserId)
+            // ②ユーザIDに紐づくユーザ情報を取得
+            const result_s140 = await s140_SelectUser(chatUserId)
+            const tmpChatUserInfo = result_s140.userInfo
+            //console.log("②ユーザIDに紐づくユーザ情報を取得:", tmpChatUserInfo.UserId)
+            // ③オブジェクトをまとめてプッシュ
+            const talkInfo_Detail = {
+                talkInfo: talkInfo,
+                talkUserInfo: talkUserInfo,
+                chatUserInfo: tmpChatUserInfo,
+            }
+            talkUserInfoList_Detail.push(talkInfo_Detail)
         }
-        talkUserInfoList_Detail.push(talkInfo_Detail)
         //console.log("③オブジェクトをまとめてプッシュ:", talkInfo_Detail.talkUserInfo.UserId)
     }
     // 戻り値を定義

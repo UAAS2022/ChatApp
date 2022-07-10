@@ -1,6 +1,7 @@
 import { createContext, useState, useReducer, useContext } from "react";
+import { CONST_SC000 } from "../../common/C000_Const";
 import type { SC000_Provider, SC000_Context } from "./SC000_Types"
-import type { SC000_ScreenController, SC000_LoginUserInfo } from "./SC000_Types"
+import type { SC000_LoginUserInfo } from "./SC000_Types"
 import { reducer, } from "./SC000_Reducer"
 
 // 1.コンテキスト（S999_S_Context）
@@ -11,9 +12,9 @@ export const SC000_S_Context = createContext<SC000_Provider>({} as SC000_Provide
 // ==========================================================================================
 // 各要素の初期値を定義
 const DEfAULT_ScreenControllerInfo = {
-    screenId: "SC010",
-    headerKbn: "0",
-    footerKbn: "0"
+    screenId: CONST_SC000.SCREENINFO.SC010.SCREENID,
+    headerKbn: CONST_SC000.SCREENINFO.SC010.HEADERKBN,
+    footerKbn: CONST_SC000.SCREENINFO.SC010.FOOTERKBN,
     // layoutPattern: 1,ß
     // infoObj: {}
 }

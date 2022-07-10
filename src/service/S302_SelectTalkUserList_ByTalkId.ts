@@ -20,6 +20,7 @@ export const s302_SelectTalkUserList_ByTalkId = async (talkId: string, processKb
     // クエリを定義
     let query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T101_TalkUser))
     query_FB = query(query_FB, where("TalkId", "==", talkId))
+    // 処理区分=1：自身を除いて取得
     if (processKbn === "1") {
         query_FB = query(query_FB, where("UserId", "!=", userId))
     }

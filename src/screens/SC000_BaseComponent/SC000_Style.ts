@@ -40,7 +40,25 @@ export const SC000_Style = StyleSheet.create({
         marginRight: 0,             //余白(右)
         backgroundColor: '#fff',    //背景色
     },
-    v01_MainScreen: {
+    v01_MainScreen_Full: {
+        height: '100%',             //縦幅
+        width: '100%',              //横幅
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: 0,              //余白(左)
+        marginRight: 0,             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
+    v01_MainScreen_H: {
+        height: '93%',             //縦幅
+        width: '100%',              //横幅
+        marginTop: 0,               //余白(上)
+        marginBottom: 0,            //余白(下)
+        marginLeft: 0,              //余白(左)
+        marginRight: 0,             //余白(右)
+        backgroundColor: '#fff',    //背景色
+    },
+    v01_MainScreen_F: {
         height: '92%',             //縦幅
         width: '100%',              //横幅
         marginTop: 0,               //余白(上)
@@ -49,8 +67,8 @@ export const SC000_Style = StyleSheet.create({
         marginRight: 0,             //余白(右)
         backgroundColor: '#fff',    //背景色
     },
-    v01_MainScreen_NoMenu: {
-        height: '100%',             //縦幅
+    v01_MainScreen_HF: {
+        height: '85%',             //縦幅
         width: '100%',              //横幅
         marginTop: 0,               //余白(上)
         marginBottom: 0,            //余白(下)

@@ -53,7 +53,7 @@ export type SC000_LoginUserInfo = {
 export type SC000_ScreenChangeBtnInfo = {
     buttonId: string | undefined,
     buttonName: string,
-    nextScreenId: string,
+    nextScreenInfo: { SCREENID: string, HEADERKBN: string, FOOTERKBN: string },
     // action: SC000_A_ScreenController
 }
 // エラー情報
