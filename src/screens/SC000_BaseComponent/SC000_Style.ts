@@ -123,7 +123,7 @@ export const SC000_Style = StyleSheet.create({
         height: '7%',               //縦幅
         width: '100%',              //横幅
         // alignItems: 'flex-end',     //配置（上下）
-        justifyContent: 'center',   //配置（左右）
+        justifyContent: 'center',  //配置（左右）
         marginTop: '0%',          //余白(上)
         marginBottom: '0%',            //余白(下)
         marginLeft: 'auto',         //余白(左)

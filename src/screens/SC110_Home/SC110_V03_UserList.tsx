@@ -172,7 +172,7 @@ export const SC110_V03_UserList = () => {
             {/* <Heading size="md">ユーザ一覧</Heading> */}
             {/* スクロールエリアを定義 */}
             <View style={SC000_Style.v00_HeaderArea}>
-                <CC0010_ScreenTitle >Home画面</CC0010_ScreenTitle>
+                <CC0010_ScreenTitle >Home画面⇦ここは広告欄に変更</CC0010_ScreenTitle>
             </View>
             <Divider />
 
