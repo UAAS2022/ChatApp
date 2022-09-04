@@ -65,7 +65,7 @@ export type SC220_ChatMessageInfo = {
     talkId: string,
     seq: number
     sendUserId: string,
-    sendDateTime: Timestamp,
+    sendDateTime: Date,
     message: string,
 }
 

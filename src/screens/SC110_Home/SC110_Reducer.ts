@@ -4,6 +4,7 @@ import type {
 } from "./SC110_Types"
 // import { SC110_ACTIONTYPE } from "./SC110_Const"
 import { SC110_ACTIONTYPE } from "./SC110_Action"
+import { SC110_InfinityScrollInfo } from "./SC110_Types"
 
 // SC999_Reducer.tsには、基本的に「reducerメソッド」のみを定義する。
 // reducerメソッドの中にアクションごとの処理を記載する。
@@ -22,6 +23,12 @@ export const reducer = (state: SC110_Context, action: SC000_Action) => {
             break
         // UPDATE_USERの場合
         case SC110_ACTIONTYPE.UPDATE_USERLIST:
+            newState = { ...state, ...payload }
+            break
+        // UPDATE_USERの場合
+        case SC110_ACTIONTYPE.UPDATE_INFINITY_SCROLL_INFO:
+            // const infinityScrollInfo = { infinityScrollInfo: payload as SC110_InfinityScrollInfo }
+            // newState = { ...state, ...infinityScrollInfo }
             newState = { ...state, ...payload }
             break
     }

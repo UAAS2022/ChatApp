@@ -64,7 +64,7 @@ export const SC999_V11_UpdateTalk = () => {
             const userId = talkInfo.userId
 
             // サービスを実行する
-            await s270_UpdateTalkUser(talkId, userId, userId)
+            await s270_UpdateTalkUser(talkId, userId, userId, false)
 
             // 初期化
             setTalkInfo({} as SC999_TalkUserInfo);

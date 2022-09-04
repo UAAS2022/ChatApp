@@ -48,6 +48,7 @@ export type T100_Talk = {
     TalkId: string,
     TalkName: string,
     TalkKbn: string,
+    LatestMessageDateTime: Timestamp,
     _CrtUserId: string,
     _CrtServiceId: string,
     _CrtDatetime: Timestamp,

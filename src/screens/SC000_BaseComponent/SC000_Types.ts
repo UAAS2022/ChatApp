@@ -80,12 +80,13 @@ export type SC210_TalkInfo = {
     talkId: string,
     talkName: string,
     talkKbn: string,
+    latestMessageDateTime: string,
 }
 export type SC210_UserInfo = {
     _0_DocId: string,
     userId: string,
     userName: string,
-    LatestLoginDatetime: string,
+    latestLoginDatetime: string,
     profileImagePath: string,
 }
 // --------------------------------------------------------------

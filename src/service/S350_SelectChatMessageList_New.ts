@@ -4,42 +4,34 @@ import { query, where, orderBy, limit } from 'firebase/firestore';
 import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId } from '../common/C020_FirebaseUtil';
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
 import { c060_DebugLog } from "../common/C060_LogUtil"
-import type { T101_TalkUser } from '../common/C020_FirebaseUtil_Types';
+import type { T110_ChatMessage } from '../common/C020_FirebaseUtil_Types';
 
-const SERVICE_ID = "S270"
+const SERVICE_ID = "S350"
 
-export const s270_UpdateTalkUser = async (
+export const s350_SelectChatMessageList_New = async (
     talkId: string,
-    userId: string,
-    logUserId: string,
-    readedDatetimeFlg: boolean,
+    // userId: string,
 ) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
     c060_DebugLog(SERVICE_ID, "START", [])
     // ---------------------------------------------------------------------------------------------------------
-    const docId = c020_MakeDocId([talkId, userId])
-    let newTalkUserInfo = {
-        // _0_DocId: talkId + C000_FIREBASE_INFO.DocIdMaker + userId,
-        // TalkId: talkId,
-        // UserId: userId,
-        // ReadedDatetime: Timestamp.now(),
-        // _CrtUserId: logUserId,
-        // _CrtServiceId: SERVICE_ID,
-        // _CrtDatetime: Timestamp.now(),
-        _UpdUserId: logUserId,
-        _UpdServiceId: SERVICE_ID,
-        _UpdDatetime: Timestamp.now(),
-    } as T101_TalkUser;
-    // 指定した項目のみ更新する
-    if (readedDatetimeFlg) {
-        newTalkUserInfo = { ...newTalkUserInfo, ...{ ReadedDatetime: Timestamp.now() } }
-    }
-    // Firebase処理
-    const result_FB = await updateDoc(doc(DB_FIREBASE, FIREBASE_COLLECTIONS.T101_TalkUser, docId), newTalkUserInfo);
+    // エラーフラグを初期化
+    let errFlg = "0"
+    // 戻り値用のリストを定義
+    let chatMessageList = [] as T110_ChatMessage[]
+    // クエリを定義
+    const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T110_ChatMessage), where("TalkId", "==", talkId), orderBy("Seq", 'desc'), limit(1000))
+    // クエリを実行し、FirebaseからquerySnapshotを取得
+    const querySnapshot = await getDocs(query_FB);
+    // querySnapshotからdocのデータを取り出し、戻り値用のリストに追加する
+    querySnapshot.forEach((doc) => {
+        chatMessageList.push(doc.data() as T110_ChatMessage)
+    });
     // 戻り値を定義
     const resultObj = {
-        result_FB: result_FB
+        errFlg: errFlg,
+        chatMessageList: chatMessageList
     }
     // ---------------------------------------------------------------------------------------------------------
     // 終了ログ

@@ -1,5 +1,5 @@
 import { createContext, useState, useReducer } from "react";
-import type { SC110_Provider, SC110_Context, SC110_ScreenController, SC110_PreInfo_SC120 } from "./SC110_Types"
+import type { SC110_Provider, SC110_Context, SC110_ScreenController, SC110_PreInfo_SC120, SC110_InfinityScrollInfo } from "./SC110_Types"
 import { CONST_SC000, CONST_SC110 } from "../../common/C000_Const"
 import { reducer } from "./SC110_Reducer"
 import { SC950_V00_Error, sc950_V00_commonErr } from "../SC950_Error/SC950_V00_Error"
@@ -22,6 +22,9 @@ const DefaultState: SC110_Context = {
     } as SC110_ScreenController,
     userInfoList_ScreenDisp: [[]],
     preInfo_SC120: {} as SC110_PreInfo_SC120,
+    infinityScrollInfo: {
+        cursorTimestamp: new Date()
+    } as SC110_InfinityScrollInfo
 }
 
 // 3.プロバイダ(SC110_S_Provider)

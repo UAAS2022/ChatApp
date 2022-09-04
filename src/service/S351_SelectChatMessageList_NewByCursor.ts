@@ -8,9 +8,10 @@ import type { T110_ChatMessage } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S351"
 
-export const s351_SelectChatMessageList_New = async (
+export const s351_SelectChatMessageList_NewByCursor = async (
     talkId: string,
-    // userId: string,
+    limitNo: number,
+    cursorSeq?: number
 ) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
@@ -21,7 +22,14 @@ export const s351_SelectChatMessageList_New = async (
     // 戻り値用のリストを定義
     let chatMessageList = [] as T110_ChatMessage[]
     // クエリを定義
-    const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T110_ChatMessage), where("TalkId", "==", talkId), orderBy("Seq", 'desc'), limit(1000))
+    let query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.T110_ChatMessage),
+        where("TalkId", "==", talkId),
+        orderBy("Seq", 'desc'),
+        limit(limitNo)
+    )
+    if (cursorSeq !== undefined) {
+        query_FB = query(query_FB, where("Seq", "<", cursorSeq))
+    }
     // クエリを実行し、FirebaseからquerySnapshotを取得
     const querySnapshot = await getDocs(query_FB);
     // querySnapshotからdocのデータを取り出し、戻り値用のリストに追加する
