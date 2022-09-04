@@ -9,7 +9,7 @@ import { s290_SelectTalkUser } from "./S290_SelectTalkUser"
 
 const SERVICE_ID = "S302"
 
-export const s302_SelectTalkUserList_ByTalkId = async (talkId: string, processKbn: string, userId: string | undefined) => {
+export const s302_SelectTalkUserList_ByTalkId = async (talkId: string, processKbn: string, userId?: string) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
     c060_DebugLog(SERVICE_ID, "START", [])

@@ -37,9 +37,6 @@ import { s350_SelectChatMessageList_New } from "../../service/S350_SelectChatMes
 import { s352_SelectChatMessageList_RealTime } from "../../service/S352_SelectChatMessageList_RealTime"
 import { s271_UpdateTalkUser_ByTalkId } from '../../service/S271_UpdateTalkUser_ByTalkId';
 import { s351_SelectChatMessageList_NewByCursor } from '../../service/S351_SelectChatMessageList_NewByCursor';
-import type { T110_ChatMessage } from '../../common/C020_FirebaseUtil_Types';
-import { CONST_SC220 } from '../../common/C000_Const';
-import { dateToString_Zero } from '../../common/C050_DateUtil';
 
 // 業務エラーチェッククラス
 const check = (chatMessageInfo: SC220_ChatMessageInfo): boolean => {
@@ -60,18 +57,13 @@ const TALKID = CONST_SC999_V20.talkId
 const USERID = "xxx"
 
 export const SC220_V01_ChatScreen_Main = (props: any) => {
-    // (0)定数を取得する
-    const limitNo = CONST_SC220.LIMITNO
-
     // ①ベースコンテキストを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
+
     // ③ローカルステートを定義する
     const [chatMessageInfo, setChatMessageInfo] = useState<SC220_ChatMessageInfo>({} as SC220_ChatMessageInfo);
-    // const [chatMessageInfoList, setChatMessageInfoList] = useState<SC220_ChatMessageInfo[]>([] as SC220_ChatMessageInfo[]);
-    const [baseChatMessageInfoList, setBaseChatMessageInfoList] = useState<SC220_ChatMessageInfo[]>([] as SC220_ChatMessageInfo[]);
-    const [newChatMessageInfoList, setNewChatMessageInfoList] = useState<SC220_ChatMessageInfo[]>([] as SC220_ChatMessageInfo[]);
-    const [cursorBaseSeq, setCursorBaseSeq] = useState(0)
-    // const [cursorNewSeq, setCursorNewSeq] = useState(0)
+    const [chatMessageInfoList, setChatMessageInfoList] = useState<SC220_ChatMessageInfo[]>([] as SC220_ChatMessageInfo[]);
+    const [cursorSeq, setCursorSeq] = useState(0)
 
     // ベースコンテキストからユーザ情報を取得する
     // const loginUserId = baseState.loginUserInfo.userId
@@ -83,10 +75,6 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
     const { talkId, talkName } = props
     //console.log("SC220_V01_ChatScreen_Main_talkId:", talkId)
 
-    // チャットメッセージリスト
-    const chatMessageInfoList = newChatMessageInfoList.concat(baseChatMessageInfoList)
-    // const chatMessageInfoList = newChatMessageInfoList
-
     //チャットメッセージ
     const onChangeChatMessage = (value: string) => {
         const newState = { ...chatMessageInfo, message: value }
@@ -97,13 +85,6 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
     // トークネーム取得
     const getTalkName = () => {
 
-    }
-
-    // SC220初期化関数
-    const initSC220 = async () => {
-        const newBaseChatMessageInfoList = await getBaseChatMessageList_Infinity("1")
-        const cursorNewSeq = newBaseChatMessageInfoList[0].seq
-        getChatMessageList_Subsc(cursorNewSeq)
     }
 
     // --------------------------------------------------------------
@@ -143,11 +124,12 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
         }
     };
     // --------------------------------------------------------------
-    //チャットメッセージ取得イベントハンドラ（メッセージ表示エリアの情報を取得する）
+
+    //チャットメッセージ取得イベントハンドラ（メッセージ表示エリアの情報を取得する）>>不要コード
     // --------------------------------------------------------------
-    const getBaseChatMessageList = async () => {
+    const getChatMessageList = async () => {
         // Firebaseからデータを取得する
-        const resultObj = await s351_SelectChatMessageList_NewByCursor(talkId, limitNo)
+        const resultObj = await s350_SelectChatMessageList_New(talkId)
         const dbObj_newChatMessageInfoList = resultObj.chatMessageList
         // データをuserInfoListステートに合わせる
         let new_ChatMessageInfoList = dbObj_newChatMessageInfoList.map((dbObj_chatMessageInfo) => {
@@ -157,87 +139,28 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
             chatMessageInfo.seq = dbObj_chatMessageInfo.Seq
             chatMessageInfo.sendUserId = dbObj_chatMessageInfo.SendUserId
             chatMessageInfo.message = dbObj_chatMessageInfo.Message
-            chatMessageInfo.sendDateTime = dbObj_chatMessageInfo.SendDateTime.toDate()
+            chatMessageInfo.sendDateTime = dbObj_chatMessageInfo.SendDateTime
             return chatMessageInfo
         })
         // 並び順を逆にする
         // new_ChatMessageInfoList = [...new_ChatMessageInfoList].reverse()
         // ステートの更新
-        setBaseChatMessageInfoList(new_ChatMessageInfoList)
-    }
-
-    // --------------------------------------------------------------
-    //チャットメッセージ取得イベントハンドラ（メッセージ表示エリアの情報を取得する）
-    // --------------------------------------------------------------
-    const getBaseChatMessageList_Infinity = async (processKbn: string) => {
-        // Firebaseからデータを取得する
-        let result_S351: {
-            errFlg: string,
-            chatMessageList: T110_ChatMessage[]
-        } = {
-            errFlg: "1",
-            chatMessageList: []
-        }
-        if (processKbn === "1") {
-            // 処理区分が1の場合、カーソルを指定しない
-            result_S351 = await s351_SelectChatMessageList_NewByCursor(talkId, limitNo)
-            // カーソルステート（サブスク用）を更新する
-            // const maxIndex_New = result_S351.chatMessageList.length - 1
-            // setCursorNewSeq(result_S351.chatMessageList[maxIndex_New].Seq)
-        }
-        else if (processKbn === "2") {
-            // 処理区分が1の場合、カーソルを指定する
-            result_S351 = await s351_SelectChatMessageList_NewByCursor(talkId, limitNo, cursorBaseSeq)
-        }
-        const dbObj_newChatMessageInfoList = result_S351.chatMessageList
-        // データをuserInfoListステートに合わせる
-        let tmp_NewBaseChatMessageInfoList = dbObj_newChatMessageInfoList.map((dbObj_chatMessageInfo) => {
-            const chatMessageInfo = {} as SC220_ChatMessageInfo
-            chatMessageInfo._0_DocId = dbObj_chatMessageInfo._0_DocId
-            chatMessageInfo.talkId = dbObj_chatMessageInfo.TalkId
-            chatMessageInfo.seq = dbObj_chatMessageInfo.Seq
-            chatMessageInfo.sendUserId = dbObj_chatMessageInfo.SendUserId
-            chatMessageInfo.message = dbObj_chatMessageInfo.Message
-            chatMessageInfo.sendDateTime = dbObj_chatMessageInfo.SendDateTime.toDate()
-            return chatMessageInfo
-        })
-        // 末尾に追加
-        let newBaseChatMessageInfoList = baseChatMessageInfoList
-        newBaseChatMessageInfoList = newBaseChatMessageInfoList.concat(tmp_NewBaseChatMessageInfoList)
-        // ステートの更新
-        setBaseChatMessageInfoList(newBaseChatMessageInfoList)
-        // ステートの更新
-        const maxIndex_Base = newBaseChatMessageInfoList.length - 1
-        setCursorBaseSeq(newBaseChatMessageInfoList[maxIndex_Base].seq)
-
-        return newBaseChatMessageInfoList
+        setChatMessageInfoList(new_ChatMessageInfoList)
     }
 
     // サブスクリプションを使ったメッセージ取得関数
     // （トークIDとステートの更新関数を渡すことで、サブスクリプションの結果をリアルタイムで画面に反映する関数。ちょっと強引だから要改善。）
     // --------------------------------------------------------------
-    const getChatMessageList_Subsc = async (cursorNewSeq: number) => {
-        // await s352_SelectChatMessageList_RealTime(talkId, setChatMessageInfoList)
-        await s352_SelectChatMessageList_RealTime(talkId, setNewChatMessageInfoList, cursorNewSeq)
+    const getChatMessageList_Subsc = async () => {
+        await s352_SelectChatMessageList_RealTime(talkId, setChatMessageInfoList)
     }
     // --------------------------------------------------------------
-
-    // リフレッシュ関数
-    //最上部までワイプすることで発火するイベントを定義
-    const onUpScrollEvent = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-        //最上部までスクロールされた場合だけ実行する（リストの表示順が逆のため、y軸も反転している？）
-        if (e.nativeEvent.contentOffset.y > 0) {
-            getBaseChatMessageList_Infinity("2")
-        }
-    }
 
     // 初期表示処理-------------------------------------------------------------
     //
     useEffect(() => {
         // getChatMessageList()
-        // const cursorNewSeq = await getBaseChatMessageList_Infinity("1")
-        // getChatMessageList_Subsc(cursorNewSeq)
-        initSC220()
+        getChatMessageList_Subsc()
     }, []);
     // -----------------------------------------------------------------------
 
@@ -246,8 +169,8 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
             {/* KeyboardAvoidingViewキーボードで隠れないようにするやつ */}
             {/* <KeyboardAvoidingView> */}
             {/* <Heading size="md">{talkName}</Heading> */}
-            {/* <Button size="sm" onPress={() => { getBaseChatMessageList_Infinity("2"); }}>インフィニティ</Button> */}
             <Divider />
+
             {/* FlatListのinvertedというプロパティをtrueにすることにより、
             FlatListを反転させ、よくあるチャットアプリのように、リストの下側にメッセージを随時追加できるようにしている。 */}
             <FlatList
@@ -258,8 +181,6 @@ export const SC220_V01_ChatScreen_Main = (props: any) => {
                     <MessageItem loginUserId={loginUserId} chatMessageInfo={item} />
                 )}
                 keyExtractor={(_, index) => index.toString()}
-                // onScrollEndDrag={onUpScrollEvent}
-                onMomentumScrollEnd={onUpScrollEvent}
             />
             <Divider />
 
@@ -293,7 +214,7 @@ export const MessageItem: React.FC<SC220_V20_MessageItem> = ({ chatMessageInfo, 
                         : SC220_Style.v20_MessageSender_You
                 }
             >
-                <Text style={SC220_Style.v20_UserName}>{chatMessageInfo.sendUserId}</Text>
+                <Text >{chatMessageInfo.sendUserId}</Text>
             </View>
             {/* ■ メッセージ内容 */}
             <View

@@ -36,7 +36,7 @@ import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s310_CreateChatMessage } from "../../service/S310_CreateChatMessage"
 import { UPDATE_V19 } from './SC999_Action'
 import { SC999_S_Context } from "./SC999_Store"
-import { s351_SelectChatMessageList_New } from "../../service/S351_SelectChatMessageList_New"
+import { s350_SelectChatMessageList_New } from "../../service/S350_SelectChatMessageList_New"
 import { SC410_Style } from '../SC410_Manage/SC410_Style';
 
 const USERINFO_TSUNE = CONST_SC999_V21.loginUserInfo.tsune

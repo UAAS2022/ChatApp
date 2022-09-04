@@ -35,6 +35,7 @@ export const s210_CreateTalk = async (
         TalkId: docId,
         TalkName: talkName,
         TalkKbn: talkKbn,
+        LatestMessageDateTime: Timestamp.now(),
         _CrtUserId: logUserId,
         _CrtServiceId: SERVICE_ID,
         _CrtDatetime: Timestamp.now(),

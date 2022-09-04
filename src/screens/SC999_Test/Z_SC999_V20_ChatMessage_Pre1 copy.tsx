@@ -34,7 +34,7 @@ import { c010_UaasUtil_isNotBlank, c010_UaasUtil_isNotEmpty } from '../../common
 import { s310_CreateChatMessage } from "../../service/S310_CreateChatMessage"
 import { UPDATE_V19 } from './SC999_Action'
 import { SC999_S_Context } from "./SC999_Store"
-import { s351_SelectChatMessageList_New } from "../../service/S351_SelectChatMessageList_New"
+import { s350_SelectChatMessageList_New } from "../../service/S350_SelectChatMessageList_New"
 import { s352_SelectChatMessageList_RealTime } from "../../service/S352_SelectChatMessageList_RealTime"
 // ---------------------------------------------------------------------
 import { collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
@@ -137,7 +137,7 @@ export const SC999_V20_ChatMessage_Pre1 = () => {
         // //console.log("getChatMessageList開始！=========================================================");
 
         // Firebaseからデータを取得する
-        const resultObj = await s351_SelectChatMessageList_New(TALKID)
+        const resultObj = await s350_SelectChatMessageList_New(TALKID)
         const dbObj_newChatMessageInfoList = resultObj.chatMessageList
 
         // データをuserInfoListステートに合わせる

@@ -8,11 +8,12 @@ import type { S000_SeqId, T100_Talk } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S210"
 
-export const s210_CreateTalk = async (
+export const s220_UpdateTalk = async (
     talkId: string,
-    talkName: string,
-    talkKbn: number,
-    logUserId: string
+    logUserId: string,
+    latestMessageDateTimeFlg: boolean,
+    talkName?: string,
+    talkKbn?: number,
 ) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
@@ -23,11 +24,12 @@ export const s210_CreateTalk = async (
 
     // ②トーク情報を更新------------------------------------------------------------------------
     // ドキュメントの中身を定義
-    const newTalkInfo = {
+    let newTalkInfo = {
         // _0_DocId: docId,
         // TalkId: docId,
-        TalkName: talkName,
-        TalkKbn: talkKbn,
+        // TalkName: talkName,
+        // TalkKbn: talkKbn,
+        // LatestMessageDateTime: Timestamp.now(),
         // _CrtUserId: logUserId,
         // _CrtServiceId: SERVICE_ID,
         // _CrtDatetime: Timestamp.now(),
@@ -36,6 +38,16 @@ export const s210_CreateTalk = async (
         _UpdDatetime: Timestamp.now(),
         // } as T100_Talk;
     };
+    // 指定した項目のみ更新する
+    if (talkName != undefined) {
+        newTalkInfo = { ...newTalkInfo, ...{ TalkName: talkName } }
+    }
+    if (talkKbn != undefined) {
+        newTalkInfo = { ...newTalkInfo, ...{ TalkKbn: talkKbn } }
+    }
+    if (latestMessageDateTimeFlg) {
+        newTalkInfo = { ...newTalkInfo, ...{ LatestMessageDateTime: Timestamp.now() } }
+    }
     const result_FB = await updateDoc(doc(DB_FIREBASE, FIREBASE_COLLECTIONS.T100_Talk, talkId), newTalkInfo);
     // ②---------------------------------------------------------------------------------------
     // 返却処理

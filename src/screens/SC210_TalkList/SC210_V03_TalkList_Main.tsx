@@ -32,7 +32,7 @@ import {
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-import { dateToString } from "../../common/C050_DateUtil"
+import { dateToString_Zero } from "../../common/C050_DateUtil"
 import { CC0010_ScreenTitle } from '../SC000_BaseComponent/SC000_V02_ScreenTitle'
 import { getLayoutPattern } from "../SC000_BaseComponent/SC000_V03_MenuBtn"
 import { CONST_SC000, CONST_SC210 } from "../../common/C000_Const"
@@ -46,43 +46,9 @@ import { UPDATE_CHATSCREEN_PREINFO, CHANGE_SCREEN } from "./SC210_Action"
 import { Context_SC210 } from "./SC210_Store"
 import { SC210_TalkInfo } from "./SC210_Types"
 import { s303_SelectTalkUserList_ByUserId_Detail } from "../../service/S303_SelectTalkUserList_ByUserId_Detail"
-// import { SC000_Img, murata_unko } from "../../common/C000_Const"
-
-
-const DATA = [{
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    fullName: "Aafreen Khan",
-    timeStamp: "12:47 PM",
-    recentText: "Good Day!",
-    avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-}, {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    fullName: "Sujitha Mathur",
-    timeStamp: "11:11 PM",
-    recentText: "Cheer up, there!",
-    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEaZqT3fHeNrPGcnjLLX1v_W4mvBlgpwxnA&usqp=CAU"
-}, {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    fullName: "Anci Barroco",
-    timeStamp: "6:22 PM",
-    recentText: "Good Day!",
-    avatarUrl: "https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg"
-}, {
-    id: "68694a0f-3da1-431f-bd56-142371e29d72",
-    fullName: "Aniket Kumar",
-    timeStamp: "8:56 PM",
-    recentText: "All the best",
-    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
-}, {
-    id: "28694a0f-3da1-471f-bd96-142456e29d72",
-    fullName: "Kiara",
-    timeStamp: "12:47 PM",
-    recentText: "I will call today.",
-    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
-}];
+import { s304_SelectTalkUserList_ByUserId_Detail_RealTime } from '../../service/S304_SelectTalkUserList_ByUserId_Detail_RealTime';
 
 export const SC210_V03_TalkList_Main = (props: object) => {
-    //console.log("SC210_V01_TalkList:開始")
     // ①ベースコンテキストを取得する
     const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
     // ②画面コンテキストを取得する
@@ -91,20 +57,26 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     // const [updateLayoutPattern] = useState_SC000_LayoutPattern(CONST_SC000.SCREENINFO.SC210)
     const [updateScreenControllerInfo] = useState_SC000_ScreenController()
 
+    // サブスクリプションを設定し、ユーザ情報詳細リストをリアルタイム更新する関数
+    const getTalkUserInfoList_Detail_Subsc = async () => {
+        const userId = baseState.loginUserInfo.userId
+        s304_SelectTalkUserList_ByUserId_Detail_RealTime(
+            userId,
+            baseDispatch,
+        )
+    }
+
     // Firebaseからデータを取得する関数
     const getTalkUserInfoList_Detail = async () => {
         // ①Firebaseからデータを取得する
-        // const userId = baseState.loginUserInfo.userId
-        // const userId = "xxx"
         const userId = baseState.loginUserInfo.userId
-        const result_S302 = await s303_SelectTalkUserList_ByUserId_Detail(userId)
-        const dbObj_talkUserInfoList_Detail = result_S302.talkUserInfoList_Detail
-        //console.log("dbObj_talkUserInfoList_Detail.length", dbObj_talkUserInfoList_Detail.length)
+        const result_S303 = await s303_SelectTalkUserList_ByUserId_Detail(userId)
+        const dbObj_talkUserInfoList_Detail = result_S303.talkUserInfoList_Detail
         // ②データをuserInfoListステートに合わせる
         let new_talkUserInfoList_Detail = dbObj_talkUserInfoList_Detail.map((dbObj_talkUserInfo_Detail) => {
-            //console.log("talkUserInfo_Detail.userInfo.userName:1")
             // 日付変換
-            const date = dbObj_talkUserInfo_Detail.chatUserInfo.LatestLoginDatetime.toDate()
+            const latestMessageDateTime = dbObj_talkUserInfo_Detail.talkInfo.LatestMessageDateTime.toDate()
+            const latestLoginDatetime = dbObj_talkUserInfo_Detail.chatUserInfo.LatestLoginDatetime.toDate()
             // トーク名判断
             let talkName = ""
             const talkKbn = String(dbObj_talkUserInfo_Detail.talkInfo.TalkKbn)
@@ -124,18 +96,32 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                     talkId: dbObj_talkUserInfo_Detail.talkUserInfo.TalkId,
                     talkName: talkName,
                     talkKbn: talkKbn,
+                    latestMessageDateTime: dateToString_Zero(latestMessageDateTime, "MM/DD hh:mm"),
                 },
                 userInfo: {
                     _0_DocId: dbObj_talkUserInfo_Detail.chatUserInfo.UserId,
                     userId: dbObj_talkUserInfo_Detail.chatUserInfo.UserId,
                     userName: dbObj_talkUserInfo_Detail.chatUserInfo.UserName,
-                    LatestLoginDatetime: dateToString(date, "MM/DD"),
+                    latestLoginDatetime: dateToString_Zero(latestLoginDatetime, "MM/DD"),
                     profileImagePath: dbObj_talkUserInfo_Detail.chatUserInfo.ProfileImagePath,
                 }
             } as SC210_TalkUserInfo_Detail
-            //console.log("talkUserInfo_Detail.userInfo.userName:", talkUserInfo_Detail.userInfo.userName)
             return talkUserInfo_Detail
         })
+        // 最新メッセージ送信日時でソートする
+        new_talkUserInfoList_Detail = new_talkUserInfoList_Detail.sort(
+            (n1, n2) => {
+                let val = 0
+                if (n1.talkInfo.latestMessageDateTime > n2.talkInfo.latestMessageDateTime) {
+                    val = -1;
+                }
+                if (n1.talkInfo.latestMessageDateTime < n2.talkInfo.latestMessageDateTime) {
+                    return val = 1;
+                }
+                return val;
+            }
+        )
+
         // ③更新用ステートを定義する
         const newState = {
             baseContext_SC210: {
@@ -144,13 +130,9 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         }
         // ④ステートを更新する
         baseDispatch(SC210_UPDATE_TAlKUSER(newState))
-        //console.log("baseContext------------------------------")
-        //console.log(newState)
-        //console.log("baseContext------------------------------")
     }
 
     const updateChatScreenInfoPre = (talkInfo: SC210_TalkInfo) => {
-        //console.log("updateChatScreenInfoPre:開始")
         // ステートの定義
         const newState = { ...screenState }
         // チャットスクリーンプレ情報を更新
@@ -159,8 +141,6 @@ export const SC210_V03_TalkList_Main = (props: object) => {
         newState.chatScreenPreInfo.talkKbn = talkInfo.talkKbn
         // ステートを更新する
         screenDispatch(UPDATE_CHATSCREEN_PREINFO(newState.chatScreenPreInfo))
-        //console.log("newState.talkId:", newState.chatScreenPreInfo.talkId)
-        //console.log("updateChatScreenInfoPre:終了")
     }
 
     const disableMenuBar = () => {
@@ -196,7 +176,8 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     //console.log("SC210_V03_TalkList_Main:baseState.screenControllerInfo", baseState.screenControllerInfo)
 
     useEffect(() => {
-        getTalkUserInfoList_Detail()
+        // getTalkUserInfoList_Detail()    //テスト用の一時処理
+        getTalkUserInfoList_Detail_Subsc()
     }, [])
 
     return (
@@ -260,7 +241,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
                                         }}
                                         color="coolGray.800"
                                         alignSelf="flex-start">
-                                        {String(item.userInfo.LatestLoginDatetime)}
+                                        {String(item.talkInfo.latestMessageDateTime).slice(0, -3)}
                                     </Text>
                                 </HStack>
                             </Box>

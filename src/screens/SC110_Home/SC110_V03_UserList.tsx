@@ -31,12 +31,14 @@ import { SC000_Style } from "../SC000_BaseComponent/SC000_Style"
 import { useState_SC000_ScreenController } from "../SC000_BaseComponent/SC000_V00_BaseComponent"
 import { SC110_Style } from "./SC110_Style"
 // import type { SC110_Context, SC110_UserInfo } from './SC110_Types'
-import { CHANGE_SCREEN, UPDATE_PREINFO_120 } from './SC110_Action'
+import { SC000_UPDATE_LOGIN_USER } from '../SC000_BaseComponent/SC000_Action'
+import { CHANGE_SCREEN, UPDATE_PREINFO_120, UPDATE_INFINITY_SCROLL_INFO } from './SC110_Action'
 import { Context_SC110 } from "./SC110_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
 import { s121_UpdateUser_LoginDatetime } from "../../service/S121_UpdateUser_LoginDatetime"
 import { s150_SelectUserList_New } from "../../service/S150_SelectUserList_New"
 import { s370_FileDownload } from '../../service/S370_FileDownload';
+import { dateToString } from '../../common/C050_DateUtil';
 
 export const SC110_V03_UserList = () => {
 
@@ -52,19 +54,27 @@ export const SC110_V03_UserList = () => {
     // const userInfoList = state.baseContext_SC110.userInfoList_ScreenDisp
     const userInfoList_ScreenDisp = baseState.baseContext_SC110.userInfoList_ScreenDisp
 
-    const updateDisp = async () => {
+    const refreshUserList = async () => {
+        console.log("updateDisp--------------------------------------------------updateDisp")
         await updateLatestLoginDatetime()
-        await getUserList()
+        await getUserList(0)
     }
 
     const updateLatestLoginDatetime = async () => {
+        // screenContextのインフィニティスクロール用の値を更新する
+        // let new_infinityScrollInfo = { ...screenState.infinityScrollInfo }
+        // new_infinityScrollInfo.cursorTimestamp = new Date()
+        // screenDispatch(UPDATE_INFINITY_SCROLL_INFO(new_infinityScrollInfo))
+        updateInfinityCursor(new Date())
+        // DBの最終ログイン日時を更新する
         await s121_UpdateUser_LoginDatetime(baseState.loginUserInfo.userId, baseState.loginUserInfo.userId)
     }
 
-    const getUserList = async () => {
+    const getUserList = async (addFlg: number) => {
+        console.log("addFlg--------------------------------------------------addFlg", addFlg)
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW, baseState.loginUserInfo.userId)
+        const resultObj = await s150_SelectUserList_New(CONST_SC110.MAXROW, baseState.loginUserInfo.userId, screenState.infinityScrollInfo.cursorTimestamp)
         const dbObj_newuserInfoList = resultObj.userList
 
         // データをuserInfoListステートに合わせる
@@ -74,8 +84,8 @@ export const SC110_V03_UserList = () => {
             userInfo.userId = dbObj_userInfo.UserId
             userInfo.userName = dbObj_userInfo.UserName
             userInfo.comment = dbObj_userInfo.Comment
-            console.log(dbObj_userInfo.UserName)
-            // userInfo.LatestLoginDatetime = dbObj_userInfo.LatestLoginDatetime
+            // console.log(dbObj_userInfo.UserName)
+            userInfo.LatestLoginDatetime = dbObj_userInfo.LatestLoginDatetime.toDate()
             const date = new Date().getTime()
             // console.log(Math.floor(date / 1000) % 60)
             const result_S370 = await s370_FileDownload(dbObj_userInfo.ProfileImagePath)
@@ -115,6 +125,12 @@ export const SC110_V03_UserList = () => {
         if (tmpList.length !== 0) {
             new_UserInfoList_ScreenDisp.push([...tmpList])
         }
+        if (addFlg === 1) {
+            console.log("addFlg--------------------------------------------------addFlg addFlg === 1", addFlg)
+            // 既存のユーザリスト（画面）に、新しく取得したユーザ情報を追加する
+            new_UserInfoList_ScreenDisp = baseState.baseContext_SC110.userInfoList_ScreenDisp.concat(new_UserInfoList_ScreenDisp)
+        }
+
         // ステートの更新
         const newState = {
             baseContext_SC110: {
@@ -122,13 +138,40 @@ export const SC110_V03_UserList = () => {
             }
         }
         baseDispatch(SC110_UPDATE_USERLIST(newState))
+        // console.log("newState--------------------------------------------------")
+        // console.log(newState)
+        // console.log("newState--------------------------------------------------")
+
+        // リストの最後の要素のログイン日時を取得する
+        const cursorTimeStamp = new_UserInfoList[new_UserInfoList.length - 1].LatestLoginDatetime
+        // インフィニティスクロール用の情報を更新する
+        updateInfinityCursor(cursorTimeStamp)
     }
 
+    // インフィニティスクロール用のカーソルを更新する関数
+    const updateInfinityCursor = (cursorTimeStamp: Date) => {
+        // screenContextのインフィニティスクロール用の値を更新する
+        let new_screenState = { ...screenState }
+        new_screenState.infinityScrollInfo.cursorTimestamp = cursorTimeStamp
+        screenDispatch(UPDATE_INFINITY_SCROLL_INFO(new_screenState.infinityScrollInfo))
+    }
+
+    // リフレッシュ関数
     //最上部でさらに下すワイプすることで発火するイベントを定義 （下にぐってスクロールさせて更新する仕組み）
     const onUpScrollEvent = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
         //スクロール最上部のさらに上までスクロールされた場合だけ実行する
-        if (e.nativeEvent.contentOffset.y < 0) {
-            updateDisp()
+        if (e.nativeEvent.contentOffset.y < -50) {
+            refreshUserList()
+        }
+    }
+
+    // 表示ユーザ追加関数（インフィニティスクロール用）
+    //最下部までスクロールすることで発火するイベントを定義
+    const onDownScrollEvent = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+        // リフレッシュ用のイベントと混同しないよう、発火条件にy軸の値を加える
+        if (e.nativeEvent.contentOffset.y > 0) {
+            // リストリフレッシュ
+            getUserList(1)
         }
     }
 
@@ -162,7 +205,7 @@ export const SC110_V03_UserList = () => {
     // 初期表示処理-------------------------------------------------------------
     //　裏持ちのユーザ情報リストのステートを更新
     useEffect(() => {
-        updateDisp()
+        refreshUserList()
     }, []);
     // -----------------------------------------------------------------------
     return (
@@ -176,7 +219,9 @@ export const SC110_V03_UserList = () => {
             </View>
             <Divider />
 
-            <ScrollView onMomentumScrollBegin={onUpScrollEvent}>
+            <ScrollView onMomentumScrollBegin={onUpScrollEvent} onMomentumScrollEnd={onDownScrollEvent}>
+                {/* <ScrollView onMomentumScrollBegin={onUpScrollEvent}> */}
+                {/* <ScrollView onMomentumScrollEnd={onDownScrollEvent}> */}
                 <Flex direction="column" mb="2.5" mt="1.5" _text={{
                     color: "coolGray.800"
                 }}>

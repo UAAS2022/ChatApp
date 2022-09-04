@@ -134,6 +134,9 @@ export const SC220_Style = StyleSheet.create({
     v20_MessageSender_You: {
         alignSelf: 'flex-start',
     },
+    v20_UserName: {
+        fontSize: 10
+    },
     v20_MessageItem_Me: {
         alignSelf: 'flex-end',
         backgroundColor: '#9900ff',

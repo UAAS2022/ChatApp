@@ -3,17 +3,23 @@
 // import 'firebase/firestore';
 import { initializeApp, getApps } from 'firebase/app';
 import {
-    getFirestore
-    , collection
-    , doc, addDoc
-    , setDoc, updateDoc
-    , deleteDoc, getDoc
-    , getDocs, Timestamp
-    , QueryConstraint
-    , query
-    , where
-    , orderBy
-    , limit,
+    getFirestore,
+    collection,
+    doc,
+    addDoc,
+    setDoc,
+    updateDoc,
+    deleteDoc,
+    getDoc,
+    getDocs,
+    Timestamp,
+    QueryConstraint,
+    query,
+    where,
+    orderBy,
+    limit,
+    FirestoreSettings,
+    initializeFirestore,
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import {
@@ -35,14 +41,24 @@ const firebaseConfig = {
 
 };
 
-if (getApps().length < 1) {
-    initializeApp(firebaseConfig);
+const firestoreSettings: FirestoreSettings = {
+    // ignoreUndefinedProperties: true
+    // 指定なしの場合、デフォルト設定が入る
 }
 
+// if (getApps().length < 1) {
+//     initializeApp(firebaseConfig);
+// }
+
+initializeApp(firebaseConfig);
 export const APP_FIREBASE = getApps()
-export const DB_FIREBASE = getFirestore();
-export const SG_FIREBASE = getStorage();
-export const FC_FIREBASE = getFunctions();
+
+initializeFirestore(APP_FIREBASE[0], firestoreSettings)
+export const DB_FIREBASE = getFirestore(APP_FIREBASE[0]);
+
+export const SG_FIREBASE = getStorage(APP_FIREBASE[0]);
+
+export const FC_FIREBASE = getFunctions(APP_FIREBASE[0]);
 
 
 // 1. FirestoreUtill

@@ -30,7 +30,7 @@ import type { SC999_Context, T999_UserInfo, SC999_ChatMessageInfo } from './SC99
 import { UPDATE_V19 } from './SC999_Action'
 import { SC999_S_Context } from "./SC999_Store"
 import { c010_UaasUtil_isNotBlank } from '../../common/C010_UaasUtil'
-import { s351_SelectChatMessageList_New } from "../../service/S351_SelectChatMessageList_New"
+import { s350_SelectChatMessageList_New } from "../../service/S350_SelectChatMessageList_New"
 
 
 const MAXROW = 4
@@ -66,7 +66,7 @@ export const SC999_V19_SelectChatMessageList_List = () => {
     const getChatMessageList = async () => {
         //console.log("getUserList開始！=========================================================");
         // Firebaseからデータを取得する
-        const resultObj = await s351_SelectChatMessageList_New(chatMessageInfo_Input.talkId)
+        const resultObj = await s350_SelectChatMessageList_New(chatMessageInfo_Input.talkId)
         const dbObj_newChatMessageInfoList = resultObj.chatMessageList
 
         // データをuserInfoListステートに合わせる

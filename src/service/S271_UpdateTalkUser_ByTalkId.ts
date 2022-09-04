@@ -5,41 +5,28 @@ import { DB_FIREBASE, SG_FIREBASE, FIREBASE_COLLECTIONS, c020_MakeDocId } from '
 import { C000_FIREBASE_INFO } from '../common/C000_Const';
 import { c060_DebugLog } from "../common/C060_LogUtil"
 import type { T101_TalkUser } from '../common/C020_FirebaseUtil_Types';
+import { s270_UpdateTalkUser } from './S270_UpdateTalkUser';
+import { s302_SelectTalkUserList_ByTalkId } from './S302_SelectTalkUserList_ByTalkId';
 
-const SERVICE_ID = "S270"
+const SERVICE_ID = "S271"
 
-export const s270_UpdateTalkUser = async (
+export const s271_UpdateTalkUser_ByTalkId = async (
     talkId: string,
-    userId: string,
     logUserId: string,
-    readedDatetimeFlg: boolean,
 ) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
     c060_DebugLog(SERVICE_ID, "START", [])
     // ---------------------------------------------------------------------------------------------------------
-    const docId = c020_MakeDocId([talkId, userId])
-    let newTalkUserInfo = {
-        // _0_DocId: talkId + C000_FIREBASE_INFO.DocIdMaker + userId,
-        // TalkId: talkId,
-        // UserId: userId,
-        // ReadedDatetime: Timestamp.now(),
-        // _CrtUserId: logUserId,
-        // _CrtServiceId: SERVICE_ID,
-        // _CrtDatetime: Timestamp.now(),
-        _UpdUserId: logUserId,
-        _UpdServiceId: SERVICE_ID,
-        _UpdDatetime: Timestamp.now(),
-    } as T101_TalkUser;
-    // 指定した項目のみ更新する
-    if (readedDatetimeFlg) {
-        newTalkUserInfo = { ...newTalkUserInfo, ...{ ReadedDatetime: Timestamp.now() } }
+    // 1）更新対象データを取得する
+    const result_S302 = await s302_SelectTalkUserList_ByTalkId(talkId, "0")
+    // 2）更新対象データ分ループして、トークユーザを更新する
+    for (const talkUserInfo of result_S302.talkUserList) {
+        s270_UpdateTalkUser(talkId, talkUserInfo.UserId, logUserId, false)
     }
-    // Firebase処理
-    const result_FB = await updateDoc(doc(DB_FIREBASE, FIREBASE_COLLECTIONS.T101_TalkUser, docId), newTalkUserInfo);
     // 戻り値を定義
     const resultObj = {
-        result_FB: result_FB
+        result_FB: true
     }
     // ---------------------------------------------------------------------------------------------------------
     // 終了ログ

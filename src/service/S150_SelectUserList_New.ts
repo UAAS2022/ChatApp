@@ -8,16 +8,17 @@ import type { M050_User } from '../common/C020_FirebaseUtil_Types';
 
 const SERVICE_ID = "S150"
 
-export const s150_SelectUserList_New = async (limitNo: number, logUserId: string) => {
+export const s150_SelectUserList_New = async (limitNo: number, logUserId: string, cursorTimestamp: Date) => {
     // ---------------------------------------------------------------------------------------------------------
     // 開始ログ
-    c060_DebugLog(SERVICE_ID, "START", [])
+    c060_DebugLog(SERVICE_ID, "START", [limitNo, logUserId, cursorTimestamp])
     // ---------------------------------------------------------------------------------------------------------
     // 戻り値用のリストを定義
     let userList = [] as any[]
     // クエリを定義
     const query_FB = query(collection(DB_FIREBASE, FIREBASE_COLLECTIONS.M050_User),
         // where("UserId", "!=", logUserId),   //これつけると変なエラーが出てしまう（Firebaseのルール上アウトらしい）。
+        where("LatestLoginDatetime", "<", Timestamp.fromDate(cursorTimestamp)),
         orderBy("LatestLoginDatetime", 'desc'),
         limit(limitNo)
     )
