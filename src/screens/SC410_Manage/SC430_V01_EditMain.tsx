@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo, useEffect, useContext } from 'react';
 import {
     Select,
     Stack,
@@ -9,14 +9,37 @@ import {
     CheckIcon
 } from "native-base"
 import {
+    Text,
+    Image,
     StyleSheet,
 } from 'react-native'
-import { SC420_ScreenInfo } from './SC410_Types';
+import { SC420_ScreenInfo, SC410_UserProfileInfo } from './SC410_Types';
 import { s120_UpdateUser } from '../../service/S120_UpdateUser';
+import * as ImagePicker from 'expo-image-picker';
+import { s370_FileDownload } from '../../service/S370_FileDownload';
+import { s361_ProfileImageUpload } from '../../service/S361_ProfileImageUpload';
+import { SC000_S_Context } from '../../screens/SC000_BaseComponent/SC000_Store'
 
 export const SC430_V01_EditMain = () => {
-    const [localState, setLocalState] = useState<SC420_ScreenInfo>({} as SC420_ScreenInfo);
 
+    // ①BaseContextを取得する
+    const { state: baseState, dispatch: baseDispatch } = useContext(SC000_S_Context)
+    const defaultState = {
+        userProfileInfo: {
+            userId: baseState.loginUserInfo.userId,
+            userName: baseState.loginUserInfo.userName,
+            comment: baseState.loginUserInfo.comment,
+            LatestLoginDatetime: String(baseState.loginUserInfo.LatestLoginDatetime),
+            profileImagePath: baseState.loginUserInfo.profileImagePath,
+            genderCd: baseState.loginUserInfo.genderCd,
+            age: baseState.loginUserInfo.age,
+            areaCd: baseState.loginUserInfo.areaCd,
+            hashtag: baseState.loginUserInfo.hashtag,
+        } as SC410_UserProfileInfo
+    } as SC420_ScreenInfo
+
+    const [localState, setLocalState] = useState<SC420_ScreenInfo>(defaultState);
+    const [localState_ImagePath, setLocalState_ImageUri] = useState("100_User/" + defaultState.userProfileInfo.userId + "/" + "profile.png");
     //onChangeイベントハンドラ（テキストインプットの中身が変わるたびにステートを更新する）
     // --------------------------------------------------------------
     //ユーザID
@@ -50,8 +73,31 @@ export const SC430_V01_EditMain = () => {
         setLocalState(newState)
         console.log("comment", newState.comment)
     }
+    //取り込んでから
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        if (!result.cancelled) {
+            console.log("result.uri", result.uri)
+            setLocalState_ImageUri(result.uri);
+        }
+    };
+    //送るのだ！
+    const uploadProfileImage = () => {
+        // ローカルStateから情報を取得する
+        const userId = localState.userProfileInfo.userId
+        // プロフィール画像をアップロードする
+        s361_ProfileImageUpload(localState.userProfileInfo.userId, localState_ImagePath)
+    }
+
 
     const editM050 = async () => {
+        uploadProfileImage()
         const userId = localState.userProfileInfo.userId
         const userName = localState.userProfileInfo.userName
         const comment = localState.userProfileInfo.comment
@@ -74,10 +120,40 @@ export const SC430_V01_EditMain = () => {
         )
 
     }
+    const initMain = async () => {
+        // デフォルトの画像パスを取得してstateに入れる
+        const result_S370 = await s370_FileDownload("100_User/" + defaultState.userProfileInfo.userId + "/" + "profile.png")
+        const defaultProfileImagePath = result_S370.fileUrl
+        setLocalState_ImageUri(defaultProfileImagePath)
+    }
+    //初期画像を出すために入れた
+    useEffect(() => {
+
+        initMain()
+    }, []);
+
+    const onClickSinUpBtn = async () => {
+        let errFlg = "0"
+        // 画像をアップロードする
+        if (errFlg === "0") {
+            // 画像をアップロードする
+            uploadProfileImage()
+            // ログイン処理を実行する
+            // 1. ユーザIDとパスワードからログインする
+        }
+        // // M050生成
+        // createM050()
+        // // M051生成
+        // createM051()
+    }
     return (
         <>
             <Box>
-                {/* <Box alignSelf="flex-start" bg="primary.500" _text={{
+                <Button style={{ width: 150, height: 150 }} onPress={pickImage} >
+                    <Image source={{ uri: localState_ImagePath }} style={{ width: 150, height: 150 }} />
+                </Button>
+                <Text>{"\n"}</Text>
+                <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",
                     fontWeight: "medium",
                     color: "warmGray.50",
@@ -91,7 +167,7 @@ export const SC430_V01_EditMain = () => {
                         md: "25%"
                     }} placeholder="ユーザーID" value={localState.userProfileInfo.userId}
                         onChangeText={(value) => { onChangeUserId(value) }} />
-                    <Box alignSelf="flex-start" bg="primary.500" _text={{
+                    {/* <Box alignSelf="flex-start" bg="primary.500" _text={{
                         fontSize: "md",
                         fontWeight: "medium",
                         color: "warmGray.50",
@@ -104,8 +180,8 @@ export const SC430_V01_EditMain = () => {
                         md: "25%"
                     }} placeholder="パスワード"
                         value={localState.userProfileInfo.password}
-                        onChangeText={(value) => { onChangePassword(value) }} />
-                </Stack> */}
+                        onChangeText={(value) => { onChangePassword(value) }} /> */}
+                </Stack>
                 {/* 名前BOX */}
                 <Box alignSelf="flex-start" bg="primary.500" _text={{
                     fontSize: "md",

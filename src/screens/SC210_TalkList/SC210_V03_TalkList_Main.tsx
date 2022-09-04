@@ -202,7 +202,7 @@ export const SC210_V03_TalkList_Main = (props: object) => {
     return (
         <>
             <View style={SC000_Style.v00_HeaderArea}>
-                <CC0010_ScreenTitle >トーク一覧画面</CC0010_ScreenTitle>
+                <CC0010_ScreenTitle >トーク一覧画面⇦ここも広告に</CC0010_ScreenTitle>
             </View>
             {/* <Button onPress={getTalkUserInfoList_Detail}>更新</Button>
             <Divider />
